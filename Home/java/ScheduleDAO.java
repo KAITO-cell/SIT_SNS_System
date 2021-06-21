@@ -35,45 +35,27 @@ public class ScheduleDAO {
 		con = DriverManager.getConnection(url, user, pass);
 
 		stmt = con.createStatement();
-		String sql = "SELECT * FROM SCHEDULE WHERE STUDENTID = 'AL19046'";
-		ResultSet weekID = stmt.executeQuery(sql);
-		List<String> s = new ArrayList<String>();
+		//String sql = "SELECT * FROM SCHEDULE WHERE STUDENTID = 'AL19046'";
+		//ResultSet weekID = stmt.executeQuery(sql);
 
-		while(weekID.next()) {
-			for(int i=2;i<7;i++) {
-				s.add(weekID.getString(i));
-				//System.out.println(s.get(i-2));
-			}
-			System.out.println(weekID.getString(1));
-			//count++;
-		}
-		weekID.close();
+//		while(weekID.next()) {
+//		}
+//		weekID.close();
+
 
 		//rs = stmt.executeQuery("SELECT * FROM MONDAY");
 		while(weekIndex<6) {
-
-			//List<String> dayTable = new ArrayList<String>();
-			rs = stmt.executeQuery("SELECT * FROM "+ weekTableName[weekIndex++]);
-			int i=1;
-			//int columnIndex=1;
-			//int weekIndex=0;
-			//rs = stmt.executeQuery("SELECT * FROM "+ weekTableName[weekIndex]);
-
-			//make day schedule
-			//System.out.println(weekID.getInt(1));
+			rs = stmt.executeQuery("SELECT * FROM "+ weekTableName[weekIndex++]);//WHERE weekIDColumn=
 			while(rs.next()) {
 			ScheduleModel schedule = new ScheduleModel(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8));
 			scheduleList.add(schedule);
-			//dayTable.add(rs.getString(i));
-			while(i<9) {
-				System.out.println("TAG:dayTable "+rs.getString(i));
-				i++;
-			}
-
-			//timeTables.add(test);
+			int i=1;
+				while(i<9) {
+					System.out.println("TAG:dayTable "+rs.getString(i));
+					i++;
+				}
 			}
 			rs.close();
-
 		}
 
 		}catch (SQLException | ClassNotFoundException e){
