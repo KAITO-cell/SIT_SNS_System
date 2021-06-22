@@ -49,6 +49,7 @@ td.tdoriginalclass{
 		<th class=throriginalclass>金</th>
 		<th class=throriginalclass>土</th>
 	</tr>
+
  	<tr>
 		<td class=tdoriginalclass>1</td>
 		<% for(int i =0;i<6;i++){ %>
@@ -123,11 +124,10 @@ td.tdoriginalclass{
 	</tr>
 </tbody>
 </table>
-<ul>
-	<li><a href="/Home">教科書</a></li>
-	<li><a href="/Home">設定</a></li>
-	<li><a href="/Home">その他</a></li>
-</ul>
+	<form method="post" action="/sit_sns_system/Home">
+		<input type="submit" value="設定">
+		<input type="hidden"  name="act" value="done">
+	</form>
 
 </body>
 </html>

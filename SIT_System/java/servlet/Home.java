@@ -2,6 +2,7 @@ package sit.sns.system;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Home
  */
@@ -34,6 +36,21 @@ public class Home extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
+
+
+		String[] period = new String[48];
+		period[1]= "ENGLISH";
+		period[2]= "MATH";
+		period[3]= "JAVA";
+//		int count=0;
+//		while(count<47) {
+//			period[count] = "C言語";
+//		}
+//
+	      HttpSession session = request.getSession();
+		  session.setAttribute("period", period);
+		//request.setAttribute("period", period);
+
 		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/Home.jsp");
 		dis.forward(request, response);
 
@@ -44,13 +61,34 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+
+		String act = request.getParameter("act");
+		if(act.equals("done")) {
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/Setting.jsp");
+			dis.forward(request, response);
+		}
+
+		HttpSession session = request.getSession();
+		session = request.getSession();
+		String[] period = (String[]) session.getAttribute("period");
+		List<String> timetable = new ArrayList<String>();
+
+		for(int i=0;i<period.length;i++) {
+			String str = request.getParameter("period["+i+"]");
+			System.out.println("Home:doPost"+period[i]+" "+str);
+			timetable.add(period[i]);
+		}
 
 
+		request.setAttribute("timetable", timetable);
 
-		RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/Setting.jsp");
-		dis.forward(request, response);
-
+//
+//		if(act.equals("done")) {
+//			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/Setting.jsp");
+//			dis.forward(request, response);
+//		}
+//
 
 
 	}
