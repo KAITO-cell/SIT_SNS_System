@@ -1,4 +1,4 @@
-package beans;
+package sit.sns.system;
 import java.io.Serializable;
 
 public class ScheduleModel implements Serializable{

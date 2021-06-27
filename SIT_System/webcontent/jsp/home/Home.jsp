@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="beans.ScheduleModel"%>
+<%@ page import="sit.sns.system.ScheduleModel"%>
 <%@ page import="java.util.List"%>
 
 
 <%
-	List<ScheduleModel> schedule = (List<ScheduleModel>) request.getAttribute("scheduleList");
+	List<ScheduleModel> schedule = (List<ScheduleModel>) session.getAttribute("scheduleList");
 %>
 
 
@@ -124,7 +124,7 @@ td.tdoriginalclass{
 	</tr>
 </tbody>
 </table>
-	<form method="post" action="/SIT_System/Home">
+	<form method="post" action="/sit_sns_system/Home">
 		<input type="submit" value="設定">
 		<input type="hidden"  name="act" value="done">
 	</form>
