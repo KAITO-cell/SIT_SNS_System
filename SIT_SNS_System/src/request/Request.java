@@ -53,7 +53,7 @@ public class Request extends HttpServlet {
 		String author = "";                                            //著者
 		String publish = "";                                           //出版社
 		String campus = "";                                            //キャンパス
-
+        String subject = "";
 
 		//データベースから情報を取得
 		try {
@@ -75,6 +75,7 @@ public class Request extends HttpServlet {
 			author=rs.getString("AUTHOR");
 			publish=rs.getString("PUBLISHER");
 			campus=rs.getString("CAMPUS");
+			subject=rs.getString("SUBJECT");
 
 		    conn.close();
 		    stmt.close();
@@ -97,6 +98,7 @@ public class Request extends HttpServlet {
 		request.setAttribute("author", author);
 		request.setAttribute("pub", publish);
 		request.setAttribute("cam", campus);
+		request.setAttribute("subject", subject);
 
 		// フォワード
 	    getServletConfig().getServletContext().getRequestDispatcher("/requestscreen.jsp").forward(request, response);

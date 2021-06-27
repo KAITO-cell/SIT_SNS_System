@@ -60,9 +60,10 @@
 <br>
 
 <!-- 戻るボタン -->
-<form method="get" action="/SIT_SNS_System/RequestComplete">
+<form method="post" action="/SIT_SNS_System/Registerlist">
 <input type="submit" value="戻る">
-<input type="hidden" name="action" value="">
+<input type="hidden" name="action" value="return">
+<input type="hidden" name="subject" value="<%= request.getAttribute( "subject" ) %>">
 </form>
 </body>
 </html>

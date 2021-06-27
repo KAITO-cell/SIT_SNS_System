@@ -29,7 +29,7 @@ public class RequestComplete extends HttpServlet {
 		String action = request.getParameter("action");
 
 		//「戻る」ボタンが押された場合
-		if(action=="") {
+		if(action=="return") {
 			//フォワード
 		    forwardPath = "/textbooklist.jsp";
 	        RequestDispatcher dispatcher =request.getRequestDispatcher(forwardPath);

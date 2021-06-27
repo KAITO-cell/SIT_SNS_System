@@ -42,7 +42,7 @@ public class Registerlist extends HttpServlet {
 
 		//学科を取得
 		String sub = request.getParameter("subject");
-		request.setAttribute("sub", sub);
+		request.setAttribute("subject", sub);
 
 		//データベースの準備
 	    Connection conn = null;
@@ -86,8 +86,6 @@ public class Registerlist extends HttpServlet {
 			}
 
 
-			studentid.add("1");
-			//System.out.println(i);
 			request.setAttribute("count", i);
 			request.setAttribute("s_id_list", studentid);
 			request.setAttribute("s_name_list", studentname);

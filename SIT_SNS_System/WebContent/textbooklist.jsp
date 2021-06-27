@@ -14,19 +14,26 @@
 <!-- 見出し -->
 </head>
 <body bgcolor="f0f0f0">
-<p>情報工学科</p>
+<p><%=request.getAttribute("subject")%></p>
 <br>
 
-<%int count = Integer.parseInt(request.getAttribute("count"));%>
+<%int count = (int)((request.getAttribute("count")));%>
 <%ArrayList<String> studentid = (ArrayList) request.getAttribute("s_id_list");%>
-
+<%                                        //学籍番号
+ArrayList<String> studentname = (ArrayList) request.getAttribute("s_name_list");                                       //学生の名前
+ArrayList<String> textid = (ArrayList) request.getAttribute("t_id_list");                                              //教科書ID
+ArrayList<String> textname = (ArrayList) request.getAttribute("t_name_list");                                         //教科書名
+ArrayList<String> author = (ArrayList) request.getAttribute("author_list");                                           //著者
+ArrayList<String> publish = (ArrayList) request.getAttribute("pub_list");                                         //出版社
+ArrayList<String> campus = (ArrayList) request.getAttribute("cam_list");
+%>
+<%for(int i=0; i<count; i++){ %>
 <form method="post" action="/SIT_SNS_System/Request">
-<details>
-    <summary>教科書名</summary>
-    <button type="submit" name="textid" value="6">AL19075</button>
-    <button type="submit" name="textid" value="7">AL19076</button>
-</details>
+<button type="submit" name="textid" value="<%=textid.get(i)%>"><%=studentid.get(i)%>&emsp;<%=textname.get(i)%>&emsp;<%=author.get(i)%>&emsp;<%=publish.get(i)%>&emsp;<%=campus.get(i)%></button>
+<br>
 </form>
+<% } %>
+
 
 <!-- プルダウン -->
 <form method="post" action="/SIT_SNS_System/Request">
