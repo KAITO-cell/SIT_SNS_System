@@ -1,4 +1,4 @@
-package sit.sns.system;
+package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,6 +12,8 @@ import java.sql.Statement;
  */
 import java.util.ArrayList;
 import java.util.List;
+
+import beans.ScheduleModel;
 
 
 public class ScheduleDAO {
@@ -35,10 +37,10 @@ public class ScheduleDAO {
 			con = DriverManager.getConnection(url, user, pass);
 		//ResultSet weekID = stmt.executeQuery(sql);
 
-		while(weekIndex<6) {//for(int j=0;j<weekID.length){
-			String sql="SELECT * FROM "+ weekTableName[weekIndex++]+" WHERE STUDENTID = ?;";
+		for(weekIndex=0;weekIndex<6;weekIndex++) {//for(int j=0;j<weekID.length){
+			String sql="SELECT * FROM "+ weekTableName[weekIndex]+" WHERE STUDENTID = ?;";
 			ps = con.prepareStatement(sql);
-			ps.setString(1, "AL19046");
+			ps.setString(1, stdid);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 
@@ -75,7 +77,7 @@ public class ScheduleDAO {
 			con = DriverManager.getConnection(url, user, pass);
 			Statement sm=null;
 			for(weekIndex=0;weekIndex<6;weekIndex++) {
-				String sql = "SELECT STUDENTID FROM " + weekTableName[weekIndex++]+";";
+				String sql = "SELECT STUDENTID FROM " + weekTableName[weekIndex]+";";
 				sm =con.createStatement();
 				//ps = con.prepareStatement(sql);
 				//ps.setString(1, weekTableName[weekIndex++]);
@@ -150,7 +152,7 @@ public class ScheduleDAO {
 
 
 	//時間割更新  動作確認済
-	public void insertTimeTable(ScheduleModel table,String tableName,String week) {
+	public void insertTimeTable(ScheduleModel table,String tableName,String week,String stdid) {
 		try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = DriverManager.getConnection(url, user, pass);
@@ -162,9 +164,9 @@ public class ScheduleDAO {
 												week+"5=?,"+
 												week+"6=?,"+
 												week+"7=?"+
-												"WHERE STUDENTID='AL19046';";
+												"WHERE STUDENTID=?;";
 		ps = con.prepareStatement(sql);
-		//ps.setString(1, "1");
+
 		ps.setString(1, table.getFirst());
 		ps.setString(2, table.getSecond());
 		ps.setString(3, table.getThird());
@@ -172,6 +174,8 @@ public class ScheduleDAO {
 		ps.setString(5, table.getFifth());
 		ps.setString(6, table.getSixth());
 		ps.setString(7, table.getSeventh());
+		ps.setString(8, stdid);
+		System.out.println("TAG:ScheduleDAO stdid="+stdid);
 		ps.executeUpdate();
 	}catch (SQLException | ClassNotFoundException e){
 			e.printStackTrace();

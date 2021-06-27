@@ -1,4 +1,4 @@
-package sit.sns.system;
+package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import Logic.ScheduleLogic;
+import beans.ScheduleModel;
+import dao.ScheduleDAO;
 /**
  * Servlet implementation class Home
  */
@@ -50,27 +54,32 @@ public class Home extends HttpServlet {
 		//doGet(request, response);
 
 		String act = request.getParameter("act");
+		HttpSession session = request.getSession();
+		String stdid = (String)session.getAttribute("loginStudent");
+		System.out.println("stdid="+stdid);
+		ScheduleDAO initDao =new ScheduleDAO();
 
-		if(act.equals(null)) {
+		if(act==null) {
 
-			try {
+			if(!initDao.exsistTimeTable(stdid)) {
+				//時間割初期化
+				initDao.initTimeTable(stdid);
+			}
 				ScheduleLogic scheduleLogic = new ScheduleLogic();
-				List<ScheduleModel> scheduleList = scheduleLogic.makeSchedule();
-			    HttpSession session = request.getSession();
+			try {
+				List<ScheduleModel> scheduleList = scheduleLogic.makeSchedule(stdid);
 				session.setAttribute("scheduleList", scheduleList);
-
 			} catch (SQLException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
-			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/Home.jsp");
+
+
+			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
 			dis.forward(request, response);
-		}
 
-
-
-		if(act.equals("done")) {
-			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/Setting.jsp");
+		}else if(act.equals("done")) {
+			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Setting.jsp");
 			dis.forward(request, response);
 		}else if(act.equals("home")) {
 			System.out.println("fir"+request.getParameter("fir"));
@@ -136,12 +145,8 @@ public class Home extends HttpServlet {
 				sev = request.getParameter("sev");
 			}
 			switch(sta) {
-				case "mon": tableName="MONDAY";
-							week="MON";
-							break;
-				case "tue": tableName="TUESDAY";
-							week="TUE";
-							break;
+				case "mon": tableName="MONDAY";week="MON";break;
+				case "tue": tableName="TUESDAY";week="TUE";break;
 				case "wed": tableName="WEDNESDAY";week="WED";break;
 				case "thu": tableName="THURSDAY";week="THU";break;
 				case "fri": tableName="FRIDAY";week="FRI";break;
@@ -152,20 +157,27 @@ public class Home extends HttpServlet {
 
 			ScheduleModel table = new ScheduleModel(fir,sec,thr,fou,fif,six,sev);
 			ScheduleDAO dao = new ScheduleDAO();
-			dao.insertTimeTable(table, tableName,week);
+
+
+			dao.insertTimeTable(table, tableName,week,stdid);
+
+
+
+			System.out.println("TAG:Home2 stdid="+stdid);
+
+
 			System.out.println(sta+" "+fir+" "+sec+" "+thr+" "+fou+" "+fif+" "+six+" "+sev);
 
 			ScheduleLogic scheduleLogic = new ScheduleLogic();
 
 			try {
-				List<ScheduleModel> scheduleList = scheduleLogic.makeSchedule();
-			    HttpSession session = request.getSession();
+				List<ScheduleModel> scheduleList = scheduleLogic.makeSchedule(stdid);
 				session.setAttribute("scheduleList", scheduleList);
 			} catch (SQLException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
-			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/Home.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
 			dis.forward(request, response);
 
 		}

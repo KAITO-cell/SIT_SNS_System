@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action="/sit_sns_system/Home" method="post">
+	<form action="/SIT_System/Home" method="post">
 	<select name="state">
 		<option value="mon">月</option>
 		<option value="tue">火</option>

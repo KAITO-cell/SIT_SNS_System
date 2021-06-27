@@ -15,7 +15,7 @@
 			<p style="text-align:center">学籍番号:   <input type="text" name="id"></p><br>
 			<p style="text-align:center">パスワード: <input type="password" name="pass"></p><br>
 			<br>
-			<p style="text-align:center"><input type="checkbox" id="01-A" name="checkbox01" checked="checked">ログインしたままにする</p> 
+			<p style="text-align:center"><input type="checkbox" id="01-A" name="checkbox01" checked="checked">ログインしたままにする</p>
 			<br>
 			<br>
 			<p style="text-align:center">

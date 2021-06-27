@@ -1,4 +1,4 @@
-package request;
+package servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
