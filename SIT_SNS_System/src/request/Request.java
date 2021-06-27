@@ -1,12 +1,10 @@
 package request;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,77 +18,19 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/Request")
 public class Request extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Request() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		//画面遷移の準備
 		String forwardPath = null;
 
-		      // フォワード先を設定
-		forwardPath = "/WEB-INF/textbooklist.jsp";
+		// フォワード
+		forwardPath = "/textbooklist.jsp";
 	    RequestDispatcher dispatcher =
 				    request.getRequestDispatcher(forwardPath);
 				    dispatcher.forward(request, response);
-
-
-		Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		ArrayList<String> list = new ArrayList<String>();
-		try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-
-				String url = "jdbc:mysql://160.16.141.77:51601/STUDENT";
-				conn = DriverManager.getConnection(url,"master","Pracb2021*");
-				stmt = conn.createStatement();
-
-				String sql = "SELECT * FROM test";
-				rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				String s = "<td>" + rs.getString("NAME") + "</td>"
-						+ "<td>" + rs.getInt("AGE") + "</td>"
-						+ "<td>" + rs.getString("MESSAGE") + "</td>";
-				list.add(s);
-
-			}
-			conn.close();
-			stmt.close();
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE html>");
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<meta charset=\"UTF-8\">");
-		out.println("<title>データベース接続のサンプルサーブレットSelect</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("<table border=\"1\">");
-		out.println("<tr>");
-		out.println("<th>学籍番号</th>");
-		out.println("<th>学生氏名</th>");
-		out.println("<th>学年</th>");
-		out.println("</tr>");
-		for (String str : list) {
-			out.println("<tr>" + str + "</tr>");
-			System.out.println(str);
-		}
-		out.println("</table>");
-		out.println("</body>");
-		out.println("</html>");
 
 	}
 
@@ -99,25 +39,67 @@ public class Request extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	    float num1 = 0;
-	    float num2 = 0;
-	    float resultNum;
 
-	    try {
-	      num1 = Float.parseFloat(request.getParameter("num1"));
-	      num2 = Float.parseFloat(request.getParameter("num2"));
-	      resultNum = num1 + num2;
-	    } catch (NumberFormatException e) {
-	      resultNum = 0;
+		//データベースの準備
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		//変数の準備
+		String studentid = "";                                          //学籍番号
+		String studentname = "";                                       //学生の名前
+		String textid = "'"+ request.getParameter( "textid") + "'"; //教科書ID
+		String textname = "";                                          //教科書名
+		String author = "";                                            //著者
+		String publish = "";                                           //出版社
+		String campus = "";                                            //キャンパス
+
+
+		//データベースから情報を取得
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = "jdbc:mysql://160.16.141.77:51601/TEXT";
+			conn = DriverManager.getConnection(url,"master","Pracb2021*");
+			stmt = conn.createStatement();
+
+			String sql = "SELECT * FROM REGISTER_LIST WHERE TEXTID=" + textid;
+			rs = stmt.executeQuery(sql);
+
+			rs.next();
+
+			studentid = rs.getString("STUDENTID");
+			studentname=rs.getString("STUDENTNAME");
+			textid=rs.getString("TEXTID");
+			textname=rs.getString("TEXTNAME");
+			author=rs.getString("AUTHOR");
+			publish=rs.getString("PUBLISHER");
+			campus=rs.getString("CAMPUS");
+
+		    conn.close();
+		    stmt.close();
+	    } catch(Exception e){
+		      e.printStackTrace();
 	    }
 
-	    request.setAttribute("num1", num1);
-	    request.setAttribute("num2", num2);
-	    request.setAttribute("resultNum", resultNum);
 
-	    getServletConfig().getServletContext().
-	      getRequestDispatcher("/WEB-INF/requestscreen.jsp").forward(request, response);
+		//データベースに選択したものがなかった場合、エラー画面に遷移
+		if(studentid=="") {
+			// フォワード
+		    getServletConfig().getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
+		}
+
+		//リクエストパラメータのセット
+		request.setAttribute("s_id", studentid);
+		request.setAttribute("s_name", studentname);
+		request.setAttribute("t_id", textid);
+		request.setAttribute("t_name", textname);
+		request.setAttribute("author", author);
+		request.setAttribute("pub", publish);
+		request.setAttribute("cam", campus);
+
+		// フォワード
+	    getServletConfig().getServletContext().getRequestDispatcher("/requestscreen.jsp").forward(request, response);
 	  }
 }
 

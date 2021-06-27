@@ -30,7 +30,7 @@ public class insertSampleServlet extends HttpServlet {
 				conn = DriverManager.getConnection(url,"master","Pracb2021*");
 				stmt = conn.createStatement();
 
-				String sql = "INSERT INTO REGISTERLIST VALUES('AL19070_2','AL19070','工学部','情報工学科','Webアプリの教科書','株式会社SCC','松尾　とおる','豊洲');";
+				String sql = "INSERT INTO REGISTER_LIST VALUES('8','AL19077','小倉','工学部','情報工学科','統計の教科書','株式会社SCC','松尾　とおる','大宮');";
 				ret = stmt.executeUpdate(sql);
 
 
