@@ -4,23 +4,26 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-import beans.StudentModel; 
+import beans.StudentModel;
 
 public class RegisterStudentDAO {
+
+
+
 	public boolean execute(StudentModel student) {
-		
+
 		//登録処理
 		//登録する内容をデータベースに登録
-		
+
 		try {
 			// ドライバクラスをロード
-	    	Class.forName("com.mysql.cj.jdbc.Driver"); 
+	    	Class.forName("com.mysql.cj.jdbc.Driver");
 
 		    // データベースへ接続
 	    	Connection con =
-	   	          DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/STUDENT","master","Pracb2021*"); 
-		     
-		        
+	   	          DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/STUDENT","master","Pracb2021*");
+
+
 	        // プリファードステートメントオブジェクトの生成
 	        String sql = "INSERT INTO STUDENT_INFO VALUES (?,?,?)";
 	        PreparedStatement prestmt = con.prepareStatement(sql);
@@ -36,7 +39,25 @@ public class RegisterStudentDAO {
 	    } catch (Exception e) {
 	    	e.printStackTrace();
 	    }
-		
+
 	    return true;
 	}
-}
+
+
+
+//
+//	public void setPassword() {
+//		try {
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//			Connection con =
+//		   	          DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/STUDENT","master","Pracb2021*");
+//		} catch (ClassNotFoundException | SQLException e) {
+//			// TODO 自動生成された catch ブロック
+//			e.printStackTrace();
+//		}
+//
+
+	}
+
+
+//}

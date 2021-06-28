@@ -5,22 +5,23 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import beans.StudentModel ; 
+import beans.StudentModel ;
 
 public class RegisterStudentCheckDAO {
+
 	public boolean execute(StudentModel student) {
-		
+
 		//確認処理
 		//登録する内容がデータベースに重複していないか確認
-		
+
 		try {
 			// ドライバクラスをロード
-	    	Class.forName("com.mysql.cj.jdbc.Driver"); 
+	    	Class.forName("com.mysql.cj.jdbc.Driver");
 
 		    // データベースへ接続
 	    	Connection con =
-		   	          DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/STUDENT","master","Pracb2021*"); 
-	    	
+		   	          DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/STUDENT","master","Pracb2021*");
+
 	    	Statement stmt = con.createStatement();
 	    	// 検索の実施と重複の確認
 	        String sql_check = "SELECT * FROM STUDENT_INFO";
@@ -34,9 +35,9 @@ public class RegisterStudentCheckDAO {
 	    	        con.close();
 	        		return false ;
 	        	}
-	        	
+
 	        }
-		        
+
 	        // プリファードステートメントオブジェクトのクローズ
 	        stmt.close() ;
 	        con.close();

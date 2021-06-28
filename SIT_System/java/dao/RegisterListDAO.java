@@ -30,7 +30,7 @@ public class RegisterListDAO {
         List<RegisterListModel> registerList = new ArrayList<RegisterListModel>();
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url,usr,pass);
 
         String sql= "SELECT * FROM REGISTER_LIST WHERE SUBJECT=?;";

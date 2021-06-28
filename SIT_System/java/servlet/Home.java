@@ -79,8 +79,10 @@ public class Home extends HttpServlet {
 			dis.forward(request, response);
 
 		}else if(act.equals("done")) {
+			
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Setting.jsp");
 			dis.forward(request, response);
+			
 		}else if(act.equals("home")) {
 			System.out.println("fir"+request.getParameter("fir"));
 			System.out.println("sec"+request.getParameter("sec"));
@@ -102,6 +104,7 @@ public class Home extends HttpServlet {
 
 			//データベースに登録してその内容表示
 			String sta = request.getParameter("state");
+			
 			if(request.getParameter("fir")==null) {
 				fir="0";
 				System.out.println(fir);
