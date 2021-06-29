@@ -3,11 +3,12 @@
     <%@ page import="java.util.ArrayList"%>
     <%@ page import = "java.util.*"%>
     <%@ page import = "java.lang.*"%>
+    <%@ page import = "javax.servlet.http.*"%>
     <%@ page import ="beans.RegisterListModel" %>
     <% 	List<RegisterListModel> register = (List<RegisterListModel>) session.getAttribute("register");
     	String[] str = new String[register.size()];
     	int count = register.size();
-    	String save="";
+    	ArrayList<String> save_list = new ArrayList<>();
     	for(int i=0;i<count;i++){
     		str[i]=register.get(i).getTextName();
     	}
@@ -23,11 +24,11 @@
 <!-- 見出し -->
 </head>
 <body bgcolor="f0f0f0">
-<p><%=request.getAttribute("subject")%></p>
+<p><%=(String) session.getAttribute("subject")%></p>
 <br>
 
 
-
+<form method="post" action="/SIT_System/Request">
 <table><tbody>
 
 
@@ -35,34 +36,41 @@
 		<th class=throriginalclass>教科書</th>
 		<th class=throriginalclass>著者名</th>
 		<th class=throriginalclass>出版社</th>
-		<th class=throriginalclass>キャンパス</th>
+		<th class=throriginalclass>学籍番号/キャンパス</th>
 	</tr>
 
 
 	<!-- 教科書列 -->
 	<%for(int i=0;i<count; i++){
 
-
-	if(register.get(i).getTextName().equals(save)){continue;}
-	%>
+		boolean hit = false;      //教科書の重複チェック
+		for(int s=0;s<save_list.size();s++){
+	       if(register.get(i).getTextName().equals(save_list.get(s))){hit=true;}
+	    }
+	    if(hit==true){continue;}
+	    %>
 	<tr>
+	    <!-- 教科書情報を表示 -->
 		<td><%=register.get(i).getTextName() %></td>
 		<td><%=register.get(i).getAuthor() %></td>
 		<td><%=register.get(i).getPublish() %></td>
 		<td>
 			<select name="textid">
 			<%
-
+			//教科書を出してる生徒の学籍番号を表示
 			for(int j=0;j<str.length;j++){
 				if(register.get(i).getTextName().equals(str[j])){
-					save=str[j];
 			%>
-				<option value="${register.get(j).getTextID()}">
+				<option value="<%=register.get(j).getTextID()%>">
 					<%=register.get(j).getStudentID()%> <%=register.get(j).getCampus()%>
 				</option>
-			<%}
+			<%
+			  }
 			}
 
+			//一度検索した教科書を保存
+			save_list.add(register.get(i).getTextName());
+		    //System.out.println(save_list);
 			%>
 			</select>
 		</td>
@@ -71,23 +79,15 @@
 <%
 
 	} %>
-
-
-	</tbody></table>
-<!-- プルダウン -->
-<form method="post" action="/SIT_SNS_System/Request">
-
-<select name="textid">
-      <option value="4">AL19073</option>
-      <option value="5">AL19074</option>
-      <option value="6">AL19075</option>
-      <option value="7">AL19076</option>
-      <option value="8">AL19077</option>
-</select>
-
-
+</tbody>
+</table>
 <!-- 選択ボタン -->
 <input type="submit" value="選択">
+</form>
+
+<form method="post" action="jsp/home/Home.jsp">
+<!-- 選択ボタン -->
+<input type="submit" value="戻る">
 </form>
 </body>
 </html>

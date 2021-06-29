@@ -1,9 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.RegisterListDAO;
 
 /**
  * Servlet implementation class RequestComplete
@@ -28,46 +27,23 @@ public class RequestComplete extends HttpServlet {
 
 		String action = request.getParameter("action");
 
-		//「戻る」ボタンが押された場合
-		if(action==null) {
-			//フォワード
-		    forwardPath = "/WEB-INF/textbooklist.jsp";
-	        RequestDispatcher dispatcher =request.getRequestDispatcher(forwardPath);
-		    dispatcher.forward(request, response);
-		}
-
 		//「完了」ボタンが押された場合
-		else if(action.equals("complete")) {
+		if(action.equals("complete")) {
 
 			//リクエストパラメータを取得
 			String textid = request.getParameter("textid");
 
-			//データベースから削除
-			Connection conn = null;
-			Statement stmt = null;
-
-			try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
-
-					String url = "jdbc:mysql://160.16.141.77:51601/TEXT";
-					conn = DriverManager.getConnection(url,"master","Pracb2021*");
-					stmt = conn.createStatement();
-
-					String sql = "DELETE FROM REGISTER_LIST WHERE TEXTID='"+ textid + "'";
-					stmt.executeUpdate(sql);
-
-
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			//データベースから登録されている教科書を削除
+			RegisterListDAO dao = new RegisterListDAO();
+			dao.deleteText(textid);
 
 			//フォワード
-		    forwardPath = "/WEB-INF/textbooklist.jsp";
+		    forwardPath = "/Registerlist";
 	        RequestDispatcher dispatcher =request.getRequestDispatcher(forwardPath);
 		    dispatcher.forward(request, response);
 		}
 
-
+		request.setAttribute("action", action);
 
 	}
 

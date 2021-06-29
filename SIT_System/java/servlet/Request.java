@@ -1,10 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import Logic.RegisterListLogic;
+import beans.RegisterListModel;
 
 /**
  * Servlet implementation class Request
@@ -24,14 +23,14 @@ public class Request extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//画面遷移の準備
-		String forwardPath = null;
+		/*String forwardPath = null;
 
 		// フォワード
-		forwardPath = "/WEB-INF/textbooklist.jsp";
+		forwardPath = "/textbooklist.jsp";
 	    RequestDispatcher dispatcher =
 				    request.getRequestDispatcher(forwardPath);
 				    dispatcher.forward(request, response);
-
+*/
 	}
 
 
@@ -40,62 +39,48 @@ public class Request extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//データベースの準備
-		Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs = null;
+		String forwardPath = null;
 
 		//変数の準備
-		String studentid="'"+request.getParameter( "studentid")+ "'"; //学籍番号
-		String studentname="";                                       //学生の名前
-		String textid = "";                                          //教科書ID
-		String textname="";                                          //教科書名
-		String author="";                                            //著者
-		String publish="";                                           //出版社
-		String campus="";                                            //キャンパス
+		String studentid = "0";                                          //学籍番号
+		String textid =request.getParameter( "textid"); //教科書ID
+
+
 
 		//データベースから情報を取得
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+        RegisterListLogic rll = new RegisterListLogic();
+        RegisterListModel textidrecode = rll.makeTextidcode(textid);
 
-			String url = "jdbc:mysql://160.16.141.77:51601/TEXT";
-			conn = DriverManager.getConnection(url,"master","Pracb2021*");
-			stmt = conn.createStatement();
 
-			String sql = "SELECT * FROM REGISTER_LIST WHERE STUDENTID=" + studentid;
-			rs = stmt.executeQuery(sql);
+        studentid=textidrecode.getStudentID();
 
-			rs.next();
-
-			studentname=rs.getString("STUDENTNAME");
-			textid=rs.getString("TEXTID");
-			textname=rs.getString("TEXTNAME");
-			author=rs.getString("AUTHOR");
-			publish=rs.getString("PUBLISHER");
-			campus=rs.getString("CAMPUS");
-
-		    conn.close();
-		    stmt.close();
-	    } catch(Exception e){
-		      e.printStackTrace();
-	    }
 
 		//データベースに選択したものがなかった場合、エラー画面に遷移
-		if(textid=="") {
+		if(studentid=="0") {
 			// フォワード
-		    getServletConfig().getServletContext().getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
+			forwardPath = "jsp/textbooklist/error.jsp";
+		    RequestDispatcher dispatcher =
+					    request.getRequestDispatcher(forwardPath);
+					    dispatcher.forward(request, response);
+		    return ;
 		}
 
 		//リクエストパラメータのセット
-		request.setAttribute("s_name", studentname);
-		request.setAttribute("t_id", textid);
-		request.setAttribute("t_name", textname);
-		request.setAttribute("author", author);
-		request.setAttribute("pub", publish);
-		request.setAttribute("cam", campus);
+		request.setAttribute("s_id", textidrecode.getStudentID());
+		request.setAttribute("s_name", textidrecode.getStudentName());
+		request.setAttribute("t_id", textidrecode.getTextID());
+		request.setAttribute("t_name", textidrecode.getTextName());
+		request.setAttribute("author", textidrecode.getAuthor());
+		request.setAttribute("pub", textidrecode.getPublish());
+		request.setAttribute("cam", textidrecode.getCampus());
+		request.setAttribute("subject", textidrecode.getSubject());
 
 		// フォワード
-	    getServletConfig().getServletContext().getRequestDispatcher("/WEB-INF/requestscreen.jsp").forward(request, response);
+		forwardPath = "jsp/textbooklist/requestscreen.jsp";
+	    RequestDispatcher dispatcher =
+				    request.getRequestDispatcher(forwardPath);
+				    dispatcher.forward(request, response);
+				    return ;
 	  }
 }
 

@@ -19,6 +19,12 @@ public class RegisterListLogic {
 
     }
 
+    public RegisterListModel makeTextidcode(String textid) {
+    	RegisterListDAO dao = new RegisterListDAO();
+    	RegisterListModel tempList = dao.getRegisterrecode(textid);
+    	return tempList;
+    }
+
 //    public static void main(String[] args) {
 //    	String sub ="情報工学科";
 //    	RegisterListLogic logic = new RegisterListLogic();
