@@ -124,9 +124,32 @@ td.tdoriginalclass{
 	</tr>
 </tbody>
 </table>
+	<form method="get" action="/SIT_System/Registerlist">
+		<br>
+		
+		<!-- プルダウン -->
+		<select name="subject">
+      		<option value="情報工学科">情報工学科</option>
+      		<option value="情報通信工学科">情報通信工学科</option>
+      	</select>
+      	
+		<!-- 選択ボタン -->
+		<input type="submit" value="学科選択">
+		<input type="hidden"  name="action" value="home">
+	</form>
 	<form method="post" action="/SIT_System/Home">
+		<br>
+		
+		<!-- プルダウン -->
+		<select name="act">
+      	<option value="done">時間割</option>
+      	<option value="name">名前の変更</option>
+      	<option value="pass">パスワードの変更</option>
+		</select>
+
+		<!-- 選択ボタン -->
 		<input type="submit" value="設定">
-		<input type="hidden"  name="act" value="done">
+		<!-- <input type="hidden"  name="act" value="done">  -->
 	</form>
 
 </body>

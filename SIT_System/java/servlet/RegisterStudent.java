@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.StudentModel;
-import dao.RegisterStudentCheckDAO;
 import dao.RegisterStudentDAO; 
 
 /**
@@ -90,8 +89,8 @@ public class RegisterStudent extends HttpServlet {
 		    String name = request.getParameter("name");
 
 		    // 登録するユーザーの情報を設定
-		    StudentModel registerStudent = new StudentModel(id,pass,pass_check,name);
-		    RegisterStudentCheckDAO Check = new RegisterStudentCheckDAO();
+		    StudentModel registerStudent = new StudentModel(id,pass,name);
+		    RegisterStudentDAO Check = new RegisterStudentDAO();
 		    
 		    // 新規アカウント登録エラー確認
 		    
@@ -134,7 +133,7 @@ public class RegisterStudent extends HttpServlet {
 		    	
 				    
 			// 登録する学籍番号が既に登録されている場合
-		    }else if(Check.execute(registerStudent) != true) {
+		    }else if(Check.registercheck(registerStudent) != true) {
 		    	// フォワード先を設定
 		    	forwardPath = "jsp/registerStudent/registerStudentBooking.jsp";
 		    	

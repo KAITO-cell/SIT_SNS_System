@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import Logic.ScheduleLogic;
 import beans.ScheduleModel;
+import beans.StudentModel;
+import dao.RegisterStudentDAO;
 import dao.ScheduleDAO;
 /**
  * Servlet implementation class Home
@@ -58,6 +60,12 @@ public class Home extends HttpServlet {
 		String stdid = (String)session.getAttribute("loginStudent");
 		System.out.println("stdid="+stdid);
 		ScheduleDAO initDao =new ScheduleDAO();
+		
+		// リクエストパラメータの取得
+		request.setCharacterEncoding("UTF-8");
+		String pass = request.getParameter("pass");
+		String pass_check = request.getParameter("pass_check");
+		String name = request.getParameter("name");
 
 		if(act==null) {
 
@@ -74,15 +82,96 @@ public class Home extends HttpServlet {
 				e.printStackTrace();
 			}
 
-
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
 			dis.forward(request, response);
 
+		// 時間割変更処理画面に遷移
 		}else if(act.equals("done")) {
 			
+			// フォワード先を設定
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Setting.jsp");
 			dis.forward(request, response);
 			
+		// 名前変更処理画面に遷移
+		}else if(act.equals("name")) {
+			
+			// フォワード先を設定
+			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/SettingName.jsp");
+			dis.forward(request, response);
+		
+		// 名前変更処理
+		}else if(act.equals("nameChange")) {
+		    
+			// 名前が２０字以内で入力されていない場合
+		    if(name.length() > 20 ) {
+		    	
+		    	// フォワード先を設定
+		    	RequestDispatcher dis = request.getRequestDispatcher("jsp/home/SettingNameError.jsp");
+				dis.forward(request, response);
+			
+			// エラーがない場合（名前が２０字以内で入力されている場合）
+		    }else {
+		    
+		    	// 変更する名前の情報を設定
+		    	StudentModel registerStudent = new StudentModel(stdid,pass,name);
+		    	RegisterStudentDAO nameChange = new RegisterStudentDAO();
+		    	
+		    	// データベースで名前変更を行う処理
+		    	nameChange.nameupdate(registerStudent) ;
+			
+		    	// フォワード先を設定
+		    	RequestDispatcher dis = request.getRequestDispatcher("jsp/home/SettingNameResult.jsp");
+		    	dis.forward(request, response);
+		    }
+		    
+		 // パスワード変更処理画面に移動 
+		}else if(act.equals("pass")) {
+			
+			// フォワード先を設定
+			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/SettingPass.jsp");
+			dis.forward(request, response);
+		
+		// パスワード変更処理
+		}else if(act.equals("passChange")) {
+			
+			// パスワード、パスワード（確認用）のいずれかが未入力の場合
+			// パスワードが半角英数字６～８文字で入力されていない場合
+		    if(pass.length() == 0 || pass_check.length() == 0 || pass.matches("[a-zA-Z0-9]{6,8}") == false) {
+		    	
+		    	// フォワード先を設定
+		    	RequestDispatcher dis = request.getRequestDispatcher("jsp/home/SettingPassError.jsp");
+				dis.forward(request, response);
+		    	
+			// パスワードとパスワード（確認用）が一致しない場合	  
+		    }else if(pass.equals(pass_check) == false) {
+		    	
+		    	// フォワード先を設定
+		    	RequestDispatcher dis = request.getRequestDispatcher("jsp/home/SettingPassNotmatch.jsp");
+				dis.forward(request, response);
+				
+			// エラーがない場合
+		    }else {
+		    
+		    	// 変更するユーザーの情報を設定
+		    	StudentModel registerStudent = new StudentModel(stdid,pass,name);
+		    	RegisterStudentDAO passChange = new RegisterStudentDAO();
+		    	
+		    	// データベースでパスワード変更を行う処理
+		    	passChange.passupdate(registerStudent) ;
+			
+		    	// フォワード先を設定
+		    	RequestDispatcher dis = request.getRequestDispatcher("jsp/home/SettingPassResult.jsp");
+		    	dis.forward(request, response);
+		    }
+		    
+		// ホーム画面に戻る処理
+		}else if(act.equals("back")) {
+			
+			// フォワード先を設定
+			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
+			dis.forward(request, response);
+			
+		// 時間割変更処理
 		}else if(act.equals("home")) {
 			System.out.println("fir"+request.getParameter("fir"));
 			System.out.println("sec"+request.getParameter("sec"));
