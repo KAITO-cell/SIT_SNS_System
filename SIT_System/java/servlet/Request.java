@@ -21,16 +21,6 @@ public class Request extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//画面遷移の準備
-		/*String forwardPath = null;
-
-		// フォワード
-		forwardPath = "/textbooklist.jsp";
-	    RequestDispatcher dispatcher =
-				    request.getRequestDispatcher(forwardPath);
-				    dispatcher.forward(request, response);
-*/
 	}
 
 
@@ -45,13 +35,24 @@ public class Request extends HttpServlet {
 		String studentid = "0";                                          //学籍番号
 		String textid =request.getParameter( "textid"); //教科書ID
 
+		System.out.println(textid);
+		//教科書画面リストのプルダウンでのエラーの場合
+		if(textid.equals("-1")){
 
+			forwardPath = "jsp/textbooklist/error.jsp";
+	        RequestDispatcher dispatcher =
+			    request.getRequestDispatcher(forwardPath);
+			    dispatcher.forward(request, response);
+            return ;
+         }
 
 		//データベースから情報を取得
         RegisterListLogic rll = new RegisterListLogic();
         RegisterListModel textidrecode = rll.makeTextidcode(textid);
 
 
+
+        //学籍番号を取得
         studentid=textidrecode.getStudentID();
 
 
@@ -80,7 +81,7 @@ public class Request extends HttpServlet {
 	    RequestDispatcher dispatcher =
 				    request.getRequestDispatcher(forwardPath);
 				    dispatcher.forward(request, response);
-				    return ;
+		   return ;
 	  }
 }
 
