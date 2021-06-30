@@ -20,15 +20,14 @@
 <!-- タイトル -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>教科書リスト</title>
-
-<!-- 見出し -->
 </head>
-<body bgcolor="f0f0f0">
-<p><%=(String) session.getAttribute("subject")%></p>
+<body>
+<!-- 見出し -->
+<div align="center"><%=(String) session.getAttribute("subject")%></div>
 <br>
 
 
-<form method="post" action="/SIT_System/Request">
+<div align="center">
 <table><tbody>
 
 
@@ -43,7 +42,8 @@
 	<!-- 教科書列 -->
 	<%for(int i=0;i<count; i++){
 
-		boolean hit = false;      //教科書の重複チェック
+		 //教科書の重複チェック
+		boolean hit = false;
 		for(int s=0;s<save_list.size();s++){
 	       if(register.get(i).getTextName().equals(save_list.get(s))){hit=true;}
 	    }
@@ -55,7 +55,10 @@
 		<td><%=register.get(i).getAuthor() %></td>
 		<td><%=register.get(i).getPublish() %></td>
 		<td>
-			<select name="textid">
+
+		    <form method="post" action="/SIT_System/Request">
+			<select name="textid" onchange="submit(this.form)">
+			    <option value="-1"selected>選択してください</option>
 			<%
 			//教科書を出してる生徒の学籍番号を表示
 			for(int j=0;j<str.length;j++){
@@ -73,21 +76,18 @@
 		    //System.out.println(save_list);
 			%>
 			</select>
+			</form>
 		</td>
 	</tr>
 
-<%
-
-	} %>
+<%  } %>
 </tbody>
 </table>
-<!-- 選択ボタン -->
-<input type="submit" value="選択">
-</form>
-
+</div>
 <form method="post" action="jsp/home/Home.jsp">
 <!-- 選択ボタン -->
 <input type="submit" value="戻る">
 </form>
+
 </body>
 </html>

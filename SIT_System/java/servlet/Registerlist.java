@@ -55,32 +55,4 @@ public class Registerlist extends HttpServlet {
 				    dispatcher.forward(request, response);
 
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-		/*String forwardPath = null;
-
-		String sub =request.getParameter("subject");
-
-		HttpSession session = request.getSession();
-		session.setAttribute("subject", sub);
-		//sub= ((ServletRequest) session).getParameter("subject");
-		RegisterListLogic rll = new RegisterListLogic();
-		List<RegisterListModel> registerList = rll.makeRegisterList(sub);//test 情報工学科
-
-		session.setAttribute("register", registerList);
-		//("register", registerList);
-		// フォワード
-		forwardPath = "jsp/textbooklist/textbooklist.jsp";
-	    RequestDispatcher dispatcher =
-				    request.getRequestDispatcher(forwardPath);
-				    dispatcher.forward(request, response);
-*/
-
-	}
-
 }

@@ -6,28 +6,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>教科書リスト</title>
-
-<h1><p style="text-align:center">情報工学科</p></h1>
 </head>
 
-<body bgcolor="f0f0f0">
+<body>
+<!-- 見出し -->
+<div align="center">情報工学科</div>
 <br>
-
+<br>
 <!-- エラー文 -->
-<p>エラーが発生しました</p>
+<div align="center">エラーが発生しました</div>
 <br>
 
 <!-- 確認ボタン -->
+<div align="center">
 <form method="get" action="/SIT_System/Registerlist">
 <input type="submit" value="確認">
+<input type="hidden" name="action" value="error_ok">
 </form>
+</div>
 </body>
 
 </html>
-
-<style type="text/css">
-h1{
-	padding: 1rem;
-	background: #33FF33;
-}
-</style>
