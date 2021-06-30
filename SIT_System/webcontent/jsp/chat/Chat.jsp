@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="beans.ChatModel" %>
-<% List<ChatModel> chatlist = (ArrayList<ChatModel>)session.getAttribute("chatmodel"); %>
+<%
+List<ChatModel> chatlist = (ArrayList<ChatModel>)session.getAttribute("chatlist");
+%>
 <!DOCTYPE html>
 <html>
 <head>
