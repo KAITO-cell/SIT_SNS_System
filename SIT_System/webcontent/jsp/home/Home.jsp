@@ -10,7 +10,7 @@
 %>
 
 
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,20 +126,20 @@ td.tdoriginalclass{
 </table>
 	<form method="get" action="/SIT_System/Registerlist">
 		<br>
-		
+
 		<!-- プルダウン -->
 		<select name="subject">
       		<option value="情報工学科">情報工学科</option>
       		<option value="情報通信工学科">情報通信工学科</option>
       	</select>
-      	
+
 		<!-- 選択ボタン -->
 		<input type="submit" value="学科選択">
 		<input type="hidden"  name="action" value="home">
 	</form>
 	<form method="post" action="/SIT_System/Home">
 		<br>
-		
+
 		<!-- プルダウン -->
 		<select name="act">
       	<option value="done">時間割</option>

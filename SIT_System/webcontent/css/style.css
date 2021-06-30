@@ -1,7 +1,11 @@
-p {text-align: center}
-h1{ 
+p {text-align:center}
+h1{
   text-align: center;
-  padding: 1rem 3rem;
-  background: #3cb371;
-  border: 1px solid; 
+  padding: 1rem 2rem;
+  background:#3cb371;
+  border: 1px solid;
   }
+
+.square{
+	text-align:left
+}

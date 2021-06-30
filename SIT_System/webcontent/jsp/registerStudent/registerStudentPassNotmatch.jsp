@@ -1,24 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
-	pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>アカウント登録エラー</title>
-</head>
-<body bgcolor="#DCDCDC" text="black">
-	<form action="/SIT_System/RegisterStudent" method="get">
-		<div style="text-align:center;">
-		<h1>新規アカウント登録</h1>
-		</div>
-		<br>
-		<br>
-		<p>パスワードとパスワード（確認用）が一致しません</p>
-		<br>
-		<div style="text-align:center;">
-		<input type="submit" value="戻る" style="border: 0.3px solid black ; color:white ; background-color: #FF4500">
-		</div>
-	</form>
-</body>
+  <h2>S.I.T＿System</h2>
+<div class="form-wrapper">
+  <h1>新規登録</h1>
+	<p>パスワードとパスワード(確認用)が一致しません。</p>
+	 <div class="form-footer">
+    <p><a href="/SIT_System/RegisterStudent">back</a></p>
+  </div>
+</div>
 </html>
