@@ -39,10 +39,7 @@
         登録する情報を入力してください
         <form action="/SIT_System/RegisterTextbook" method="post">
             <table style="margin:0 auto">
-                <tr>
-                    <td style="width:60">学籍番号</td>
-                    <td ><input type=text size="30" name="studentid"></input></td>
-                </tr>
+                
                 <tr>
                     <td style="width:60">ニックネーム</td>
                     <td ><input type=text size="30" name="studentname"></input></td>
@@ -52,10 +49,10 @@
                     <td>
                         <select name="department" id="department">
                         	<option value="">選択してください</option>
-                            <option value="0">工学部</option>
-                            <option value="1">システム理工学部</option>
-                            <option value="2">デザイン工学部</option>
-                            <option value="3">建築学部</option>
+                            <option value="工学部">工学部</option>
+                            <option value="システム理工学部">システム理工学部</option>
+                            <option value="デザイン工学部">デザイン工学部</option>
+                            <option value="建築学部">建築学部</option>
                         </select>
                     </td>
                 </tr>
@@ -72,7 +69,7 @@
                     <td>
                     	<input type="text" autocomplete="on" name="textname" list="textname">
                     	<datalist id="textname">
-                    	
+                    		
                     			<%for(int i=0; i<list.size(); i++){%>
                     				<option value="<%=list.get(i)%>">
                     			<%}%>

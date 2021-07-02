@@ -81,9 +81,11 @@ public class RegisterTextbook extends HttpServlet {
 		// フォワード先
 		String forwardPath = "";
 
+		HttpSession session2 = request.getSession();
 	    // リクエストパラメータの取得
+		
 	    request.setCharacterEncoding("UTF-8");
-	    String studentId = request.getParameter("studentid");
+	    String studentId = (String)session2.getAttribute("loginStudent");
 	    String studentName = request.getParameter("studentname");
 	    String department = request.getParameter("department");
 	    String subject = request.getParameter("subject");
@@ -96,7 +98,7 @@ public class RegisterTextbook extends HttpServlet {
 	 	RegisterListModel registertextbook = new RegisterListModel(studentId,studentName,department,subject,textName,author,publisher,campus);
 	 	//RegisterTextbookCheckDAO check = new RegisterTextbookCheckDAO();
 	    
-	    if(studentId.length() == 0 ||studentName.length() == 0 || department.length() == 0 || subject.length() == 0 || 
+	    if(studentName.length() == 0 || department.length() == 0 || subject.length() == 0 || 
 	    		textName.length() == 0 ||author.length() == 0 ||publisher.length() == 0 || campus.length() == 0 ) {
 	    	forwardPath = "/jsp/registerTextbook/registerTextbookOrNull.jsp";
 	    } else {

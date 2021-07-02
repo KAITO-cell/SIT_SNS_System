@@ -90,7 +90,7 @@ public class RegisterListDAO {
 		    while(rs.next()) {
 		    	count++;
 		    }
-
+		    
 		    // プリファードステートメントオブジェクトの生成
 		    String sql2 = "INSERT INTO REGISTER_LIST VALUES (?,?,?,?,?,?,?,?,?)";
 		    PreparedStatement prestmt = con.prepareStatement(sql2);

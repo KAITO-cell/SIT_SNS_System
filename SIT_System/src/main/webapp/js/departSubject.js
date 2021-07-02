@@ -15,13 +15,13 @@ function changeDepartment() {
   	// 変更後のカテゴリを取得
 	var changedDepartment = department.value;
 
-  	if (changedDepartment == "0") {
+  	if (changedDepartment == "工学部") {
 		// 学部に工学部が選択された場合
 		setEngi();
-	} else if (changedDepartment == "1") {
+	} else if (changedDepartment == "システム理工学部") {
 		// 学部にシステム理工学部が選択された場合
 		setSystem();
-	} else if (changedDepartment == "2"){
+	} else if (changedDepartment == "デザイン工学部"){
 		// 学部にデザイン工学部が選択された場合
 		setDesign();
 	} else {
@@ -48,11 +48,11 @@ function setEngi() {
 		{cd:"7", label:"情報工学科"},
 		{cd:"8", label:"土木工学科"},
 		{cd:"9", label:"先進国際課程"}
-	];
+	]
 
   	engiSub.forEach(function(value) {
 		var op = document.createElement("option");
-		op.value = value.cd;
+		op.value = value.label;
 		op.text = value.label;
 		subject.appendChild(op);
 	});
@@ -77,7 +77,7 @@ function setSystem() {
 
   	systemSub.forEach(function(value) {
 		var op = document.createElement("option");
-		op.value = value.cd;
+		op.value = value.label;
 		op.text = value.label;
 		subject.appendChild(op);
 	});
@@ -91,13 +91,13 @@ function setDesign() {
 
 	// デザイン工学部の選択肢
 	var designSub = [
-		{cd:"17", label:"デザイン工学科 生産・プロダクトデザイン系"},
-		{cd:"18", label:"デザイン工学科 ロボティクス・情報デザイン系"}
+		{cd:"17", label:"生産・プロダクトデザイン系"},
+		{cd:"18", label:"ロボティクス・情報デザイン系"}
 	];
 
 	designSub.forEach(function(value) {
 		var op = document.createElement("option");
-		op.value = value.cd;
+		op.value = value.label;
 		op.text = value.label;
 		subject.appendChild(op);
 	});
@@ -106,23 +106,21 @@ function setDesign() {
 // 建築学部の選択肢を設定する
 function setArchi() {
 	
-	// 学科の選択肢を空にする
 	subject.textContent = null;
 	
-	// 建築学部の選択肢
 	var archiSub = [
-		{cd:"19",label:"建築学科"}
+		{cd:"20", label:"AP:先進的プロジェクトデザインコース"},
+		{cd:"21", label:"SA:空間・建築デザインコース"},
+		{cd:"22", label:"UA:都市・建築デザインコース"}
 	];
 	
 	archiSub.forEach(function(value) {
-		var op = document.creatElement("option");
-		op.value = value.cd;
+		var op = document.createElement("option");
+		op.value = value.label;
 		op.text = value.label;
 		subject.appendChild(op);
 	});
 }
-
-
 
 
 
