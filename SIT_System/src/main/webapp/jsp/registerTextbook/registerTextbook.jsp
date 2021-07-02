@@ -1,5 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
+<%
+    String url = "jdbc:mysql://160.16.141.77:51601/TEXT";
+    String usr = "master";
+    String pass = "Pracb2021*";
+    List<String> list = new ArrayList<String>();
+	try {
+		// ドライバクラスをロード
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		// データベースへ接続
+		Connection con = DriverManager.getConnection(url,usr,pass);
+		Statement stmt = con.createStatement();
+		String sql = "SELECT TEXTNAME FROM TEXTLIST;";
+		ResultSet rs = stmt.executeQuery(sql);
+		while (rs.next()) {
+            String tName = rs.getString("TEXTNAME");
+           	list.add(tName);
+        }
+        stmt.close();
+        con.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +33,7 @@
 <title>教科書登録</title>
 </head>
 <body bgcolor="#DCDCDC" text="black">
+<script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/departSubject.js"></script>
     <div style="text-align:center">
         <h2 style="text-align:center">教科書情報登録</h2>
         登録する情報を入力してください
@@ -17,27 +44,41 @@
                     <td ><input type=text size="30" name="studentid"></input></td>
                 </tr>
                 <tr>
-                    <td style="width:60">名前</td>
+                    <td style="width:60">ニックネーム</td>
                     <td ><input type=text size="30" name="studentname"></input></td>
                 </tr>
                 <tr>
                     <td style="width:60">学部</td>
-                    <td >
-                        <select name="department">
-                            <option value="工学部">工学部</option>
-                            <option value="システム理工学部">システム理工学部</option>
-                            <option value="デザイン工学部">デザイン工学部</option>
-                            <option value="建築学部">建築学部</option>
+                    <td>
+                        <select name="department" id="department">
+                        	<option value="">選択してください</option>
+                            <option value="0">工学部</option>
+                            <option value="1">システム理工学部</option>
+                            <option value="2">デザイン工学部</option>
+                            <option value="3">建築学部</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td style="width:70">学科</td>
-                    <td ><input type=text size="30" name="subject"></input></td>
+                    <td>
+                    	<select name="subject" id="subject">
+                    		<option value="">選択してください</option>
+                    	</select>
+                    </td>
                 </tr>
                 <tr>
                     <td style="width:70">教科書名</td>
-                    <td ><input type=text size="30" name="textname"></input></td>
+                    <td>
+                    	<input type="text" autocomplete="on" name="textname" list="textname">
+                    	<datalist id="textname">
+                    	
+                    			<%for(int i=0; i<list.size(); i++){%>
+                    				<option value="<%=list.get(i)%>">
+                    			<%}%>
+                  			
+                    	</datalist>
+                    </td>
                 </tr>
                 <tr>
                     <td style="width:70">著者名</td>
@@ -71,7 +112,6 @@
 			</div>
 		</form>
     </div>
-    
 </body>
 
 </html>

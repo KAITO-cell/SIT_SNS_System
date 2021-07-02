@@ -122,7 +122,7 @@ public class RegisterStudent extends HttpServlet {
 			// 学科に対応しない学籍番号が入力された場合
 		    }else if(id.matches("A[A-H][0-9]{5}") == false && id.matches("AL[0-9]{5}") == false && 
 		              id.matches("BN[0-9]{5}") == false && id.matches("[B][P-R][0-9]{5}") == false  && id.matches("[B][V][0-9]{5}") == false &&
-		              id.matches("[C][Y][0-9]{5}") == false  && id.matches("[D][Z][0-9]{5}") == false ) {
+		              id.matches("[C][Y][0-9]{5}") == false  && id.matches("[D][Z][0-9]{5}") == false ){
 		    	// フォワード先を設定
 		    	forwardPath = "jsp/registerStudent/registerStudentIDNotExist.jsp";
 		    	
