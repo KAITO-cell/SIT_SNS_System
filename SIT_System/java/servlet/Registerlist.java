@@ -17,8 +17,8 @@ import beans.RegisterListModel;
 /**
  * Servlet implementation class Registerlist
  */
-@WebServlet("/Registerlist")
-public class Registerlist extends HttpServlet {
+@WebServlet("/RegisterList")
+public class RegisterList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

@@ -5,12 +5,12 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>教科書リスト</title>
+<title>エラー画面</title>
 </head>
 
 <body>
 <!-- 見出し -->
-<div align="center">情報工学科</div>
+<div align="center">Error</div>
 <br>
 <br>
 <!-- エラー文 -->
@@ -19,7 +19,7 @@
 
 <!-- 確認ボタン -->
 <div align="center">
-<form method="get" action="/SIT_System/Registerlist">
+<form method="get" action="/SIT_System/RegisterList">
 <input type="submit" value="確認">
 <input type="hidden" name="action" value="error_ok">
 </form>

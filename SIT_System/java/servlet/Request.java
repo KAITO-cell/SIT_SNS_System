@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Logic.RegisterListLogic;
 import beans.RegisterListModel;
@@ -29,13 +30,15 @@ public class Request extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		//変数の準備
 		String forwardPath = null;
+		HttpSession session = request.getSession();
 
 		//変数の準備
 		String studentid = "0";                                          //学籍番号
-		String textid =request.getParameter( "textid"); //教科書ID
+		String textid =request.getParameter( "textid");                  //教科書ID
 
-		System.out.println(textid);
+
 		//教科書画面リストのプルダウンでのエラーの場合
 		if(textid.equals("-1")){
 
@@ -66,22 +69,25 @@ public class Request extends HttpServlet {
 		    return ;
 		}
 
-		//リクエストパラメータのセット
-		request.setAttribute("s_id", textidrecode.getStudentID());
-		request.setAttribute("s_name", textidrecode.getStudentName());
-		request.setAttribute("t_id", textidrecode.getTextID());
-		request.setAttribute("t_name", textidrecode.getTextName());
-		request.setAttribute("author", textidrecode.getAuthor());
-		request.setAttribute("pub", textidrecode.getPublish());
-		request.setAttribute("cam", textidrecode.getCampus());
-		request.setAttribute("subject", textidrecode.getSubject());
+		//セッションスコープに各データを保存
+		session.setAttribute("s_id", textidrecode.getStudentID());
+		session.setAttribute("s_name", textidrecode.getStudentName());
+		session.setAttribute("t_id", textidrecode.getTextID());
+		session.setAttribute("t_name", textidrecode.getTextName());
+		session.setAttribute("author", textidrecode.getAuthor());
+		session.setAttribute("pub", textidrecode.getPublish());
+		session.setAttribute("cam", textidrecode.getCampus());
+		session.setAttribute("subject", textidrecode.getSubject());
+
+		//次の処理をセット
+		String action = "getChat";
+		request.setAttribute("act", action);
 
 		// フォワード
-		forwardPath = "jsp/textbooklist/requestscreen.jsp";
+		forwardPath = "/RequestChat";
 	    RequestDispatcher dispatcher =
 				    request.getRequestDispatcher(forwardPath);
 				    dispatcher.forward(request, response);
-		   return ;
 	  }
 }
 

@@ -73,7 +73,6 @@
 
 			//一度検索した教科書を保存
 			save_list.add(register.get(i).getTextName());
-		    //System.out.println(save_list);
 			%>
 			</select>
 			</form>

@@ -38,7 +38,7 @@ public class RequestComplete extends HttpServlet {
 			dao.deleteText(textid);
 
 			//フォワード
-		    forwardPath = "/Registerlist";
+		    forwardPath = "/RegisterList";
 	        RequestDispatcher dispatcher =request.getRequestDispatcher(forwardPath);
 		    dispatcher.forward(request, response);
 		}

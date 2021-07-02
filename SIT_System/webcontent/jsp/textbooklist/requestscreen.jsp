@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.util.ArrayList"%>
     <%@ page import = "java.util.*"%>
     <%@ page import = "java.lang.*"%>
+    <%@ page import="beans.TextChatModel" %>
+    <%@ page import = "javax.servlet.http.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +18,6 @@
 <h1>教科書情報</h1>
 </div>
 </head>
-
 <br>
 
 <body>
@@ -25,41 +27,41 @@
 
 <div style=display:table-row;>
 <div style=display:table-cell;>&emsp;出品者&emsp; : </div>
-<div style=display:table-cell;>&emsp;<%= request.getAttribute( "s_name" ) %></div>
+<div style=display:table-cell;>&emsp;<%= session.getAttribute( "s_name" ) %></div>
 </div>
 
 <div style=display:table-row;>
 <div style=display:table-cell;>教科書名&emsp; : </div>
-<div style=display:table-cell;>&emsp;<%= request.getAttribute( "t_name" ) %></div>
+<div style=display:table-cell;>&emsp; <%= session.getAttribute("t_name") %></div>
 </div>
 
 <div style=display:table-row;>
 <div style=display:table-cell;>&emsp;著者名&emsp; : </div>
-<div style=display:table-cell;>&emsp;<%= request.getAttribute( "author" ) %></div>
+<div style=display:table-cell;>&emsp;<%= session.getAttribute( "author" ) %></div>
 </div>
 
 <div style=display:table-row;>
 <div style=display:table-cell;>&emsp;出版社&emsp; : </div>
-<div style=display:table-cell;>&emsp;<%= request.getAttribute( "pub" ) %></div>
+<div style=display:table-cell;>&emsp;<%= session.getAttribute( "pub" ) %></div>
 </div>
 
 <div style=display:table-row;>
 <div style=display:table-cell;>キャンパス&nbsp; : </div>
-<div style=display:table-cell;>&emsp;<%= request.getAttribute( "cam" ) %></div>
+<div style=display:table-cell;>&emsp;<%= session.getAttribute( "cam" ) %></div>
 </div>
 
 </div>
 </div>
 <br>
-<%String stdid = (String)session.getAttribute("loginStudent"); %>
-<% if(stdid.equals((String)request.getAttribute("s_id"))){%>
+<%String stdid = (String)session.getAttribute("loginStudent"); System.out.print(stdid);%>
+<% if(stdid.equals( (String)session.getAttribute("s_id"))){%>
 <!-- 完了ボタン 登録した生徒の場合-->
 <form method="get" action="/SIT_System/RequestComplete">
 <div style="text-align:center;">
 <input type="submit" value="完了" onClick="return confirm('本当によろしいですか')">
 </div>
 <input type="hidden" name="action" value="complete">
-<input type="hidden" name="textid" value="<%= request.getAttribute( "t_id" ) %>">
+<input type="hidden" name="textid" value="<%= session.getAttribute( "t_id" ) %>">
 </form>
 <%}else{ %>
 <!--完了ボタン (登録した生徒ではない場合 ボタンは押せない)-->
@@ -70,11 +72,57 @@
 <br>
 
 <!-- 戻るボタン -->
-<form method="get" action="/SIT_System/Registerlist">
+<form method="get" action="/SIT_System/RegisterList">
 <input type="submit" value="戻る">
 <input type="hidden" name="action" value="return">
-<input type="hidden" name="subject" value="<%= request.getAttribute( "subject" ) %>">
+<input type="hidden" name="subject" value="<%= (String)request.getAttribute( "subject" ) %>">
 </form>
+
+<br>
+<br>
+
+ <!-- チャット履歴があれば、チャット履歴を表示 -->
+    <% String check =(String)request.getAttribute("check");%>
+    <% if(check!="0"){
+    	List<TextChatModel> chatlist = (ArrayList<TextChatModel>)session.getAttribute("chatlist");
+    	%>
+<div align="center">
+    	<table>
+    	<% for(int i=0;i<chatlist.size();i++){%>
+    	<tr>
+    	<td>
+    	<%= chatlist.get(i).getTime() %>
+    	</td>
+    	<td>
+    	<%= chatlist.get(i).getStudentid() %>
+    	</td>
+    	<td>
+    	<%= chatlist.get(i).getText() %>
+    	</td>
+    	</tr>
+    	<%}%>
+     	</table>
+</div>
+   <% }%>
+<br>
+<!-- チャットの部分(入力テキスト、送信ボタン) -->
+<form method="post" action="/SIT_System/RequestChat">
+<input type="hidden" name="action" value="return">
+<input type="hidden" name="s_id" value="<%=(String) session.getAttribute( "s_id" ) %>">
+<input type="hidden" name="t_id" value="<%=(String) session.getAttribute( "t_id" ) %>">
+<input type="hidden" name="act" value="sendChat">
+<p style="text-align:center"><input type="text" name="text" size="30">
+<input type="submit" value="送信">
+</p>
+</form>
+<br>
+<!-- 更新ボタン(チャット履歴) -->
+<form method="post" action="/SIT_System/RequestChat">
+<input type="hidden" name="act" value="getChat">
+<input type="submit" value="更新">
+</form>
+<br>
+<br>
 </body>
 </html>
 

@@ -124,7 +124,7 @@ td.tdoriginalclass{
 	</tr>
 </tbody>
 </table>
-	<form method="get" action="/SIT_System/Registerlist">
+	<form method="get" action="/SIT_System/RegisterList">
 		<br>
 
 		<!-- プルダウン -->
