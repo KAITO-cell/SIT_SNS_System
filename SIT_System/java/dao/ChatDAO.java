@@ -22,7 +22,7 @@ public class ChatDAO {
 
 	 public List<ChatModel> RequestChat(String roomid) {
 	    // SQL文の作成
-	        String sql = "SELECT * FROM CHATROOM WHERE roomid = ? ORDER BY time DESC;";
+	        String sql = "SELECT * FROM CHATROOM WHERE roomid = ? ORDER BY time DESC";
 
 	        List<ChatModel> chatList= new ArrayList<ChatModel>();
 
@@ -116,12 +116,16 @@ public class ChatDAO {
 
 
 
+
+
+
+
 	public List<TextChatModel> textRequestChat(String textid) {
 
 	    // SQL文の作成
-	        String sql = "SELECT * FROM CONTENTS WHERE textid = ? ORDER BY time ASC;";
+	        String sql = "SELECT * FROM CONTENTS WHERE textid = ? ORDER BY time DESC";
 
-	        List<TextChatModel>chatList= new ArrayList<TextChatModel>();
+	        List<TextChatModel> chatList= new ArrayList<TextChatModel>();
 
 	        try {
 
@@ -129,7 +133,7 @@ public class ChatDAO {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            // データベース接続
 	            con = DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/CHAT", "master", "Pracb2021*");
-
+	            System.out.println("接続中");
 	            // SQL実行準備
 	            stmt = con.prepareStatement(sql);
 
@@ -137,25 +141,19 @@ public class ChatDAO {
 
 	            rs = stmt.executeQuery();
 
-	            //データを取得
 	            while (rs.next()) {
-
-	                TextChatModel chatmodel = new TextChatModel(rs.getString("textid"),
-	                		                                      rs.getString("studentid"),
-	                		                                      rs.getString("text"),
-	                		                                      rs.getTimestamp("time").toString()
-	                		                                      );
-
-
-
+	            	String txtid = rs.getString("textid");
+	                String studentid = rs.getString("studentid");
+	                String text = rs.getString("text");
+	                String time = rs.getTimestamp("time").toString();
+	                //chatlist.add( time + " ( " + studentid + " ) " + text + "\n");
+	                TextChatModel chatmodel = new TextChatModel(txtid,studentid,text,time);
 					chatList.add(chatmodel);
 	            }
 
 	        } catch (ClassNotFoundException e) {
 	            System.out.println("JDBCドライバのロードでエラーが発生しました");
-
 	        } catch (SQLException e) {
-	            e.printStackTrace();
 	            System.out.println("データベースへのアクセスでエラーが発生しました。");
 	        } finally {
 	            try {
@@ -163,8 +161,7 @@ public class ChatDAO {
 	                    con.close();
 	                }
 	            } catch (SQLException e) {
-	            	e.printStackTrace();
-	            	System.out.println("データベースへのアクセスでエラーが発生しました。2");
+	                System.out.println("データベースへのアクセスでエラーが発生しました。2");
 	            }
 	        }
 	        return chatList;

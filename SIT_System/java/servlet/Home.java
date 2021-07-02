@@ -88,6 +88,18 @@ public class Home extends HttpServlet {
 
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
 			dis.forward(request, response);
+		
+		// ログアウト処理
+		}else if(act.equals("logout")) {
+			
+			// 不要となったセッションスコープ内のインスタンスを削除
+		    session.removeAttribute("loginStudent");
+		    session.removeAttribute("scheduleList");
+		    System.out.println("1") ;
+			
+			// フォワード先を設定
+			RequestDispatcher dis = request.getRequestDispatcher("jsp/login/UICertify.jsp");
+			dis.forward(request, response);
 
 		// 時間割変更処理画面に遷移
 		}else if(act.equals("done")) {
@@ -121,7 +133,7 @@ public class Home extends HttpServlet {
 		    	RegisterStudentDAO nameChange = new RegisterStudentDAO();
 
 		    	// データベースで名前変更を行う処理
-		    	nameChange.nameupdate(registerStudent) ;
+		    	nameChange.nameUpdate(registerStudent) ;
 
 		    	// フォワード先を設定
 		    	RequestDispatcher dis = request.getRequestDispatcher("jsp/home/SettingNameResult.jsp");
@@ -161,7 +173,7 @@ public class Home extends HttpServlet {
 		    	RegisterStudentDAO passChange = new RegisterStudentDAO();
 
 		    	// データベースでパスワード変更を行う処理
-		    	passChange.passupdate(registerStudent) ;
+		    	passChange.passUpdate(registerStudent) ;
 
 		    	// フォワード先を設定
 		    	RequestDispatcher dis = request.getRequestDispatcher("jsp/home/SettingPassResult.jsp");

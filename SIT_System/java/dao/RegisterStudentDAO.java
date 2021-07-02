@@ -10,7 +10,7 @@ import beans.StudentModel;
 
 public class RegisterStudentDAO {
 
-	public boolean registercheck(StudentModel student) {
+	public boolean registerCheck(StudentModel student) {
 
 		//確認処理
 		//登録する内容がデータベースに重複していないか確認
@@ -48,7 +48,7 @@ public class RegisterStudentDAO {
 	    return true;
 	}
 	
-	public boolean execute(StudentModel student) {
+	public boolean registerStudentAccount(StudentModel student) {
 
 		//登録処理
 		//登録する内容をデータベースに登録
@@ -81,7 +81,7 @@ public class RegisterStudentDAO {
 	    return true;
 	}
 
-	public boolean nameupdate(StudentModel student) {
+	public boolean nameUpdate(StudentModel student) {
 
 		//登録処理
 		//登録する内容をデータベースに登録
@@ -115,7 +115,7 @@ public class RegisterStudentDAO {
 	    return true;
 	}
 	
-	public boolean passupdate(StudentModel student) {
+	public boolean passUpdate(StudentModel student) {
 
 		//登録処理
 		//登録する内容をデータベースに登録

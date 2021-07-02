@@ -24,6 +24,17 @@ public class RegisterListLogic {
     	RegisterListModel tempList = dao.getRegisterrecode(textid);
     	return tempList;
     }
+    
+    
+//    public List<RegisterListModel> makeList (String id){
+//
+//
+//    	MyTextListDAO dao = new MyTextListDAO();
+//        List<RegisterListModel> registerList = dao.getRegisterList(id);
+//        return registerList;
+//
+//
+//    }
 
 //    public static void main(String[] args) {
 //    	String sub ="情報工学科";

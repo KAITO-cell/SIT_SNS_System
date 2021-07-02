@@ -35,9 +35,11 @@ td.tdoriginalclass{
 	</style>
 </head>
 <body>
-
-	<input type="button" value="logout">
-
+	<form method="post" action="/SIT_System/Home">
+		<input type="submit" value="ログアウト">
+		<input type="hidden" name="act" value="logout"> 
+	</form>
+	
 	<table class="tableroriginalclass"><tbody>
 
 	<tr>
@@ -135,7 +137,7 @@ td.tdoriginalclass{
 
 		<!-- 選択ボタン -->
 		<input type="submit" value="学科選択">
-		<input type="hidden"  name="act" value="textlist">
+		<input type="hidden"  name="action" value="home">
 	</form>
 	<form method="post" action="/SIT_System/Home">
 		<br>

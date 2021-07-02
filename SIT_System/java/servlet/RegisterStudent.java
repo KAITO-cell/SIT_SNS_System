@@ -56,7 +56,7 @@ public class RegisterStudent extends HttpServlet {
 
 		      // 登録処理の呼び出し
 		      RegisterStudentDAO logic = new RegisterStudentDAO();
-		      logic.execute(registerStudent);
+		      logic.registerStudentAccount(registerStudent);
 		 
 		      // 不要となったセッションスコープ内のインスタンスを削除
 		      session.removeAttribute("registerStudent");
@@ -133,7 +133,7 @@ public class RegisterStudent extends HttpServlet {
 		    	
 				    
 			// 登録する学籍番号が既に登録されている場合
-		    }else if(Check.registercheck(registerStudent) != true) {
+		    }else if(Check.registerCheck(registerStudent) != true) {
 		    	// フォワード先を設定
 		    	forwardPath = "jsp/registerStudent/registerStudentBooking.jsp";
 		    	

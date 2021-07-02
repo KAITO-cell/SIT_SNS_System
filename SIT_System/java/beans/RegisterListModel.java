@@ -25,6 +25,27 @@ public class RegisterListModel implements Serializable {
         this.publish=pub;
         this.campus=cam;
     }
+    
+    public RegisterListModel(String stdID,String stdN,String dep,String sub,String tN,String aut,String pub,String cam){
+        this.studentID=stdID;
+        this.studentName=stdN;
+        this.department=dep;
+        this.subject=sub;
+        this.textName=tN;
+        this.author=aut;
+        this.publish=pub;
+        this.campus=cam;
+    }
+    
+    public RegisterListModel(String stdN,String dep,String sub,String tN,String aut,String pub,String cam){
+        this.studentName=stdN;
+        this.department=dep;
+        this.subject=sub;
+        this.textName=tN;
+        this.author=aut;
+        this.publish=pub;
+        this.campus=cam;
+    }
 
     public String getTextID(){
         return this.textID;
