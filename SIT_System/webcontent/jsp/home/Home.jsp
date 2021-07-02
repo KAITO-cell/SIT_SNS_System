@@ -135,7 +135,7 @@ td.tdoriginalclass{
 
 		<!-- 選択ボタン -->
 		<input type="submit" value="学科選択">
-		<input type="hidden"  name="action" value="home">
+		<input type="hidden"  name="act" value="textlist">
 	</form>
 	<form method="post" action="/SIT_System/Home">
 		<br>
@@ -150,6 +150,11 @@ td.tdoriginalclass{
 		<!-- 選択ボタン -->
 		<input type="submit" value="設定">
 		<!-- <input type="hidden"  name="act" value="done">  -->
+	</form>
+
+	<form method="get" action="/SIT_System/Home">
+
+		<input type="submit" name="act" value="chat">
 	</form>
 
 </body>
