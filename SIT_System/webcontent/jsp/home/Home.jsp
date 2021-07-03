@@ -3,16 +3,13 @@
 
 <%@ page import="beans.ScheduleModel"%>
 <%@ page import="java.util.List"%>
-
-
 <%
 	List<ScheduleModel> schedule = (List<ScheduleModel>) session.getAttribute("scheduleList");
 %>
 
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -35,11 +32,12 @@ td.tdoriginalclass{
 	</style>
 </head>
 <body>
+<script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/departSubject.js"></script>
 	<form method="post" action="/SIT_System/Home">
 		<input type="submit" value="ログアウト">
-		<input type="hidden" name="act" value="logout"> 
+		<input type="hidden" name="act" value="logout">
 	</form>
-	
+
 	<table class="tableroriginalclass"><tbody>
 
 	<tr>
@@ -126,19 +124,44 @@ td.tdoriginalclass{
 	</tr>
 </tbody>
 </table>
-	<form method="get" action="/SIT_System/RegisterList">
-		<br>
 
-		<!-- プルダウン -->
-		<select name="subject">
-      		<option value="情報工学科">情報工学科</option>
-      		<option value="情報通信工学科">情報通信工学科</option>
-      	</select>
 
-		<!-- 選択ボタン -->
-		<input type="submit" value="学科選択">
-		<input type="hidden"  name="action" value="home">
-	</form>
+
+
+
+	<form action="/SIT_System/RegisterList" method="get">
+            <table style="margin:0 auto">
+
+                <tr>
+                    <td style="width:60">ニックネーム</td>
+                    <td ><input type=text size="30" name="studentname"></input></td>
+                </tr>
+                <tr>
+                    <td style="width:60">学部</td>
+                    <td>
+                        <select name="department" id="department">
+                        	<option value="">選択してください</option>
+                            <option value="工学部">工学部</option>
+                            <option value="システム理工学部">システム理工学部</option>
+                            <option value="デザイン工学部">デザイン工学部</option>
+                            <option value="建築学部">建築学部</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:70">学科</td>
+                    <td>
+                    	<select name="subject" id="subject" onchange="submit(this.form)">
+
+                    		<option value="">選択してください</option>
+                    	</select>
+                    </td>
+                </tr>
+        	</table>
+        	<input type="hidden"  name="action" value="home">
+    </form>
+
+
 	<form method="post" action="/SIT_System/Home">
 		<br>
 
