@@ -18,33 +18,24 @@
     	int mylistcount = mytextlist.size();
     	ArrayList<String> save_mytextlist = new ArrayList<>();
     %>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/textbook.css">
 <!DOCTYPE html>
 <html>
 <head>
-
 <!-- タイトル -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>教科書リスト</title>
 </head>
+<h2>S.I.T_System</h2>
 <body>
 <!-- 見出し -->
+<br>
 <div align="center"><h1><%=(String) session.getAttribute("subject")%></h1></div>
 <br>
 
-
+<div class="LIST">自分が登録した教科書リスト</div>
 <div align="center">
-<table><tbody>
-
-	<form method="get" action="/SIT_System/RegisterTextbook">
-		<tr>
-			<div align="center">
-				<h1>自分が登録した教科書リスト</h1>
-			</div>
-			<div align="right">
-				<input type="submit" value="教科書を登録">
-			</div>
-		</tr>
-	</form>
+<table class="table"><tbody>
 	<tr>
 		<th class=throriginalclass>教科書</th>
 		<th class=throriginalclass>著者名</th>
@@ -67,18 +58,19 @@
 </tbody>
 </table>
 </div>
+<form method="get" action="/SIT_System/RegisterTextbook">
+	<input type="submit" value="教科書登録" class="add">
+	</form>
 <br>
 <br>
 <br>
 <br>
-<div align="center">
-<table><tbody>
 
-	<tr>
-		<div align="center">
-			<h1><p>登録されている教科書リスト</p></h1>
+<div class="LIST">
+			登録されている教科書リスト
 		</div>
-	</tr>
+<div align="center">
+<table class="table"><tbody>
 	<tr>
 		<th class=throriginalclass>教科書</th>
 		<th class=throriginalclass>著者名</th>
@@ -105,6 +97,7 @@
 			<td>
 
 		    	<form method="post" action="/SIT_System/Request">
+					<div class="cp_ipselect cp_sl03">
 					<select name="textid" onchange="submit(this.form)">
 			    		<option value="-1"selected>選択してください</option>
 					<%
@@ -123,7 +116,8 @@
 					save_list.add(register.get(i).getTextName());
 					%>
 					</select>
-				</form>
+					</div>
+					</form>
 			</td>
 		</tr>
 
@@ -133,7 +127,8 @@
 </div>
 <form method="post" action="jsp/home/Home.jsp">
 <!-- 選択ボタン -->
-<input type="submit" value="戻る">
+<br>
+<input type="submit" value="戻る" class="back">
 </form>
 
 </body>
