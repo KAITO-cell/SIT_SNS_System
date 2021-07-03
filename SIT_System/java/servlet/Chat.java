@@ -24,7 +24,7 @@ public class Chat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
 
 		String studentID = (String)session.getAttribute("loginStudent");
@@ -93,7 +93,7 @@ public class Chat extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res ) throws ServletException, IOException{
 
 
-
+		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
 		String roomid = (String)session.getAttribute("roomID");
 		String studentid = (String)session.getAttribute("loginStudent");

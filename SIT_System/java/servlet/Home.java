@@ -30,7 +30,7 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+		request.setCharacterEncoding("UTF-8");
 //		// 学籍番号を取得して時間割表示
 //		ScheduleLogic scheduleLogic = new ScheduleLogic();
 //		try {
@@ -58,7 +58,6 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//doGet(request, response);
-
 		String act = request.getParameter("act");
 		HttpSession session = request.getSession();
 		String stdid = (String)session.getAttribute("loginStudent");
@@ -77,7 +76,7 @@ public class Home extends HttpServlet {
 				//時間割初期化
 				initDao.initTimeTable(stdid);
 			}
-				ScheduleLogic scheduleLogic = new ScheduleLogic();
+			ScheduleLogic scheduleLogic = new ScheduleLogic();
 			try {
 				List<ScheduleModel> scheduleList = scheduleLogic.makeSchedule(stdid);
 				session.setAttribute("scheduleList", scheduleList);
@@ -190,69 +189,28 @@ public class Home extends HttpServlet {
 
 		// 時間割変更処理
 		}else if(act.equals("home")) {
-			System.out.println("fir"+request.getParameter("fir"));
-			System.out.println("sec"+request.getParameter("sec"));
-			System.out.println("thi"+request.getParameter("thr"));
-			System.out.println("for"+request.getParameter("fou"));
-			System.out.println("fif"+request.getParameter("fif"));
-			System.out.println("six"+request.getParameter("six"));
+//			System.out.println("fir"+request.getParameter("fir"));
+//			System.out.println("sec"+request.getParameter("sec"));
+//			System.out.println("thi"+request.getParameter("thr"));
+//			System.out.println("for"+request.getParameter("fou"));
+//			System.out.println("fif"+request.getParameter("fif"));
+//			System.out.println("six"+request.getParameter("six"));
 
 
 			String tableName="";
 			String week="";
-			String fir;
-			String sec;
-			String thr;
-			String fou;
-			String fif;
-			String six;
-			String sev;
+			String fir=request.getParameter("fir");
+			String sec=request.getParameter("sec");
+			String thr=request.getParameter("thr");
+			String fou=request.getParameter("fou");
+			String fif=request.getParameter("fif");
+			String six=request.getParameter("six");
+			String sev=request.getParameter("sev");
 
 			//データベースに登録してその内容表示
 			String sta = request.getParameter("state");
 
-			if(request.getParameter("fir")==null) {
-				fir="0";
-				System.out.println(fir);
-			}else {
-				fir = request.getParameter("fir");
-			}
-			if(request.getParameter("sec")==null) {
-				sec="0";
-				System.out.println(sec);
-			}else {
-				sec = request.getParameter("sec");
-			}
-			if(request.getParameter("thr")==null) {
-				thr="0";
-				System.out.println(thr);
-			}else {
-				thr = request.getParameter("thr");
-			}
-			if(request.getParameter("fou")==null) {
-				fou="0";
-				System.out.println("for"+fou);
-			}else {
-				fou = request.getParameter("fou");
-			}
-			if(request.getParameter("fif")==null) {
-				fif="0";
-				System.out.println(fif);
-			}else {
-				fif = request.getParameter("fif");
-			}
-			if(request.getParameter("six")==null) {
-				six="0";
-				System.out.println("six "+six);
-			}else {
-				six = request.getParameter("six");
-			}
-			if(request.getParameter("sev").equals(null)) {
-				sev="0";
-				System.out.println("sev"+sev);
-			}else {
-				sev = request.getParameter("sev");
-			}
+
 			switch(sta) {
 				case "mon": tableName="MONDAY";week="MON";break;
 				case "tue": tableName="TUESDAY";week="TUE";break;
@@ -263,7 +221,30 @@ public class Home extends HttpServlet {
 				default: tableName = "MONDAY";
 			}
 
+			if( fir == null) {
+				fir="0";
+			}
+			if( sec== null) {
+				sec="0";
+			}
+			if( thr== null) {
+				thr="0";
+			}
+			if( fou== null) {
 
+				fou="0";
+			}
+			if( fif== null) {
+
+				fif="0";
+			}
+			if( six== null) {
+
+				six="0";
+			}
+			if( sev== null) {
+				sev="0";
+			}
 			ScheduleModel table = new ScheduleModel(fir,sec,thr,fou,fif,six,sev);
 			ScheduleDAO dao = new ScheduleDAO();
 

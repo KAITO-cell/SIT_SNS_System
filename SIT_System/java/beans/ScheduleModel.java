@@ -2,12 +2,8 @@ package beans;
 import java.io.Serializable;
 
 public class ScheduleModel implements Serializable{
-//	private List<String> MONDAY;
-//	private List<String> TUESDAY;
-//	private List<String> WEDNESDAY;
-//	private List<String> THURSDAY;
-//	private List<String> FRIDAY;
-//	private List<String> SATURDAY;
+
+
 	String first;
 	String second;
 	String third;
@@ -25,6 +21,7 @@ public class ScheduleModel implements Serializable{
 		this.sixth = sixth;
 		this.seventh = seventh;
 	}
+
 	public String getFirst() {
 		return this.first;
 	}
@@ -46,7 +43,4 @@ public class ScheduleModel implements Serializable{
 	public String getSeventh() {
 		return this.seventh;
 	}
-
-
-
 }
