@@ -11,9 +11,9 @@
 	<form action="/SIT_System/Home" method="post">
 	<p>条件を満たしていません</p>
 	<br>
-	<input type="submit" value="戻る">
+	<input type="submit" value="戻る" class="back">
 	<input type="hidden"  name="act" value="name">
-	
+
 	</form>
 
 </body>

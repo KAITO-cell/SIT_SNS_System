@@ -19,7 +19,7 @@
 <form action="/SIT_System/RegisterList" method="get">
 <div style="text-align:center;">
 <input type="submit" value="教科書リストへ戻る" style="border: 0.3px solid black ; color:white ; background-color: #FF4500" >
-<input type="hidden" name="act" value="back"> 
+<input type="hidden" name="action" value="back">
 </div>
 </form>
 </html>
