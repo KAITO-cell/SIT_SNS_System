@@ -88,15 +88,16 @@ public class Home extends HttpServlet {
 
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
 			dis.forward(request, response);
-		
+
 		// ログアウト処理
 		}else if(act.equals("logout")) {
-			
+
 			// 不要となったセッションスコープ内のインスタンスを削除
 		    session.removeAttribute("loginStudent");
 		    session.removeAttribute("scheduleList");
+		    session.removeAttribute("subject");
 		    System.out.println("1") ;
-			
+
 			// フォワード先を設定
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/login/UICertify.jsp");
 			dis.forward(request, response);
