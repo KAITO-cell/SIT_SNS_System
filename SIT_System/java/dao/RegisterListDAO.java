@@ -71,7 +71,7 @@ public class RegisterListDAO {
 
 
     //データベースのREGISTER_LISTから指定されたtextidのレコードを
-    public RegisterListModel getRegisterrecode(String textid) {
+    public RegisterListModel getRegisterRecode(String textid) {
 
 
     	RegisterListModel tempList = null;
@@ -153,16 +153,16 @@ public class RegisterListDAO {
 			// データベースへ接続
 		    Connection con =
 		   	DriverManager.getConnection(url,usr,pass);
-		    
+
 		    String sql = "SELECT TEXTID FROM REGISTER_LIST;";
 		    PreparedStatement ps = con.prepareStatement(sql);
 		    ResultSet rs = ps.executeQuery();
-		    
+
 		    count = 0;
 		    while(rs.next()) {
 		    	count++;
 		    }
-		    
+
 		    // プリファードステートメントオブジェクトの生成
 		    String sql2 = "INSERT INTO REGISTER_LIST VALUES (?,?,?,?,?,?,?,?,?)";
 		    PreparedStatement prestmt = con.prepareStatement(sql2);
@@ -188,5 +188,55 @@ public class RegisterListDAO {
 
 		return true;
 	}
+
+public List<RegisterListModel> getMyTextList(String studentID) {
+
+		RegisterListModel tempList = null ;
+    	//確認処理
+    	//登録する内容がデータベースに重複していないか確認
+
+		 List<RegisterListModel> registerList = new ArrayList<RegisterListModel>();
+
+    	try {
+    		// ドライバクラスをロード
+    		Class.forName("com.mysql.cj.jdbc.Driver");
+
+    		// データベースへ接続
+    		Connection con =
+    		          DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/TEXT","master","Pracb2021*");
+
+
+    		// 検索の実施と重複の確認
+    		System.out.println("DAO,"+studentID) ;
+    		String sql= "SELECT * FROM REGISTER_LIST WHERE STUDENTID = ?;";
+    		PreparedStatement prestmt = con.prepareStatement(sql);
+    		prestmt.setString(1,studentID);
+    		ResultSet rs = prestmt.executeQuery();
+
+    		while(rs.next()){
+                tempList = new RegisterListModel(rs.getString("TEXTID"),
+                                                                   rs.getString("STUDENTID"),
+                                                                   rs.getString("STUDENTNAME"),
+                                                                   rs.getString("DEPARTMENT"),
+                                                                   rs.getString("SUBJECT"),
+                                                                   rs.getString("TEXTNAME"),
+                                                                   rs.getString("AUTHOR"),
+                                                                   rs.getString("PUBLISHER"),
+                                                                   rs.getString("CAMPUS")
+                                                                    );
+                System.out.println(tempList) ;
+                String a = rs.getString("STUDENTID") ;
+                System.out.println(a) ;
+                registerList.add(tempList);
+            }
+
+    		// プリファードステートメントオブジェクトのクローズ
+    		prestmt.close() ;
+    		con.close();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    return registerList ;
+   }
 
 }
