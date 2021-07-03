@@ -85,25 +85,24 @@
     <% String check =(String)request.getAttribute("check");%>
     <% if(check!="0"){
     	List<TextChatModel> chatlist = (ArrayList<TextChatModel>)session.getAttribute("chatlist");
-    	%>
-<div align="center">
-    	<table>
-    	<% for(int i=0;i<chatlist.size();i++){%>
-    	<tr>
-    	<td>
-    	<%= chatlist.get(i).getTime() %>
-    	</td>
-    	<td>
-    	<%= chatlist.get(i).getStudentid() %>
-    	</td>
-    	<td>
-    	<%= chatlist.get(i).getText() %>
-    	</td>
-    	</tr>
-    	<%}%>
-     	</table>
-</div>
-   <% }%>
+		for(int i=0;i<chatlist.size();i++){
+			if(chatlist.get(i).getStudentid().equals((String)session.getAttribute("s_id"))){
+		%>
+			<p style="text-align:right">
+				(<%= chatlist.get(i).getTime() %>
+				<%= chatlist.get(i).getStudentid() %>)
+				<%= chatlist.get(i).getText() %>
+			</p>
+			<%}else{ %>
+			<p style="text-align:left">
+				(<%= chatlist.get(i).getTime() %>
+				<%= chatlist.get(i).getStudentid() %>)
+				<%= chatlist.get(i).getText() %>
+
+			</p>
+             <%} %>
+        <%} %>
+   <%}%>
 <br>
 <!-- チャットの部分(入力テキスト、送信ボタン) -->
 <form method="post" action="/SIT_System/RequestChat">
