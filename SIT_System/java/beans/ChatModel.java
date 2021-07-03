@@ -16,10 +16,10 @@ public class ChatModel implements Serializable{
 		this.text = text;
 		this.time = time;
 	}
-	public String getStudentid() {
+	public String getStudentID() {
 		return this.studentID;
 	}
-	public String getTextid() {
+	public String getRoomid() {
 		return this.roomID;
 	}
 	public String getText() {
