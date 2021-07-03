@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import Logic.RegisterListLogic;
 import beans.RegisterListModel;
-import dao.MyTextListDAO;
+import dao.RegisterListDAO;
 
 /**
  * Servlet implementation class Registerlist
@@ -35,78 +35,37 @@ public class RegisterList extends HttpServlet {
 
 		//セッションIDを生成
 		HttpSession session = request.getSession();
-		
-		
+
+
 		//学籍番号の取得
 		String studentID = (String)session.getAttribute("loginStudent");
-		//System.out.println("id"+studentID) ;
-		//System.out.println("123") ;
-		
-		if (action == null) {
-			
-			//データベースから指定された学科で登録されている教科書のデータを取得
-			RegisterListLogic rll = new RegisterListLogic();
-			List<RegisterListModel> registerList = rll.makeRegisterList((String) session.getAttribute("subject"));
-			session.setAttribute("register", registerList);
-		
-			//データベースから自身の学籍番号で登録されている教科書のデータを取得
-			MyTextListDAO logic = new MyTextListDAO();
-			List<RegisterListModel> MyList = logic.getMyTextList(studentID);
-				
-			// セッションスコープに自身が登録している教科書を保存
-			session.setAttribute("mytextlist", MyList);
 
-			// フォワード
-			forwardPath = "jsp/textbooklist/textbooklist.jsp";
-			RequestDispatcher dispatcher =
-				    	request.getRequestDispatcher(forwardPath);
-				    	dispatcher.forward(request, response);
-			
-		} else if((action.equals("home"))){
+
+
+		if((action.equals("home"))){
 
 			//学科をセッションに登録
 			String sub =request.getParameter("subject");
 			session.setAttribute("subject", sub);
-			
-			//データベースから指定された学科で登録されている教科書のデータを取得
-			RegisterListLogic rll = new RegisterListLogic();
-			List<RegisterListModel> registerList = rll.makeRegisterList((String) session.getAttribute("subject"));
-			session.setAttribute("register", registerList);
-		
-			//データベースから自身の学籍番号で登録されている教科書のデータを取得
-			MyTextListDAO logic = new MyTextListDAO();
-			List<RegisterListModel> MyList = logic.getMyTextList(studentID);
-				
-			// セッションスコープに自身が登録している教科書を保存
-			session.setAttribute("mytextlist", MyList);
-
-			// フォワード
-			forwardPath = "jsp/textbooklist/textbooklist.jsp";
-			RequestDispatcher dispatcher =
-				    	request.getRequestDispatcher(forwardPath);
-				    	dispatcher.forward(request, response);
-
-		} else {
-			
-			
-
-			//データベースから指定された学科で登録されている教科書のデータを取得
-			RegisterListLogic rll = new RegisterListLogic();
-			List<RegisterListModel> registerList = rll.makeRegisterList((String) session.getAttribute("subject"));
-			session.setAttribute("register", registerList);
-		
-			//データベースから自身の学籍番号で登録されている教科書のデータを取得
-			MyTextListDAO logic = new MyTextListDAO();
-			List<RegisterListModel> MyList = logic.getMyTextList(studentID);
-				
-			// セッションスコープに自身が登録している教科書を保存
-			session.setAttribute("mytextlist", MyList);
-
-			// フォワード
-			forwardPath = "jsp/textbooklist/textbooklist.jsp";
-			RequestDispatcher dispatcher =
-				    	request.getRequestDispatcher(forwardPath);
-				    	dispatcher.forward(request, response);
 		}
+			//データベースから指定された学科で登録されている教科書のデータを取得
+			RegisterListLogic rll = new RegisterListLogic();
+			List<RegisterListModel> registerList = rll.makeRegisterList((String) session.getAttribute("subject"));
+			session.setAttribute("register", registerList);
+
+			//データベースから自身の学籍番号で登録されている教科書のデータを取得
+			RegisterListDAO logic = new RegisterListDAO();
+			List<RegisterListModel> MyList = logic.getMyTextList(studentID);
+
+			// セッションスコープに自身が登録している教科書を保存
+			session.setAttribute("mytextlist", MyList);
+
+			// フォワード
+			forwardPath = "jsp/textbooklist/textbooklist.jsp";
+			RequestDispatcher dispatcher =
+				    	request.getRequestDispatcher(forwardPath);
+				    	dispatcher.forward(request, response);
+
+
 	}
 }
