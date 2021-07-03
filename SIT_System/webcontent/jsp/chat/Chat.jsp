@@ -4,6 +4,7 @@
 <%@ page import="beans.ChatModel" %>
 <%
 List<ChatModel> chatlist = (ArrayList<ChatModel>)session.getAttribute("chatlist");
+String friendID=(String)session.getAttribute("friendID");
 %>
 <!DOCTYPE html>
 <html>
@@ -23,14 +24,23 @@ List<ChatModel> chatlist = (ArrayList<ChatModel>)session.getAttribute("chatlist"
 <%
 	String check = (String)request.getAttribute("check");
 	if(check!="0"){
-		for(int i=0;i<chatlist.size();i++){%>
-			<p>
-				(<%= chatlist.get(i).getTime() %>
+		for(int i=0;i<chatlist.size();i++){
+			if(chatlist.get(i).getStudentID().equals(friendID)){
 
+		%>
+			<p style="text-align:left">
+				(<%= chatlist.get(i).getTime() %>
 				<%= chatlist.get(i).getStudentID() %>)
 				<%= chatlist.get(i).getText() %>
 			</p>
-<%}} %>
+			<%}else{ %>
+			<p style="text-align:right">
+				(<%= chatlist.get(i).getTime() %>
+				<%= chatlist.get(i).getStudentID() %>)
+				<%= chatlist.get(i).getText() %>
+
+			</p>
+<%}}} %>
 	<form action="/SIT_System/Chat" method="post">
 		<p style="text-align:center"><input type="text"  name="text" size="30"></p>
 		<p style="text-align:center"><input type="submit" value="送信" class="button"></p>

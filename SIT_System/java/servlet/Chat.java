@@ -29,6 +29,7 @@ public class Chat extends HttpServlet {
 
 		String studentID = (String)session.getAttribute("loginStudent");
 		String friendID = req.getParameter("friendID");
+		session.setAttribute("friendID", friendID);
 //		String studentID = "AL12345";
 //		String friendID = "AL19046";
 		String roomID = "";
