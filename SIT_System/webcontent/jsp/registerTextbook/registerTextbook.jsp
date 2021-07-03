@@ -2,29 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
+<%@ page import="dao.RegisterListDAO" %>
 <%
-    String url = "jdbc:mysql://160.16.141.77:51601/TEXT";
-    String usr = "master";
-    String pass = "Pracb2021*";
-    List<String> list = new ArrayList<String>();
-	try {
-		// ドライバクラスをロード
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		// データベースへ接続
-		Connection con = DriverManager.getConnection(url,usr,pass);
-		Statement stmt = con.createStatement();
-		String sql = "SELECT TEXTNAME FROM TEXTLIST;";
-		ResultSet rs = stmt.executeQuery(sql);
-		while (rs.next()) {
-            String tName = rs.getString("TEXTNAME");
-           	list.add(tName);
-        }
-        stmt.close();
-        con.close();
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-
+	RegisterListDAO rld = new RegisterListDAO();
+	List<String> list = rld.selectText();
  %>
 <!DOCTYPE html>
 <html>
@@ -98,7 +79,7 @@
                 </tr>
                 <tr>
                     <td colspan=2 style="text-align:center">
-                        <input type="submit" value="確認" style="border: 0.3px solid black ; color:white ; background-color: #FF4500">
+                        <input type="submit" value="確認" style="border: 0.3px solid black ; color:white ; background-color: #FF4500">      
                     </td>
                 </tr>
         	</table>  
@@ -106,7 +87,7 @@
         <form action="/SIT_System/RegisterList" method="get">
 			<div style="text-align:center;">
 				<input type="submit" value="戻る" style="border: 0.3px solid black ; color:white ; background-color: #FF4500">
-				<input type="hidden" name="act" value="back"> 
+				<input type="hidden" name="action" value="back"> 
 			</div>
 		</form>
     </div>

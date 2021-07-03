@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -189,7 +190,7 @@ public class RegisterListDAO {
 		return true;
 	}
 
-public List<RegisterListModel> getMyTextList(String studentID) {
+    public List<RegisterListModel> getMyTextList(String studentID) {
 
 		RegisterListModel tempList = null ;
     	//確認処理
@@ -238,5 +239,27 @@ public List<RegisterListModel> getMyTextList(String studentID) {
     	}
     return registerList ;
    }
+	
+	public List<String> selectText() {
+		List<String> list = new ArrayList<String>();
+		try {
+			// ドライバクラスをロード
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			// データベースへ接続
+			Connection con = DriverManager.getConnection(url,usr,pass);
+			Statement stmt = con.createStatement();
+			String sql = "SELECT TEXTNAME FROM TEXTLIST;";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+		        String tName = rs.getString("TEXTNAME");
+		       	list.add(tName);
+		    }
+		    stmt.close();
+		    con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 }

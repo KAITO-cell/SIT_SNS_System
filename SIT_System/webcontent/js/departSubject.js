@@ -24,9 +24,11 @@ function changeDepartment() {
 	} else if (changedDepartment == "デザイン工学部"){
 		// 学部にデザイン工学部が選択された場合
 		setDesign();
-	} else {
+	} else if (changedDepartment == "建築学部"){
 		// 学部に建築学部が選択された時
 		setArchi();
+	} else {
+		setNothing();
 	}
 }
 
@@ -115,6 +117,22 @@ function setArchi() {
 	];
 	
 	archiSub.forEach(function(value) {
+		var op = document.createElement("option");
+		op.value = value.label;
+		op.text = value.label;
+		subject.appendChild(op);
+	});
+}
+
+function setNothing() {
+	
+	subject.textContent = null;
+	
+	var noSub = [
+		
+	];
+	
+	noSub.forEach(function(value) {
 		var op = document.createElement("option");
 		op.value = value.label;
 		op.text = value.label;
