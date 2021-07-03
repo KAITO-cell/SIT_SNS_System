@@ -34,7 +34,7 @@
 
 <div align="center">
 <table><tbody>
-	
+
 	<form method="get" action="/SIT_System/RegisterTextbook">
 		<tr>
 			<div align="center">
@@ -89,7 +89,7 @@
 
 	<!-- 教科書列 -->
 	<%for(int i=0;i<count; i++){
-		
+
 		//教科書の重複チェック
 		boolean hit = false;
 		for(int s=0;s<save_list.size();s++){
@@ -118,12 +118,12 @@
 					<%
 			  			}
 					}
-					
+
 					//一度検索した教科書を保存
 					save_list.add(register.get(i).getTextName());
 					%>
 					</select>
-					</form>
+				</form>
 			</td>
 		</tr>
 
