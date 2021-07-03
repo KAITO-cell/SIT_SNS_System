@@ -21,11 +21,11 @@ public class RegisterListLogic {
 
     public RegisterListModel makeTextidcode(String textid) {
     	RegisterListDAO dao = new RegisterListDAO();
-    	RegisterListModel tempList = dao.getRegisterrecode(textid);
+    	RegisterListModel tempList = dao.getRegisterRecode(textid);
     	return tempList;
     }
-    
-    
+
+
 //    public List<RegisterListModel> makeList (String id){
 //
 //
