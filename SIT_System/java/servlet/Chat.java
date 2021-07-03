@@ -17,7 +17,7 @@ import beans.ChatModel;
 import dao.ChatDAO;
 
 
-@WebServlet("/Chatservlet")
+@WebServlet("/Chat")
 
 public class Chat extends HttpServlet {
 
@@ -29,24 +29,48 @@ public class Chat extends HttpServlet {
 
 		String studentID = (String)session.getAttribute("loginStudent");
 		String friendID = req.getParameter("friendID");
+//		String studentID = "AL12345";
+//		String friendID = "AL19046";
 		String roomID = "";
-		String act = req.getParameter("act");
-
+		//String act = req.getParameter("act");
+		String act="chatLogin";
+		//System.out.println(friendID+"myID"+studentID);
 		List<ChatModel> chatList = new ArrayList<ChatModel>();
+		ChatDAO cd = new ChatDAO();
+
+
+		System.out.println(roomID);
 		if(act.equals("chatLogin")){
 
 			//String chatRoomPass = req.getParameter("chatRoomPass");
-			if( friendID.compareTo(studentID)<0 ) {
-				roomID = friendID+studentID;
-			} else {
+			if( studentID.compareTo(friendID) < 0 ) {
+
 				roomID = studentID+friendID;
+
+			} else {
+				roomID = friendID+studentID;
+
 			}
-			ChatDAO cd = new ChatDAO();
 			chatList = cd.RequestChat(roomID);
-			System.out.println(chatList);
+			String check="";
+			if(chatList.size()!=0) {
+				session.setAttribute("chatlist",chatList);
+			}else {
+				check = "0";
+			}
 
-			session.setAttribute("chatlist", chatList);
+			//chatList = cd.RequestChat(roomID);
 
+//			if(chatList.get(0).getRoomID()!=null) {
+//				System.out.println(chatList);
+//			}else {
+//				cd.initChatRoom(roomID);
+//				chatList = cd.RequestChat(roomID);
+//			}
+
+			session.setAttribute("roomID", roomID);
+			req.setAttribute("check", check);
+			//session.setAttribute("studentID", studentID);
 			//チャット画面にフォワード
 			RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/chat/Chat.jsp");
 			dispatcher.forward(req,  res);
@@ -67,29 +91,28 @@ public class Chat extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res ) throws ServletException, IOException{
 
-//		String roomid = req.getParameter("textid");
-//		String studentid = req.getParameter("studentid");
-//
-//		textid = "abcdefgh";
-//		studentid = "as12344";
-//
-//		String text = req.getParameter("text");
-//
-//		if(text!="") {
-//			ChatDAO insert = new ChatDAO();
-//			insert.insertChat(roomid,studentid,text);
-//		}
-//
-//		ChatDAO rc = new ChatDAO();
-//		List<TextChatModel> chatList = rc.textRequestChat(textid);
-//
-//		HttpSession session = req.getSession();
-//		session.setAttribute("chatmodel", chatList);
-//
-//		//チャット画面にフォワード
-//		RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/chat/Chat.jsp");
-//		dispatcher.forward(req,  res);
-//
+
+
+		HttpSession session = req.getSession();
+		String roomid = (String)session.getAttribute("roomID");
+		String studentid = (String)session.getAttribute("loginStudent");
+		ChatDAO cd = new ChatDAO();
+
+		System.out.println("post"+roomid+studentid);
+
+		String text = req.getParameter("text");
+
+		if(text!="") {
+			cd.InsertChat(roomid,studentid,text);
+		}
+
+
+		List<ChatModel> chatList = cd.RequestChat(roomid);
+		session.setAttribute("chatlist", chatList);
+		//チャット画面にフォワード
+		RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/chat/Chat.jsp");
+		dispatcher.forward(req,  res);
+
 	}
 
 }

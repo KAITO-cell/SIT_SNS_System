@@ -20,9 +20,89 @@ public class ChatDAO {
 	 PreparedStatement stmt = null;
 	 ResultSet rs = null;
 
+
+
+	 //check if CHATROOM is exist
+
+//	 public boolean existChatRoom(String roomid) {
+//		 boolean result= true;
+//		 String sql= "SELECT * FROM CHATROOM WHERE ROOMID = ?;";
+//
+//		 try {
+//			 Class.forName("com.mysql.cj.jdbc.Driver");
+//			 con = DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/CHAT", "master", "Pracb2021*");
+//			 stmt=con.prepareStatement(sql);
+//			 stmt.setString(1,roomid);
+//			 rs = stmt.executeQuery();
+//			 while(rs.next()) {
+//
+//				 if(rs.getString("ROOMID") !=null ) {
+//					 System.out.println("成功！");
+//					 result=true;
+//				 }else {
+//					 System.out.println("失敗！");
+//					 result=false;
+//				 }
+//			 }
+//
+//		 } catch (ClassNotFoundException | SQLException e) {
+//	            System.out.println("JDBCドライバのロードでエラーが発生しました");
+//		 }finally {
+//			try {
+//
+//	            	con.close();
+//
+//	            } catch (SQLException e) {
+//	                System.out.println("データベースへのアクセスでエラーが発生しました。2");
+//	            }
+//		 }
+//
+//		 return result;
+//
+//	 }
+//
+//	 //Initialize CHATROOM
+//	 public void initChatRoom(String roomid) {
+//
+//
+//		 String sql = "INSERT INTO CHATROOM values(?,?,?,?); ";
+//		 try {
+//
+//	            // JDBCドライバのロード
+//	            Class.forName("com.mysql.cj.jdbc.Driver");
+//	            // データベース接続
+//	            con = DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/CHAT", "master", "Pracb2021*");
+//	            System.out.println("接続中");
+//	            // SQL実行準備
+//	            stmt = con.prepareStatement(sql);
+//	            stmt.setString(1, roomid);
+//	            stmt.setString(2, "CHATBOT");
+//	            stmt.setString(3, "メッセージを送りましょう!");
+//	            stmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+//
+//
+//	        } catch (ClassNotFoundException e) {
+//	            System.out.println("JDBCドライバのロードでエラーが発生しました");
+//	        } catch (SQLException e) {
+//	            System.out.println("データベースへのアクセスでエラーが発生しました。");
+//	        } finally {
+//	            try {
+//	                if (con != null) {
+//	                    con.close();
+//	                }
+//	            } catch (SQLException e) {
+//	                System.out.println("データベースへのアクセスでエラーが発生しました。2");
+//	            }
+//	        }
+//
+//
+//
+//	 }
+
+
 	 public List<ChatModel> RequestChat(String roomid) {
 	    // SQL文の作成
-	        String sql = "SELECT * FROM CHATROOM WHERE roomid = ? ORDER BY time DESC";
+	        String sql = "SELECT * FROM CHATROOM WHERE ROOMID = ? ORDER BY time DESC";
 
 	        List<ChatModel> chatList= new ArrayList<ChatModel>();
 

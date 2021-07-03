@@ -14,23 +14,30 @@ List<ChatModel> chatlist = (ArrayList<ChatModel>)session.getAttribute("chatlist"
 <body>
 <h1><p style="text-align:center">チャット</p></h1>
 <br>
-<form action="/SIT_System/Chatservlet" method ="post">
-<p style="text-align:center"><input type="text"  name="text" size="30"></p>
-<p style="text-align:center"><input type="submit" value="送信" class="button"></p>
-</form>
+
+
+
+
+
 <br>
-<% for(int i=0;i<chatlist.size();i++){%>
-<p>
-<%= chatlist.get(i).getTime() %>
-(
-<%= chatlist.get(i).getStudentid() %>
-)
-<%= chatlist.get(i).getText() %>
-</p>
-<%} %>
+<%
+	String check = (String)request.getAttribute("check");
+	if(check!="0"){
+		for(int i=0;i<chatlist.size();i++){%>
+			<p>
+				(<%= chatlist.get(i).getTime() %>
+
+				<%= chatlist.get(i).getStudentID() %>)
+				<%= chatlist.get(i).getText() %>
+			</p>
+<%}} %>
+	<form action="/SIT_System/Chat" method="post">
+		<p style="text-align:center"><input type="text"  name="text" size="30"></p>
+		<p style="text-align:center"><input type="submit" value="送信" class="button"></p>
+		<input type="hidden" name="act" value="chat">
+	</form>
 <br>
 <br>
-</form>
 </body>
 </html>
 

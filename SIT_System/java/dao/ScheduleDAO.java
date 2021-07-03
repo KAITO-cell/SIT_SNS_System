@@ -87,11 +87,11 @@ public class ScheduleDAO {
 				while(rs.next()) {
 					if(rs.getString("STUDENTID").equals(stdid)) {
 						result= true;
-						System.out.println("確認できました"+rs.getString("STUDENTID"));
+						//System.out.println("確認できました"+rs.getString("STUDENTID"));
 						break;
 					}else {
 						result= false;
-						System.out.println("確認できません"+rs.getString("STUDENTID"));
+						//System.out.println("確認できません"+rs.getString("STUDENTID"));
 					}
 				}
 				if(result) {

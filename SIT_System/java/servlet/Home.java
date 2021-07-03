@@ -62,7 +62,7 @@ public class Home extends HttpServlet {
 		String act = request.getParameter("act");
 		HttpSession session = request.getSession();
 		String stdid = (String)session.getAttribute("loginStudent");
-		System.out.println("stdid="+stdid);
+		//System.out.println("stdid="+stdid);
 		ScheduleDAO initDao =new ScheduleDAO();
 
 		// リクエストパラメータの取得
