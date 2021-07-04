@@ -106,7 +106,7 @@
 						if(register.get(i).getTextName().equals(str[j])){
 					%>
 							<option value="<%=register.get(j).getTextID()%>">
-								<%=register.get(j).getStudentID()%> <%=register.get(j).getCampus()%>
+								<%=register.get(j).getStudentID()%> / <%=register.get(j).getCampus()%>
 							</option>
 					<%
 			  			}
