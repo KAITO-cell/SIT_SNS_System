@@ -53,10 +53,10 @@ td.tdoriginalclass{
  	<tr>
 		<td class=tdoriginalclass>1</td>
 		<% for(int i =0;i<6;i++){ %>
-		<%if(schedule.get(i).getFirst() != null){ %>
-		<td class=tdoriginalclass><%=schedule.get(i).getFirst() %></td>
-		<%}else{ %>
+		<%if(schedule.get(i).getFirst().equals("0")){ %>
 		<td class=tdoriginalclass></td>
+		<%}else{ %>
+		<td class=tdoriginalclass><%=schedule.get(i).getFirst() %></td>
 <%			}
 		} %>
 	</tr>
@@ -64,40 +64,40 @@ td.tdoriginalclass{
 	<tr>
 		<td class=tdoriginalclass>2</td>
 		<% for(int i =0;i<6;i++){ %>
-		<%if(schedule.get(i).getSecond() != null){ %>
-		<td class=tdoriginalclass><%=schedule.get(i).getSecond() %></td>
-		<%}else{ %>
+		<%if(schedule.get(i).getSecond().equals("0")){ %>
 		<td class=tdoriginalclass></td>
+		<%}else{ %>
+		<td class=tdoriginalclass><%=schedule.get(i).getSecond() %></td>
 <%			}
 		} %>
 	</tr>
  	<tr>
 		<td class=tdoriginalclass>3</td>
 		<% for(int i =0;i<6;i++){ %>
-		<%if(schedule.get(i).getThird()!=null){ %>
-		<td class=tdoriginalclass><%=schedule.get(i).getThird() %></td>
-		<%}else{ %>
+		<%if(schedule.get(i).getThird().equals("0")){ %>
 		<td class=tdoriginalclass></td>
+		<%}else{ %>
+		<td class=tdoriginalclass><%=schedule.get(i).getThird() %></td>
 		<%}
 		} %>
 	</tr>
  	<tr>
 		<td class=tdoriginalclass>4</td>
 		<% for(int i =0;i<6;i++){ %>
-		<%if(schedule.get(i).getFourth() !=null){ %>
-		<td class=tdoriginalclass><%= schedule.get(i).getFourth() %></td>
-		<%}else{ %>
+		<%if(schedule.get(i).getFourth().equals("0")){ %>
 		<td class=tdoriginalclass></td>
+		<%}else{ %>
+		<td class=tdoriginalclass><%= schedule.get(i).getFourth() %></td>
 		<%}
 		} %>
 	</tr>
  	<tr>
 		<td class=tdoriginalclass>5</td>
 		<% for(int i =0;i<6;i++){ %>
-		<%if(schedule.get(i).getFifth()!=null){ %>
-		<td class=tdoriginalclass><%= schedule.get(i).getFifth() %></td>
-		<%}else{ %>
+		<%if(schedule.get(i).getFifth().equals("0")){ %>
 		<td class=tdoriginalclass></td>
+		<%}else{ %>
+		<td class=tdoriginalclass><%= schedule.get(i).getFifth() %></td>
 		<%}
 		} %>
 
@@ -105,20 +105,20 @@ td.tdoriginalclass{
 	<tr>
 		<td class=tdoriginalclass>6</td>
 		<% for(int i =0;i<6;i++){ %>
-		<%if(schedule.get(i).getSixth()!=null){ %>
-		</td><td class=tdoriginalclass><%= schedule.get(i).getSixth() %></td>
+		<%if(schedule.get(i).getSixth().equals("0")){ %>
+		<td class=tdoriginalclass></td>
 		<%}else{ %>
-		<td class=tdoriginalclass>
+		<td class=tdoriginalclass><%= schedule.get(i).getSixth() %></td>
 		<%}
 		} %>
 	</tr>
 	<tr>
 		<td class=tdoriginalclass>7</td>
 		<% for(int i =0;i<6;i++){ %>
-		<%if(schedule.get(i).getSeventh()!=null){ %>
-		<td class=tdoriginalclass><%= schedule.get(i).getSeventh() %></td>
-		<%}else{ %>
+		<%if(schedule.get(i).getSeventh().equals("0")){ %>
 		<td class=tdoriginalclass></td>
+		<%}else{ %>
+		<td class=tdoriginalclass><%= schedule.get(i).getSeventh() %></td>
 		<%}
 		} %>
 	</tr>
