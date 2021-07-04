@@ -48,6 +48,18 @@ String friendID=(String)session.getAttribute("friendID");
 	</form>
 <br>
 <br>
+
+	<form method="get" action="/SIT_System/Home">
+	<input type="hidden" name="act" value="chat">
+		<input type="submit" value="戻る">
+	</form>
+
+     <form action="/SIT_System/Home" method="get">
+	 	<div class="button-panel">
+	 		<input type="hidden"  name="act" value="back">
+      		<input type="submit" value="ホームへ"></input>
+     	</div>
+     </form>
 </body>
 </html>
 
