@@ -20,6 +20,12 @@
       <input type="hidden" name="act" value="chatLogin">
     </div>
   </form>
+  <form action="/SIT_System/Home" method="get">
+	<div class="button-panel">
+	  <input type="hidden"  name="act" value="back">
+      <input type="submit" value="戻る"></input>
+    </div>
+  </form>
 
 
 </div>
