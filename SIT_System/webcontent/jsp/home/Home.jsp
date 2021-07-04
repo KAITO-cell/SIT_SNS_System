@@ -127,60 +127,46 @@ td.tdoriginalclass{
 
 
 
-
-
 	<form action="/SIT_System/RegisterList" method="get">
-            <table style="margin:0 auto">
+        <input type=text size="30" name="studentname" placeholder="ニックネームを入力"></input>
 
-                <tr>
-                    <td style="width:60">ニックネーム</td>
-                    <td ><input type=text size="30" name="studentname"></input></td>
-                </tr>
-                <tr>
-                    <td style="width:60">学部</td>
-                    <td>
-                        <select name="department" id="department">
-                        	<option value="">選択してください</option>
-                            <option value="工学部">工学部</option>
-                            <option value="システム理工学部">システム理工学部</option>
-                            <option value="デザイン工学部">デザイン工学部</option>
-                            <option value="建築学部">建築学部</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:70">学科</td>
-                    <td>
-                    	<select name="subject" id="subject" onchange="submit(this.form)">
+             <br>
 
-                    		<option value="">選択してください</option>
-                    	</select>
-                    </td>
-                </tr>
-        	</table>
-        	<input type="hidden"  name="action" value="home">
+             <select name="department" id="department">
+                  <option value="">学部を選択してください</option>
+                  <option value="工学部">工学部</option>
+                  <option value="システム理工学部">システム理工学部</option>
+                  <option value="デザイン工学部">デザイン工学部</option>
+                  <option value="建築学部">建築学部</option>
+             </select>
+
+             <br>
+
+             <select name="subject" id="subject" onchange="submit(this.form)">
+
+                    <option value="">学科を選択してください</option>
+             </select>
+
+        <input type="hidden"  name="action" value="home">
     </form>
 
+    <br>
 
-	<form method="post" action="/SIT_System/Home">
-		<br>
+    <form method="post" action="/SIT_System/Home">
 
 		<!-- プルダウン -->
-		<select name="act">
-      	<option value="done">時間割</option>
+		<select name="act"onchange="submit(this.form)">
+		<option value="">設定変更</option>
+      	<option value="done">時間割の変更</option>
       	<option value="name">名前の変更</option>
       	<option value="pass">パスワードの変更</option>
 		</select>
 
-		<!-- 選択ボタン -->
-		<input type="submit" value="設定">
-		<!-- <input type="hidden"  name="act" value="done">  -->
 	</form>
 
 	<form method="get" action="/SIT_System/Home">
 
 		<input type="submit" name="act" value="chat">
 	</form>
-
 </body>
 </html>
