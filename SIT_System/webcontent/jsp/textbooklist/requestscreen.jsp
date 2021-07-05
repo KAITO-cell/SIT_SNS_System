@@ -26,6 +26,11 @@
 <div style=display:table;>
 
 <div style=display:table-row;>
+<div style=display:table-cell;>学籍番号&emsp; : </div>
+<div style=display:table-cell;>&emsp;<%= session.getAttribute( "s_id" ) %></div>
+</div>
+
+<div style=display:table-row;>
 <div style=display:table-cell;>&emsp;出品者&emsp; : </div>
 <div style=display:table-cell;>&emsp;<%= session.getAttribute( "s_name" ) %></div>
 </div>

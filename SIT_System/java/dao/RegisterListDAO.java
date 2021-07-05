@@ -142,11 +142,15 @@ public class RegisterListDAO {
 	          }
 	    }
     }
-    public boolean execute(RegisterListModel textbook) {
+    
+    //自分の教科書を登録する
+    public boolean registerMyTextList(RegisterListModel textbook) {
 
 		//登録処理
 		//登録する内容をデータベースに登録
-		int count;
+		int max = 0 ;
+		int num = 0 ;
+		
 		try {
 			// ドライバクラスをロード
 		    Class.forName("com.mysql.cj.jdbc.Driver");
@@ -159,16 +163,17 @@ public class RegisterListDAO {
 		    PreparedStatement ps = con.prepareStatement(sql);
 		    ResultSet rs = ps.executeQuery();
 
-		    count = 0;
 		    while(rs.next()) {
-		    	count++;
+		    	num = Integer.parseInt(rs.getString("TEXTID")) ;
+		    	if(max < num)
+		    		max = num ;
 		    }
 
 		    // プリファードステートメントオブジェクトの生成
 		    String sql2 = "INSERT INTO REGISTER_LIST VALUES (?,?,?,?,?,?,?,?,?)";
 		    PreparedStatement prestmt = con.prepareStatement(sql2);
 		    // プリファードステートメントオブジェクトの設定
-		    prestmt.setInt(1, count+1);
+		    prestmt.setInt(1, max+1);
 		    prestmt.setString(2, textbook.getStudentID());
 		    prestmt.setString(3, textbook.getStudentName());
 		    prestmt.setString(4, textbook.getDepartMent());
@@ -189,7 +194,8 @@ public class RegisterListDAO {
 
 		return true;
 	}
-
+    
+    //自分が登録した教科書を教科書リストに出力する
     public List<RegisterListModel> getMyTextList(String studentID) {
 
 		RegisterListModel tempList = null ;
@@ -208,7 +214,6 @@ public class RegisterListDAO {
 
 
     		// 検索の実施と重複の確認
-    		System.out.println("DAO,"+studentID) ;
     		String sql= "SELECT * FROM REGISTER_LIST WHERE STUDENTID = ?;";
     		PreparedStatement prestmt = con.prepareStatement(sql);
     		prestmt.setString(1,studentID);
@@ -225,9 +230,6 @@ public class RegisterListDAO {
                                                                    rs.getString("PUBLISHER"),
                                                                    rs.getString("CAMPUS")
                                                                     );
-                System.out.println(tempList) ;
-                String a = rs.getString("STUDENTID") ;
-                System.out.println(a) ;
                 registerList.add(tempList);
             }
 

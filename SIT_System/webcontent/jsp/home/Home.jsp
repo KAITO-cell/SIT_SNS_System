@@ -128,9 +128,8 @@ td.tdoriginalclass{
 
 
 	<form action="/SIT_System/RegisterList" method="get">
-        <input type=text size="30" name="studentname" placeholder="ニックネームを入力"></input>
 
-             <br>
+             
 
              <select name="department" id="department">
                   <option value="">学部を選択してください</option>
