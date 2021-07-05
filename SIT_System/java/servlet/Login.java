@@ -53,6 +53,7 @@ public class Login extends HttpServlet {
 			//ログイン結果画面にフォワード
 			RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/login/login_result.jsp");
 			dispatcher.forward(req,  res);
+			
 		}
 	}
 }

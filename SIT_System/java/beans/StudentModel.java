@@ -3,6 +3,7 @@ package beans;
 import java.io.Serializable;
 
 public class StudentModel implements Serializable {
+	
     private String studentID;
     private String password;
     private String password_check ;
@@ -11,10 +12,6 @@ public class StudentModel implements Serializable {
     public StudentModel() {
   	  
     }
-    
-//    public StudentModel(String name) {
-//    	this.studentName = name ;
-//    }
     
     public StudentModel(String id, String pass) {
     	this.studentID = id;
@@ -39,5 +36,5 @@ public class StudentModel implements Serializable {
     public String getStudentName(){
         return this.studentName;
     }
-
+    
 }

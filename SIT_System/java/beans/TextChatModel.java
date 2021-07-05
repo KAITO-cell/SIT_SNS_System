@@ -6,11 +6,12 @@ public class TextChatModel implements Serializable{
 
 	private String studentid;
 	private String textid;
-	//TextArea text = new TextArea();
 	private String text;
 	private String time;
 
-	public TextChatModel(){}
+	public TextChatModel(){
+		
+	}
 
 	public TextChatModel(String textid, String studentid , String text, String time) {
 		this.textid = textid;
@@ -31,4 +32,5 @@ public class TextChatModel implements Serializable{
 	public String getTime() {
 		return time;
 	}
+	
 }

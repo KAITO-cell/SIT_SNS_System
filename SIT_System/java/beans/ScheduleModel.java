@@ -3,7 +3,6 @@ import java.io.Serializable;
 
 public class ScheduleModel implements Serializable{
 
-
 	String first;
 	String second;
 	String third;
@@ -11,9 +10,10 @@ public class ScheduleModel implements Serializable{
 	String fifth;
 	String sixth;
 	String seventh;
+	
 	public ScheduleModel(String first, String second, String third, String fourth, String fifth, String sixth, String seventh) {
 
-		this.first=first;
+		this.first = first;
 		this.second = second;
 		this.third = third;
 		this.fourth = fourth;
@@ -43,4 +43,5 @@ public class ScheduleModel implements Serializable{
 	public String getSeventh() {
 		return this.seventh;
 	}
+	
 }
