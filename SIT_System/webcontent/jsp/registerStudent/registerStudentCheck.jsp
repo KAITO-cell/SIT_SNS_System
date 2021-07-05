@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
-	pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="beans.StudentModel" %>
 <% StudentModel registerUser = (StudentModel) session.getAttribute("registerUser"); %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">
@@ -21,7 +20,7 @@
 学籍番号：<%= registerUser.getStudentID() %><br>
 パスワード：<%= registerUser.getStudentPass() %><br>
 <% if(registerUser.getStudentName() != null && registerUser.getStudentName().length() != 0){ %>
-名前：<%= registerUser.getStudentName() %><br>
+名前:<%= registerUser.getStudentName() %><br>
 <% }else { %>
 名前:（未入力）<br>
 <% } %>

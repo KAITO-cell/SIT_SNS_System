@@ -8,11 +8,13 @@ String friendID=(String)session.getAttribute("friendID");
 %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/chat.css">
 <head>
 <meta charset="UTF-8">
 <title>チャット画面</title>
 </head>
 <body>
+<h2>S.I.T_System</h2>
 <h1><p style="text-align:center">チャット</p></h1>
 <br>
 
@@ -21,12 +23,12 @@ String friendID=(String)session.getAttribute("friendID");
 
 
 <br>
+<div class="overflow">
 <%
 	String check = (String)request.getAttribute("check");
 	if(check!="0"){
 		for(int i=0;i<chatlist.size();i++){
 			if(chatlist.get(i).getStudentID().equals(friendID)){
-
 		%>
 			<p style="text-align:left">
 				(<%= chatlist.get(i).getTime() %>
@@ -41,28 +43,25 @@ String friendID=(String)session.getAttribute("friendID");
 
 			</p>
 <%}}} %>
+</div>
+	<br>
+	<div class="line_container">
 	<form action="/SIT_System/Chat" method="post">
-		<p style="text-align:center"><input type="text"  name="text" size="30"></p>
-		<p style="text-align:center"><input type="submit" value="送信" class="button"></p>
+		<div class="line"><input type="text"  name="text" size="30" placeholder="メッセージを送信..." class="textbox">
+		<input type="submit" value="送信" class="send">
 		<input type="hidden" name="act" value="chat">
+		<input type="hidden" name="act" value="getChat">
+		<input type="submit" value="更新" class="reload">
+		</div>
 	</form>
-<br>
-<br>
-
 	<form method="get" action="/SIT_System/Home">
-	<input type="hidden" name="act" value="chat">
-		<input type="submit" value="戻る">
+		<div class="line"><input type="hidden" name="act" value="chat" >
+		<input type="submit" value="戻る" class="back_chat">
+		</div>
 	</form>
-
-     <form action="/SIT_System/Home" method="get">
-	 	<div class="button-panel">
-	 		<input type="hidden"  name="act" value="back">
-      		<input type="submit" value="ホームへ"></input>
-     	</div>
-     </form>
+	</div>
+<br>
+<br>
 </body>
 </html>
 
-<style type="text/css">
-.box{width: 40em;border: solid 3px #000}
-</style>

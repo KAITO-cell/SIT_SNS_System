@@ -48,15 +48,16 @@
 		<tr>
 			<td><input type="text" name="sev" value="" placeholder="7限を入力"></td>
 		</tr>
-
-
-
 	</tbody></table>
 	<div class="button-panel">
       <input type="submit" class="button" title="Sign In" value="登録"></input>
     </div>
 	<input type="hidden"  name="act" value="home">
 	</form>
-
+	<br>
+	<form action="/SIT_System/Home" method="post">
+		<input type="submit" value="戻る" class="back">
+		<input type="hidden"  name="act" value="back">
+	</form>
 </body>
 </html>
