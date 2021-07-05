@@ -25,6 +25,7 @@ public class RequestComplete extends HttpServlet {
 		//画面遷移の準備
 		String forwardPath = null;
 
+		//パラメータを取得
 		String action = request.getParameter("action");
 
 		//「完了」ボタンが押された場合
@@ -43,8 +44,8 @@ public class RequestComplete extends HttpServlet {
 		    dispatcher.forward(request, response);
 		}
 
+		//パラメータを保存
 		request.setAttribute("action", action);
 
 	}
-
 }
