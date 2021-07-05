@@ -41,7 +41,7 @@ public class SITFilter implements Filter {
 		// place your code here
     	try {
     	request.setCharacterEncoding(encoding);
-    	response.setContentType("text/html; charset="+encoding);
+    	response.setCharacterEncoding(encoding);
 
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
