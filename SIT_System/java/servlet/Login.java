@@ -32,7 +32,6 @@ public class Login extends HttpServlet {
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass");
 
-
 		//学生情報の生成
 		StudentModel student = new StudentModel(id,pass);
 

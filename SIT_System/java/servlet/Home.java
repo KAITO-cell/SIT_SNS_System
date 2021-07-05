@@ -48,6 +48,9 @@ public class Home extends HttpServlet {
 		if(act.equals("chat")) {
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/LoginChatRoom.jsp");
 			dis.forward(request, response);
+		}else if(act.equals("back")){
+			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
+			dis.forward(request, response);
 		}
 
 
@@ -189,7 +192,9 @@ public class Home extends HttpServlet {
 
 		// 時間割変更処理
 		}else if(act.equals("home")) {
-//			System.out.println("fir"+request.getParameter("fir"));
+			request.setCharacterEncoding("UTF-8");
+
+//    		System.out.println("fir"+request.getParameter("fir"));
 //			System.out.println("sec"+request.getParameter("sec"));
 //			System.out.println("thi"+request.getParameter("thr"));
 //			System.out.println("for"+request.getParameter("fou"));
@@ -210,6 +215,7 @@ public class Home extends HttpServlet {
 			//データベースに登録してその内容表示
 			String sta = request.getParameter("state");
 
+			System.out.print(sta);
 
 			switch(sta) {
 				case "mon": tableName="MONDAY";week="MON";break;

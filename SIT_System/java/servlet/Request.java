@@ -18,12 +18,6 @@ import beans.RegisterListModel;
  */
 @WebServlet("/Request")
 public class Request extends HttpServlet {
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,10 +32,10 @@ public class Request extends HttpServlet {
 		String studentid = "0";                                          //学籍番号
 		String textid =request.getParameter( "textid");                  //教科書ID
 
-
 		//教科書画面リストのプルダウンでのエラーの場合
 		if(textid.equals("-1")){
 
+			//エラー画面に遷移
 			forwardPath = "jsp/textbooklist/error.jsp";
 	        RequestDispatcher dispatcher =
 			    request.getRequestDispatcher(forwardPath);
@@ -53,11 +47,8 @@ public class Request extends HttpServlet {
         RegisterListLogic rll = new RegisterListLogic();
         RegisterListModel textidrecode = rll.makeTextidcode(textid);
 
-
-
         //学籍番号を取得
         studentid=textidrecode.getStudentID();
-
 
 		//データベースに選択したものがなかった場合、エラー画面に遷移
 		if(studentid=="0") {

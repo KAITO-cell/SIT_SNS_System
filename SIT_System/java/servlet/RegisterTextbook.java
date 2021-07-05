@@ -16,16 +16,17 @@ import dao.RegisterListDAO;
 @WebServlet("/RegisterTextbook")
 public class RegisterTextbook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
 
+		//変数の準備
         String forwardPath = "";
-        
+
         // サーブレットクラスの動作を決定する「action」の値を
 	    // リクエストパラメータから取得
 	    String action = request.getParameter("act");
-	    
+
 	    // リクエストパラメータの取得
 	    request.setCharacterEncoding("UTF-8");
 	    String studentId = request.getParameter("test1");
@@ -36,7 +37,7 @@ public class RegisterTextbook extends HttpServlet {
 	    String author = request.getParameter("test6");
 	    String publisher = request.getParameter("test7");
 	    String campus = request.getParameter("test8");
-	    
+
 	    // 登録する教科書の情報を設定
 	    RegisterListModel registertextbook = new RegisterListModel(studentId,studentName,department,subject,textName,author,publisher,campus);
 
@@ -44,12 +45,12 @@ public class RegisterTextbook extends HttpServlet {
 	    if (action == null) {
 	      // フォワード先を設定
 	      forwardPath = "/jsp/registerTextbook/registerTextbook.jsp";
-	      
+
 	    }
 
 	    // 登録確認画面から「登録実行」をリクエストされたときの処理
 	    else if (action.equals("done")) {
-	 
+
 	      // セッションスコープに保存された登録ユーザ
 	      HttpSession session = request.getSession();
 		  session.setAttribute("registerTextbook", registertextbook);
@@ -57,7 +58,7 @@ public class RegisterTextbook extends HttpServlet {
 	      // 登録処理の呼び出し
 	      RegisterListDAO textDao = new RegisterListDAO();
 	      textDao.execute(registertextbook);
-	 
+
 	      // 不要となったセッションスコープ内のインスタンスを削除
 	      session.removeAttribute("registertextbook");
 	      session.removeAttribute("registerTextbook");
@@ -65,7 +66,6 @@ public class RegisterTextbook extends HttpServlet {
 	      // 登録後のフォワード先を設定
 	      forwardPath = "/jsp/registerTextbook/registerTextbookResult.jsp";
 	    }
-	    
 
 	    // 設定されたフォワード先にフォワード
 	    RequestDispatcher dispatcher = request.getRequestDispatcher(forwardPath);
@@ -73,17 +73,13 @@ public class RegisterTextbook extends HttpServlet {
 	}
 
 
+	  protected void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
 
-	  protected void doPost(HttpServletRequest request,
-	      HttpServletResponse response)
-	      throws ServletException, IOException {
-		
 		// フォワード先
 		String forwardPath = "";
 
+		// リクエストパラメータの取得
 		HttpSession session2 = request.getSession();
-	    // リクエストパラメータの取得
-		
 	    request.setCharacterEncoding("UTF-8");
 	    String studentId = (String)session2.getAttribute("loginStudent");
 	    String studentName = request.getParameter("studentname");
@@ -93,32 +89,25 @@ public class RegisterTextbook extends HttpServlet {
 	    String author = request.getParameter("authorname");
 	    String publisher = request.getParameter("publishername");
 	    String campus = request.getParameter("campus");
-	    
+
 	    // 登録する教科書の情報を設定
 	 	RegisterListModel registertextbook = new RegisterListModel(studentId,studentName,department,subject,textName,author,publisher,campus);
-	 	//RegisterTextbookCheckDAO check = new RegisterTextbookCheckDAO();
-	    
-	    if(studentName.length() == 0 || department.length() == 0 || subject.length() == 0 || 
+
+	 	//レコードに空欄があるか確認
+	    if(studentName.length() == 0 || department.length() == 0 || subject.length() == 0 ||
 	    		textName.length() == 0 ||author.length() == 0 ||publisher.length() == 0 || campus.length() == 0 ) {
 	    	forwardPath = "/jsp/registerTextbook/registerTextbookOrNull.jsp";
 	    } else {
 	    	forwardPath = "jsp/registerTextbook/registerTextbookCheck.jsp";
-	    	
+
 	    	HttpSession session = request.getSession();
 			  session.setAttribute("registerTextbook", registertextbook);
 	    }
-	    	
-
-	    
-	    
-	    
-	    
 
 	    // 設定されたフォワード先にフォワード
 	    RequestDispatcher dispatcher = request.getRequestDispatcher(forwardPath);
 	    dispatcher.forward(request, response);
 	  }
-}	
+}
 
 
-		    

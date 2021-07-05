@@ -30,12 +30,11 @@ public class Chat extends HttpServlet {
 		String studentID = (String)session.getAttribute("loginStudent");
 		String friendID = req.getParameter("friendID");
 		session.setAttribute("friendID", friendID);
-//		String studentID = "AL12345";
-//		String friendID = "AL19046";
+
 		String roomID = "";
-		//String act = req.getParameter("act");
-		String act="chatLogin";
-		//System.out.println(friendID+"myID"+studentID);
+		String act = req.getParameter("act");
+
+		//データベースからチャット履歴を
 		List<ChatModel> chatList = new ArrayList<ChatModel>();
 		ChatDAO cd = new ChatDAO();
 
