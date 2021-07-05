@@ -102,13 +102,13 @@ public class RegisterListDAO {
         } catch(ClassNotFoundException |SQLException e){
            e.printStackTrace();
         } finally {
-          try{
-            con.close();
-            rs.close();
-            ps.close();
-          }catch(SQLException e){
-             e.printStackTrace();
-          }
+        	try{
+        		con.close();
+        		rs.close();
+        		ps.close();
+        	}catch(SQLException e){
+        		e.printStackTrace();
+        	}
           }
 
 		return tempList;
@@ -142,7 +142,7 @@ public class RegisterListDAO {
 	          }
 	    }
     }
-    
+
     //自分の教科書を登録する
     public boolean registerMyTextList(RegisterListModel textbook) {
 
@@ -150,7 +150,7 @@ public class RegisterListDAO {
 		//登録する内容をデータベースに登録
 		int max = 0 ;
 		int num = 0 ;
-		
+
 		try {
 			// ドライバクラスをロード
 		    Class.forName("com.mysql.cj.jdbc.Driver");
@@ -185,16 +185,18 @@ public class RegisterListDAO {
 
 		    // データベースの更新
 		    prestmt.executeUpdate();
-		    // プリファードステートメントオブジェクトのクローズ
 		    prestmt.close();
 		    con.close();
+
+		    // プリファードステートメントオブジェクトのクローズ
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return true;
 	}
-    
+
     //自分が登録した教科書を教科書リストに出力する
     public List<RegisterListModel> getMyTextList(String studentID) {
 
@@ -241,7 +243,7 @@ public class RegisterListDAO {
     	}
     return registerList ;
    }
-	
+
 	public List<String> selectText() {
 		List<String> list = new ArrayList<String>();
 		try {

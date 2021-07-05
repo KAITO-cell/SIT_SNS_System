@@ -57,7 +57,7 @@ public class RegisterTextbook extends HttpServlet {
 
 	      // 登録処理の呼び出し
 	      RegisterListDAO textDao = new RegisterListDAO();
-	      textDao.execute(registertextbook);
+	      textDao.registerMyTextList(registertextbook);
 
 	      // 不要となったセッションスコープ内のインスタンスを削除
 	      session.removeAttribute("registertextbook");

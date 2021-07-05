@@ -1,5 +1,10 @@
 package servlet;
 
+
+
+
+
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -31,11 +36,11 @@ public class Home extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		String act = request.getParameter("act");
-		
+
 		if(act.equals("chat")) {
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/LoginChatRoom.jsp");
 			dis.forward(request, response);
-			
+
 		}else if(act.equals("back")){
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
 			dis.forward(request, response);
@@ -47,7 +52,7 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String act = request.getParameter("act");
 		HttpSession session = request.getSession();
 		String stdid = (String)session.getAttribute("loginStudent");
@@ -65,9 +70,9 @@ public class Home extends HttpServlet {
 				//時間割初期化
 				initDao.initTimeTable(stdid);
 			}
-			
+
 			ScheduleLogic scheduleLogic = new ScheduleLogic();
-			
+
 			try {
 				List<ScheduleModel> scheduleList = scheduleLogic.makeSchedule(stdid);
 				session.setAttribute("scheduleList", scheduleList);
@@ -195,72 +200,72 @@ public class Home extends HttpServlet {
 			String sta = request.getParameter("state");
 
 			switch(sta) {
-				case "mon": 
+				case "mon":
 					tableName = "MONDAY";
 					week = "MON";
 					break;
-					
-				case "tue": 
+
+				case "tue":
 					tableName = "TUESDAY";
 					week = "TUE";
 					break;
-					
-				case "wed": 
+
+				case "wed":
 					tableName = "WEDNESDAY";
 					week = "WED";
 					break;
-					
-				case "thu": 
+
+				case "thu":
 					tableName = "THURSDAY";
 					week = "THU";
 					break;
-					
-				case "fri": 
+
+				case "fri":
 					tableName = "FRIDAY";
 					week = "FRI";
 					break;
-					
-				case "sat": 
+
+				case "sat":
 					tableName = "SATURDAY";
 					week = "SAT";
 					break;
-					
-				default: 
+
+				default:
 					tableName = "MONDAY";
 			}
 
 			if( fir == null) {
 				fir = "0";
 			}
-			
+
 			if( sec == null) {
 				sec = "0";
 			}
-			
+
 			if( thr == null) {
 				thr = "0";
 			}
-			
+
 			if( fou == null) {
 				fou = "0";
 			}
-			
+
 			if( fif == null) {
 				fif = "0";
 			}
-			
+
 			if( six == null) {
 				six = "0";
 			}
-			
+
 			if( sev == null) {
 				sev = "0";
 			}
-			
+
 			ScheduleModel table = new ScheduleModel(fir, sec, thr, fou, fif, six, sev);
 			ScheduleDAO dao = new ScheduleDAO();
 			dao.insertTimeTable(table, tableName, week, stdid);
-			
+
 			ScheduleLogic scheduleLogic = new ScheduleLogic();
 
 			try {
@@ -270,7 +275,7 @@ public class Home extends HttpServlet {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
-			
+
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
 			dis.forward(request, response);
 
