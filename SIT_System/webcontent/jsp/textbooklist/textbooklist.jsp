@@ -53,11 +53,11 @@
 		<td><%=mytextlist.get(i).getPublish() %></td>
 		<td><%=mytextlist.get(i).getCampus() %></td>
 	</tr>
-
 <% } %>
 </tbody>
 </table>
 </div>
+<br>
 <form method="get" action="/SIT_System/RegisterTextbook">
 	<input type="submit" value="教科書登録" class="add">
 	</form>
@@ -130,6 +130,7 @@
 <br>
 <input type="submit" value="戻る" class="back">
 </form>
-
+<br>
+<br>
 </body>
 </html>

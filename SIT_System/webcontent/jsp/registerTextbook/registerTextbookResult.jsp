@@ -2,24 +2,37 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/registerTextbook.css">
 <head>
 <meta charset="UTF-8">
 <title>教科書登録結果</title>
 </head>
 <body bgcolor="#DCDCDC" text="black">
-<div style="text-align:center;">
+<h2>S.I.T_System</h2>
+<div class="form-wrapper">
 <h1>教科書登録</h1>
-</div>
 <br>
 <br>
 <div style="text-align:center;">
 <p>教科書を登録しました</p>
 </div>
 <br>
+<br>
+<br>
+<br>
+<br>
 <form action="/SIT_System/RegisterList" method="get">
-<div style="text-align:center;">
-<input type="submit" value="教科書リストへ戻る" style="border: 0.3px solid black ; color:white ; background-color: #FF4500" >
+<div class="button-panel">
+<input type="submit" value="教科書リスト" class="button" >
 <input type="hidden" name="action" value="back">
 </div>
 </form>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</div>
+</body>
 </html>

@@ -3,19 +3,33 @@
     <!--  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">-->
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Loginchat.css">
   <h2>
   	S.I.T_System
   </h2>
-<div class="form-wrapper">
-  <h1>ログイン</h1>
-  <form action="/SIT_System/Chat" method ="post">
-    <div class="form-item">
-      <label for="id"></label>
-      <input type="text" name="id" required="required" placeholder="学籍番号"></input>
-    </div>
+  <br>
+<div class="choose">
+	チャット相手を選択
+</div>
+	<br>
+	<br>
+	<br>
+  <form action="/SIT_System/Chat" method ="get">
+    <div class="cp_iptxt">
+		<label class="ef">
+      <input type="text" name="friendID" required="required" placeholder="チャット相手の学籍番号"></input>
+    </label>
+	</div>
+	<br>
+	<br>
     <div class="button-panel">
-      <input type="submit" class="button" title="Sign In" value="こちゃ"></input>
+      <input type="submit" class="button" title="Sign In" value="選択"></input>
+      <input type="hidden" name="act" value="chatLogin">
     </div>
   </form>
-</div>
+  <br>
+  <form action="/SIT_System/Home" method="post">
+	<input type="submit" value="戻る" class="back">
+	<input type="hidden"  name="act" value="back">
+	</form>
 </html>
