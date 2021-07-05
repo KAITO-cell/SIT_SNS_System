@@ -9,7 +9,7 @@ import dao.ScheduleDAO;;
 public class ScheduleLogic {
 	public List<ScheduleModel> makeSchedule(String stdid) throws SQLException{
 		ScheduleDAO dao = new ScheduleDAO();
-		List<ScheduleModel> scheduleList = dao.findTimeTable(stdid);//test AL19046
+		List<ScheduleModel> scheduleList = dao.findTimeTable(stdid);
 		return scheduleList;
 
 

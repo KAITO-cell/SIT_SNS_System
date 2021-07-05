@@ -19,90 +19,12 @@ public class ChatDAO {
 	 Connection con = null;
 	 PreparedStatement stmt = null;
 	 ResultSet rs = null;
-
-
-
-	 //check if CHATROOM is exist
-
-//	 public boolean existChatRoom(String roomid) {
-//		 boolean result= true;
-//		 String sql= "SELECT * FROM CHATROOM WHERE ROOMID = ?;";
-//
-//		 try {
-//			 Class.forName("com.mysql.cj.jdbc.Driver");
-//			 con = DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/CHAT", "master", "Pracb2021*");
-//			 stmt=con.prepareStatement(sql);
-//			 stmt.setString(1,roomid);
-//			 rs = stmt.executeQuery();
-//			 while(rs.next()) {
-//
-//				 if(rs.getString("ROOMID") !=null ) {
-//					 System.out.println("成功！");
-//					 result=true;
-//				 }else {
-//					 System.out.println("失敗！");
-//					 result=false;
-//				 }
-//			 }
-//
-//		 } catch (ClassNotFoundException | SQLException e) {
-//	            System.out.println("JDBCドライバのロードでエラーが発生しました");
-//		 }finally {
-//			try {
-//
-//	            	con.close();
-//
-//	            } catch (SQLException e) {
-//	                System.out.println("データベースへのアクセスでエラーが発生しました。2");
-//	            }
-//		 }
-//
-//		 return result;
-//
-//	 }
-//
-//	 //Initialize CHATROOM
-//	 public void initChatRoom(String roomid) {
-//
-//
-//		 String sql = "INSERT INTO CHATROOM values(?,?,?,?); ";
-//		 try {
-//
-//	            // JDBCドライバのロード
-//	            Class.forName("com.mysql.cj.jdbc.Driver");
-//	            // データベース接続
-//	            con = DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/CHAT", "master", "Pracb2021*");
-//	            System.out.println("接続中");
-//	            // SQL実行準備
-//	            stmt = con.prepareStatement(sql);
-//	            stmt.setString(1, roomid);
-//	            stmt.setString(2, "CHATBOT");
-//	            stmt.setString(3, "メッセージを送りましょう!");
-//	            stmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
-//
-//
-//	        } catch (ClassNotFoundException e) {
-//	            System.out.println("JDBCドライバのロードでエラーが発生しました");
-//	        } catch (SQLException e) {
-//	            System.out.println("データベースへのアクセスでエラーが発生しました。");
-//	        } finally {
-//	            try {
-//	                if (con != null) {
-//	                    con.close();
-//	                }
-//	            } catch (SQLException e) {
-//	                System.out.println("データベースへのアクセスでエラーが発生しました。2");
-//	            }
-//	        }
-//
-//
-//
-//	 }
-
-
+	 String url = "jdbc:mysql://160.16.141.77:51601/STUDENT";
+	 String usr = "master";
+	 String pass = "Pracb2021*";
 	 public List<ChatModel> RequestChat(String roomid) {
 	    // SQL文の作成
-	        String sql = "SELECT * FROM CHATROOM WHERE ROOMID = ? ORDER BY time DESC";
+	        String sql = "SELECT * FROM CHATROOM WHERE ROOMID = ? ORDER BY time";
 
 	        List<ChatModel> chatList= new ArrayList<ChatModel>();
 
@@ -111,8 +33,7 @@ public class ChatDAO {
 	            // JDBCドライバのロード
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            // データベース接続
-	            con = DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/CHAT", "master", "Pracb2021*");
-	            System.out.println("接続中");
+	            con = DriverManager.getConnection(url,usr,pass);
 	            // SQL実行準備
 	            stmt = con.prepareStatement(sql);
 
@@ -125,22 +46,18 @@ public class ChatDAO {
 	                String studentid = rs.getString("STUDENTID");
 	                String text = rs.getString("TEXT");
 	                String time = rs.getTimestamp("TIME").toString();
-	                //chatlist.add( time + " ( " + studentid + " ) " + text + "\n");
 	                ChatModel chatmodel = new ChatModel(roomID,studentid,text,time);
 					chatList.add(chatmodel);
 	            }
 
-	        } catch (ClassNotFoundException e) {
-	            System.out.println("JDBCドライバのロードでエラーが発生しました");
-	        } catch (SQLException e) {
-	            System.out.println("データベースへのアクセスでエラーが発生しました。");
+	        } catch (ClassNotFoundException |SQLException e) {
+	            e.printStackTrace();
 	        } finally {
 	            try {
-	                if (con != null) {
-	                    con.close();
-	                }
+	                con.close();
+	                rs.close();
 	            } catch (SQLException e) {
-	                System.out.println("データベースへのアクセスでエラーが発生しました。2");
+	            	e.printStackTrace();
 	            }
 	        }
 	        return chatList;
@@ -151,14 +68,12 @@ public class ChatDAO {
  // SQL文の作成
      String sql = "INSERT INTO CHATROOM VALUES(?,?,?,?)";
 
-     //contents {textid, studentid , text}
-
      try {
          // JDBCドライバのロード
          Class.forName("com.mysql.cj.jdbc.Driver");
 
          // データベース接続
-         con = DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/CHAT", "master", "Pracb2021*");
+         con = DriverManager.getConnection(url,usr,pass);
 
          // SQL実行準備
          stmt = con.prepareStatement(sql);
@@ -168,52 +83,32 @@ public class ChatDAO {
          stmt.setString(2, studentid);
          stmt.setString(3, text);
          stmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
-
          stmt.executeUpdate();
 
-         stmt.close();
-
-     } catch (ClassNotFoundException e) {
-         System.out.println("JDBCドライバのロードでエラーが発生しました");
-     } catch (SQLException e) {
-         System.out.println("データベースへのアクセスでエラーが発生しました。");
+     } catch (ClassNotFoundException|SQLException e) {
+         e.printStackTrace();
      } finally {
          try {
-             if (con != null) {
-                 con.close();
-             }
+             con.close();
+             stmt.close();
          } catch (SQLException e) {
-             System.out.println("データベースへのアクセスでエラーが発生しました。2");
+             e.printStackTrace();
          }
      }
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
 	public List<TextChatModel> textRequestChat(String textid) {
 
 	    // SQL文の作成
-	        String sql = "SELECT * FROM CONTENTS WHERE textid = ? ORDER BY time DESC";
+	        String sql = "SELECT * FROM CONTENTS WHERE textid = ? ORDER BY time";
 
 	        List<TextChatModel> chatList= new ArrayList<TextChatModel>();
-
 	        try {
 
 	            // JDBCドライバのロード
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            // データベース接続
-	            con = DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/CHAT", "master", "Pracb2021*");
-	            System.out.println("接続中");
+	            con = DriverManager.getConnection(url,usr,pass);
 	            // SQL実行準備
 	            stmt = con.prepareStatement(sql);
 
@@ -226,22 +121,18 @@ public class ChatDAO {
 	                String studentid = rs.getString("studentid");
 	                String text = rs.getString("text");
 	                String time = rs.getTimestamp("time").toString();
-	                //chatlist.add( time + " ( " + studentid + " ) " + text + "\n");
 	                TextChatModel chatmodel = new TextChatModel(txtid,studentid,text,time);
 					chatList.add(chatmodel);
 	            }
 
-	        } catch (ClassNotFoundException e) {
-	            System.out.println("JDBCドライバのロードでエラーが発生しました");
-	        } catch (SQLException e) {
-	            System.out.println("データベースへのアクセスでエラーが発生しました。");
+	        } catch (ClassNotFoundException |SQLException e) {
+	        	e.printStackTrace();
 	        } finally {
 	            try {
-	                if (con != null) {
-	                    con.close();
-	                }
-	            } catch (SQLException e) {
-	                System.out.println("データベースへのアクセスでエラーが発生しました。2");
+	                con.close();
+	                rs.close();
+	            }catch (SQLException e) {
+	                e.printStackTrace();
 	            }
 	        }
 	        return chatList;
@@ -251,15 +142,12 @@ public class ChatDAO {
 
     // SQL文の作成
         String sql = "INSERT INTO CONTENTS VALUES(?,?,?,?)";
-
-        //contents {textid, studentid , text}
-
         try {
             // JDBCドライバのロード
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // データベース接続
-            con = DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/CHAT", "master", "Pracb2021*");
+            con = DriverManager.getConnection(url,usr,pass);
 
             // SQL実行準備
             stmt = con.prepareStatement(sql);
@@ -269,22 +157,15 @@ public class ChatDAO {
             stmt.setString(2, studentid);
             stmt.setString(3, text);
             stmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
-
             stmt.executeUpdate();
-
-            stmt.close();
-
-        } catch (ClassNotFoundException e) {
-            System.out.println("JDBCドライバのロードでエラーが発生しました");
-        } catch (SQLException e) {
-            System.out.println("データベースへのアクセスでエラーが発生しました。");
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
+            	stmt.close();
+                con.close();
             } catch (SQLException e) {
-                System.out.println("データベースへのアクセスでエラーが発生しました。2");
+                e.printStackTrace();
             }
         }
 	}

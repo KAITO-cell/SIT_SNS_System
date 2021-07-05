@@ -10,28 +10,27 @@ import beans.StudentModel;
 
 
 public class LoginDAO {
-	
+
 	public boolean execute(StudentModel student) {
-		
+
 		//DBの変数
 			Connection con = null;
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
-				
+
 			//SQL
 			String sql = "SELECT * FROM STUDENT_INFO";
-			    
+			String url = "jdbc:mysql://160.16.141.77:51601/STUDENT";
+			String usr = "master";
+			String pass = "Pracb2021*";
 			try {
 		        // JDBCドライバのロード
 				Class.forName("com.mysql.cj.jdbc.Driver");
-		            
 		        // データベース接続
-		        con = DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/STUDENT","master","Pracb2021*");
-		        System.out.println("接続中");
-		            
+		        con = DriverManager.getConnection(url,usr,pass);
 		        // SQL実行準備
 		        stmt = con.prepareStatement(sql);
-		            
+
 		        rs = stmt.executeQuery();
 		      // データがなくなるまで(rs.next()がfalseになるまで)繰り返す
 		        while (rs.next()) {
@@ -43,23 +42,20 @@ public class LoginDAO {
 		                return true;
 		            }
 		        }
-		            
-			} catch (ClassNotFoundException e) {
-		        System.out.println("JDBCドライバのロードでエラーが発生しました");
-		    } catch (SQLException e) {
-		        System.out.println("データベースへのアクセスでエラーが発生しました。");
+
+			} catch (ClassNotFoundException |SQLException e) {
+		        e.printStackTrace();
 		    } finally {
 		        try {
-		            if (con != null) {
+		        		rs.close();
 		            	stmt.close() ;
-		    	        con.close();
-		            }
+		            	con.close();
 		        } catch (SQLException e) {
-		            System.out.println("データベースへのアクセスでエラーが発生しました。2");
+		            e.printStackTrace();
 		        }
 		    }
 			return false;
 	}
-}	
-	
+}
+
 
