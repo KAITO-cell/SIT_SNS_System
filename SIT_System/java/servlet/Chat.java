@@ -24,26 +24,19 @@ public class Chat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
+
 		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
-		
+
 		String roomID = "";
 		String check="";
 		String act = req.getParameter("act");
-		
+
 		String studentID = (String)session.getAttribute("loginStudent");
 		String friendID = req.getParameter("friendID");
 		session.setAttribute("friendID", friendID);
-<<<<<<< HEAD
-		
-=======
-
-		String roomID = "";
-		String act = req.getParameter("act");
 
 		//データベースからチャット履歴を
->>>>>>> 75c86c1109dc2e3b9e199b17f1d455866f593f84
 		List<ChatModel> chatList = new ArrayList<ChatModel>();
 		ChatDAO cd = new ChatDAO();
 
@@ -54,9 +47,9 @@ public class Chat extends HttpServlet {
 			} else {
 				roomID = friendID+studentID;
 			}
-			
+
 			chatList = cd.RequestChat(roomID);
-			
+
 			if(chatList.size() != 0) {
 				session.setAttribute("chatlist",chatList);
 			}else {
@@ -86,11 +79,11 @@ public class Chat extends HttpServlet {
 
 		List<ChatModel> chatList = cd.RequestChat(roomid);
 		session.setAttribute("chatlist", chatList);
-		
+
 		//チャット画面にフォワード
 		RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/chat/Chat.jsp");
 		dispatcher.forward(req,  res);
-		
+
 	}
 }
 
