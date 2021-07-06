@@ -67,6 +67,7 @@ public class test1 extends HttpServlet {
             // SQL実行準備
             stmt = con.prepareStatement(sql);
             
+            
             stmt.setString(1,id);
             stmt.setString(2,pass);
             // 実行結果取得
