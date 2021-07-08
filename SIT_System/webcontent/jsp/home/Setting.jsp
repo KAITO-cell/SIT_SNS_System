@@ -28,25 +28,25 @@
 	<table class="original">
 	<tbody>
 		<tr>
-		    <td><input type="text" name="fir" value="" placeholder="1限を入力"></td>
+		    <td><input type="text" name="fir" value="" placeholder="1限を入力" maxlength="15"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="sec" value="" placeholder="2限を入力"></td>
+			<td><input type="text" name="sec" value="" placeholder="2限を入力" maxlength="15"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="thr" value="" placeholder="3限を入力"></td>
+			<td><input type="text" name="thr" value="" placeholder="3限を入力" maxlength="15"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="fou" value="" placeholder="4限を入力"></td>
+			<td><input type="text" name="fou" value="" placeholder="4限を入力" maxlength="15"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="fif" value="" placeholder="5限を入力"></td>
+			<td><input type="text" name="fif" value="" placeholder="5限を入力" maxlength="15"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="six" value="" placeholder="6限を入力"></td>
+			<td><input type="text" name="six" value="" placeholder="6限を入力" maxlength="15"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="sev" value="" placeholder="7限を入力"></td>
+			<td><input type="text" name="sev" value="" placeholder="7限を入力" maxlength="15"></td>
 		</tr>
 	</tbody></table>
 	<div class="button-panel">
