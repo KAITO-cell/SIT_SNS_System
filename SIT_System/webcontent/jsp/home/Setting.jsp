@@ -28,7 +28,7 @@
 	<table class="original">
 	<tbody>
 		<tr>
-		    <td><input type="text" name="fir" value="" placeholder="1限を入力" maxlength="15"></td>
+		  <td><input type="text" name="fir" value="" placeholder="1限を入力" maxlength="15"></td>
 		</tr>
 		<tr>
 			<td><input type="text" name="sec" value="" placeholder="2限を入力" maxlength="15"></td>
