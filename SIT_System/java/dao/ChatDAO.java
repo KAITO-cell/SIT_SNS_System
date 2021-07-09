@@ -19,8 +19,8 @@ public class ChatDAO {
 	 Connection con = null;
 	 PreparedStatement stmt = null;
 	 ResultSet rs = null;
-	 String url = "jdbc:mysql://localhost:51601/STUDENT";
-	 String url_TEXT = "jdbc:mysql://localhost:51601/TEXT";
+	 String url_CHAT = "jdbc:mysql://localhost:51601/CHAT";
+	 //String url_TEXT = "jdbc:mysql://localhost:51601/CHAT";
 	 String usr = "master";
 	 String pass = "Pracb2021*";
 	 public List<ChatModel> RequestChat(String roomid) {
@@ -34,7 +34,7 @@ public class ChatDAO {
 	            // JDBCドライバのロード
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            // データベース接続
-	            con = DriverManager.getConnection(url,usr,pass);
+	            con = DriverManager.getConnection(url_CHAT,usr,pass);
 	            // SQL実行準備
 	            stmt = con.prepareStatement(sql);
 
@@ -74,7 +74,7 @@ public class ChatDAO {
          Class.forName("com.mysql.cj.jdbc.Driver");
 
          // データベース接続
-         con = DriverManager.getConnection(url,usr,pass);
+         con = DriverManager.getConnection(url_CHAT,usr,pass);
 
          // SQL実行準備
          stmt = con.prepareStatement(sql);
@@ -109,7 +109,7 @@ public class ChatDAO {
 	            // JDBCドライバのロード
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            // データベース接続
-	            con = DriverManager.getConnection(url_TEXT,usr,pass);
+	            con = DriverManager.getConnection(url_CHAT,usr,pass);
 	            // SQL実行準備
 	            stmt = con.prepareStatement(sql);
 
@@ -148,7 +148,7 @@ public class ChatDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // データベース接続
-            con = DriverManager.getConnection(url_TEXT,usr,pass);
+            con = DriverManager.getConnection(url_CHAT,usr,pass);
 
             // SQL実行準備
             stmt = con.prepareStatement(sql);
