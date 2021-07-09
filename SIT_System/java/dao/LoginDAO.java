@@ -20,7 +20,7 @@ public class LoginDAO {
 
 			//SQL
 			String sql = "SELECT * FROM STUDENT_INFO";
-			String url = "jdbc:mysql://localhost:3306/STUDENT";
+			String url = "jdbc:mysql://160.16.141.77:51601/STUDENT";
 			String usr = "master";
 			String pass = "Pracb2021*";
 			try {
