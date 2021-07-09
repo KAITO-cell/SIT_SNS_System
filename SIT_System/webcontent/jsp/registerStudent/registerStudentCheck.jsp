@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="beans.StudentModel" %>
 <% StudentModel registerUser = (StudentModel) session.getAttribute("registerUser"); %>
+<%
+	String stdid = (String) session.getAttribute("loginStudent");
+%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">
 <!DOCTYPE html>
 <html>
@@ -10,7 +13,7 @@
 </head>
 <body bgcolor="#DCDCDC" text="black">
 <div style="text-align:center;">
-<h2>S.I.T</h2>
+<h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
 </div>
 <br>
 <br>

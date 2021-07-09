@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">
+<%
+	String stdid = (String) session.getAttribute("loginStudent");
+%>
 <!DOCTYPE html>
 <html>
-  <h2>
-  	S.I.T_System
-  	</h2>
+<h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
 <div class="form-wrapper">
   <h1>ログイン</h1>
   <form action="/SIT_System/Login" method ="post">
     <div class="form-item">
       <label for="id"></label>
-      <input type="text" name="id" required="required" placeholder="学籍番号"></input>
+      <input type="text" name="id" required="required" placeholder="学籍番号"maxlength="7"minlength="7"></input>
     </div>
     <div class="form-item">
       <label for="password"></label>
-      <input type="password" name="pass" required="required" placeholder="パスワード"></input>
+      <input type="password" name="pass" required="required" placeholder="パスワード" maxlength="8"minlength="6"></input>
     </div>
     <div class="button-panel">
       <input type="submit" class="button" title="Sign In" value="ログイン"></input>

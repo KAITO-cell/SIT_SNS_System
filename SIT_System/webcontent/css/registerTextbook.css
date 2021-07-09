@@ -34,6 +34,9 @@ h2{
   background:#3cb371;
   border: 1px solid;
  }
+ span{
+	color : black;
+}
 .title{
 	text-align : left;
 	font-size:30px;

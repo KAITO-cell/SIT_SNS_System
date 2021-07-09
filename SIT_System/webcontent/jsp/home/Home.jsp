@@ -5,6 +5,7 @@
 <%@ page import="java.util.List"%>
 <%
 	List<ScheduleModel> schedule = (List<ScheduleModel>) session.getAttribute("scheduleList");
+	String stdid = (String) session.getAttribute("loginStudent");
 %>
 
 <!DOCTYPE html>
@@ -15,19 +16,16 @@
 <title>ホーム</title>
 </head>
 <body>
-<h2>S.I.T_System</h2>
+<h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
 <script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/departSubject.js"></script>
-
-
 	<ul class="menu">
     <li class="menu__multi">
-        <a href="#" class="init-bottom">学科選択</a>
+        <a href="#" class="init-bottom">教科書を探す</a>
         <ul class="menu__second-level">
-            <!-- 第一階層 -->
             <li>
                 <a href="#" class="init-right">工学部</a>
                 <ul class="menu__third-level">
-                    <!-- 第二階層 -->
+                    <!-- 工学部 -->
                     <li><form action="/SIT_System/RegisterList" method="get" name="act">
 							<input type="hidden"  name="department" value="工学部">
 							<input type="hidden"  name="subject" value="機械工学科">
@@ -95,7 +93,7 @@
             <li>
                 <a href="#" class="init-right">システム理工学部</a>
                 <ul class="menu__third-level">
-                    <!-- 第二階層 -->
+                    <!-- システム理工学科 -->
                     <li>
                         <form action="/SIT_System/RegisterList" method="get" name="act">
 							<input type="hidden"  name="department" value="システム理工学部">
@@ -145,7 +143,7 @@
             <li>
                 <a href="#" class="init-right">デザイン工学部</a>
                 <ul class="menu__third-level">
-                    <!-- 第二階層 -->
+                    <!-- デザイン工学部-->
                     <li>
                         <form action="/SIT_System/RegisterList" method="get" name="act">
 							<input type="hidden"  name="department" value="デザイン工学部">
@@ -165,7 +163,7 @@
             <li>
                 <a href="#" class="init-right">建築学部</a>
                 <ul class="menu__third-level">
-                    <!-- 第二階層 -->
+                    <!-- 建築学部 -->
                     <li>
                         <form action="/SIT_System/RegisterList" method="get" name="act">
 							<input type="hidden"  name="department" value="建築学部">
@@ -194,7 +192,6 @@
     	<li class="menu__multi">
         	<a href="#" class="init-bottom">チャット</a>
         	<ul class="menu__second-level">
-            	<!-- 第一階層 -->
                 <li>
 					<form action="/SIT_System/Home" method="get" name="act">
 						<input type="hidden"  name="act" value="chat">
@@ -203,10 +200,10 @@
 			    </li>
         	</ul>
         </li>
+        <!-- 設定 -->
         <li class="menu__multi">
         	<a href="#" class="init-bottom">設定</a>
         	<ul class="menu__second-level">
-            <!-- 第一階層 -->
                 <li><form action="/SIT_System/Home" method="post" name="act">
 						<input type="hidden"  name="act" value="done">
 							<a href ="javascript:act[23].submit()">時間割の変更</a>

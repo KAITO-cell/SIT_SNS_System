@@ -7,6 +7,9 @@
 	RegisterListDAO rld = new RegisterListDAO();
 	List<String> list = rld.selectText();
  %>
+ <%
+	String stdid = (String) session.getAttribute("loginStudent");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +17,7 @@
 <meta charset="UTF-8">
 <title>教科書登録</title>
 </head>
-<h2>S.I.T_System</h2>
+<h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
 <body bgcolor="#DCDCDC" text="black">
 <script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/departSubject.js"></script>
     <div class="form-wrapper">

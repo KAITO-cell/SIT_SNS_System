@@ -5,6 +5,9 @@
     <%@ page import = "java.lang.*"%>
     <%@ page import="beans.TextChatModel" %>
     <%@ page import = "javax.servlet.http.*"%>
+<%
+	String stdid = (String) session.getAttribute("loginStudent");
+%>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/request.css">
@@ -16,7 +19,7 @@
 
 <!-- 見出し -->
 <div style="text-align:center;">
-<h2>S.I.T_System</h2>
+<h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
 <h1>教科書情報</h1>
 </div>
 </head>
@@ -59,7 +62,7 @@
 </div>
 </div>
 <br>
-<%String stdid = (String)session.getAttribute("loginStudent"); System.out.print(stdid);%>
+<p><%= stdid%></p>
 <% if(stdid.equals( (String)session.getAttribute("s_id"))){%>
 <!-- 完了ボタン 登録した生徒の場合-->
 <form method="get" action="/SIT_System/RequestComplete">

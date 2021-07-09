@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String stdid = (String) session.getAttribute("loginStudent");
+%>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/registerTextbook.css">
@@ -8,7 +11,7 @@
 <title>教科書登録結果</title>
 </head>
 <body bgcolor="#DCDCDC" text="black">
-<h2>S.I.T_System</h2>
+<h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
 <div class="form-wrapper">
 <h1>教科書登録</h1>
 <br>

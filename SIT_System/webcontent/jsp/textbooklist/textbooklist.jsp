@@ -18,6 +18,9 @@
     	int mylistcount = mytextlist.size();
     	ArrayList<String> save_mytextlist = new ArrayList<>();
     %>
+   <%
+	String stdid = (String) session.getAttribute("loginStudent");
+%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/textbook.css">
 <!DOCTYPE html>
 <html>
@@ -26,7 +29,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>教科書リスト</title>
 </head>
-<h2>S.I.T_System</h2>
+<h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
 <body>
 <!-- 見出し -->
 <br>
