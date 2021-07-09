@@ -19,7 +19,7 @@ public class ChatDAO {
 	 Connection con = null;
 	 PreparedStatement stmt = null;
 	 ResultSet rs = null;
-	 String url = "jdbc:mysql://160.16.141.77:51601/STUDENT";
+	 String url = "jdbc:mysql://localhost:51601/STUDENT";
 	 String usr = "master";
 	 String pass = "Pracb2021*";
 	 public List<ChatModel> RequestChat(String roomid) {

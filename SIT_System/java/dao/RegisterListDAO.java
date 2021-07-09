@@ -19,7 +19,7 @@ public class RegisterListDAO {
     Connection con = null;
 	ResultSet rs = null;
 	PreparedStatement ps =null;
-    String url = "jdbc:mysql://160.16.141.77:51601/TEXT";
+    String url = "jdbc:mysql://localhost:51601/TEXT";
     String usr = "master";
     String pass = "Pracb2021*";
 

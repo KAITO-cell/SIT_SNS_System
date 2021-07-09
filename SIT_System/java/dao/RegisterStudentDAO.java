@@ -10,7 +10,7 @@ import beans.StudentModel;
 
 public class RegisterStudentDAO {
 
-	String url = "jdbc:mysql://160.16.141.77:51601/STUDENT";//STUDENT DATABASE
+	String url = "jdbc:mysql://localhost:51601/STUDENT";//STUDENT DATABASE
 	String usr = "master";
 	String pass = "Pracb2021*";
 

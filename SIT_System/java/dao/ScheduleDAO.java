@@ -22,7 +22,7 @@ public class ScheduleDAO {
 	Connection con = null;
 	ResultSet rs = null;
 	PreparedStatement ps =null;
-	String url = "jdbc:mysql://160.16.141.77:51601/STUDENT";//STUDENT DATABASE
+	String url = "jdbc:mysql://localhost:51601/STUDENT";//STUDENT DATABASE
 	String user = "master";
 	String pass = "Pracb2021*";
 	String[] weekTableName = {"MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"};
