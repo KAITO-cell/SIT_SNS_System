@@ -121,8 +121,6 @@ public class RegisterListDAO {
 
 		try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
-
-				String url = "jdbc:mysql://160.16.141.77:51601/TEXT";
 				con = DriverManager.getConnection(url,usr,pass);
 
 				String sql = "DELETE FROM REGISTER_LIST WHERE TEXTID=?";
@@ -212,7 +210,7 @@ public class RegisterListDAO {
 
     		// データベースへ接続
     		Connection con =
-    		          DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/TEXT","master","Pracb2021*");
+    		          DriverManager.getConnection(url,usr,pass);
 
 
     		// 検索の実施と重複の確認
