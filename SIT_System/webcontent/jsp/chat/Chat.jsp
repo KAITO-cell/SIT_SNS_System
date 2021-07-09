@@ -6,6 +6,9 @@
 List<ChatModel> chatlist = (ArrayList<ChatModel>)session.getAttribute("chatlist");
 String friendID=(String)session.getAttribute("friendID");
 %>
+<%
+	String stdid = (String) session.getAttribute("loginStudent");
+%>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/chat.css">
@@ -14,7 +17,7 @@ String friendID=(String)session.getAttribute("friendID");
 <title>チャット画面</title>
 </head>
 <body>
-<h2>S.I.T_System</h2>
+<h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
 <h1><p style="text-align:center">チャット</p></h1>
 <br>
 
