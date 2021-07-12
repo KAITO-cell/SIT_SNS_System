@@ -1,2 +1,2 @@
 # SIT_SNS_Sytem
-触るな
+触れ
