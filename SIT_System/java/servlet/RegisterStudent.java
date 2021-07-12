@@ -93,29 +93,11 @@ public class RegisterStudent extends HttpServlet {
 		    RegisterStudentDAO Check = new RegisterStudentDAO();
 		    
 		    // 新規アカウント登録エラー確認
-		    
-		    // 学籍番号、パスワード、パスワード（確認用）のいずれかが未入力の場合
-		    if(id.length() == 0 || pass.length() == 0 || pass_check.length() == 0) {
-		    	// フォワード先を設定
-		    	forwardPath = "jsp/registerStudent/registerStudentNull.jsp";
-		    	
-		    	
-			// 学籍番号が７文字で入力されていない場合
-		    }else if(id.length() != 7 ) {
-		    	// フォワード先を設定
-		    	forwardPath = "jsp/registerStudent/registerStudentIDE7.jsp";
-		    	
 			
-			// パスワードとパスワード（確認用）が一致しない場合	    
-		    }else if(pass.equals(pass_check) == false) {
+			// パスワードとパスワード（確認用）が一致しない場合	
+		    if(pass.equals(pass_check) == false) {
 		    	// フォワード先を設定
 		    	forwardPath = "jsp/registerStudent/registerStudentPassNotmatch.jsp";
-		    	
-			
-		    // パスワードが半角英数字６～８文字で入力されていない場合
-		    }else if(pass.matches("[a-zA-Z0-9]{6,8}") == false) {
-		    	// フォワード先を設定
-		    	forwardPath = "jsp/registerStudent/registerStudentPassE6-8.jsp";
 		    	
 				    
 			// 学科に対応しない学籍番号が入力された場合
@@ -124,12 +106,6 @@ public class RegisterStudent extends HttpServlet {
 		              id.matches("[C][Y][0-9]{5}") == false  && id.matches("[D][Z][0-9]{5}") == false ) {
 		    	// フォワード先を設定
 		    	forwardPath = "jsp/registerStudent/registerStudentIDNotExist.jsp";
-		    	
-			
-		    // 名前が２０字以内で入力されていない場合
-		    }else if(name.length() > 20 ) {
-		    	// フォワード先を設定
-		    	forwardPath = "jsp/registerStudent/registerStudentNameOver.jsp";
 		    	
 				    
 			// 登録する学籍番号が既に登録されている場合
@@ -148,7 +124,7 @@ public class RegisterStudent extends HttpServlet {
 			    session.setAttribute("registerUser", registerStudent);
 		    }
 		    
-
+			
 		    // 設定されたフォワード先にフォワード
 		    RequestDispatcher dispatcher = request.getRequestDispatcher(forwardPath);
 		    dispatcher.forward(request, response);

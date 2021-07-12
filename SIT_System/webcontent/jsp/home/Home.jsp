@@ -5,6 +5,7 @@
 <%@ page import="java.util.List"%>
 <%
 	List<ScheduleModel> schedule = (List<ScheduleModel>) session.getAttribute("scheduleList");
+	String stdid = (String) session.getAttribute("loginStudent");
 %>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@
 <title>ホーム</title>
 </head>
 <body>
-<h2>S.I.T_System</h2>
+<h2>S.I.T_System <%= stdid%> さん</h2>
 <script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/departSubject.js"></script>
 	<ul class="menu">
     <li class="menu__multi">
