@@ -1,8 +1,8 @@
   
 /**************************************************************************************************
- ***  File Name      : ScheduleDAO.java
+ ***  File Name      : RegisterStudentDAO.java
  ***  Version        : V1.3
- ***  Designer       : 永井海音
+ ***  Designer       : 寺岡
  ***  Date           : 2021.06.17
  ***  Purpose        : データベースに接続し、時間割のデータを更新、挿入、選択する。
  ***                   
