@@ -1,8 +1,8 @@
   
   /**************************************************************************************************
- ***  File Name      : ScheduleModel.java
+ ***  File Name      : ChatModel.java
  ***  Version        : V1.0
- ***  Designer       : 永井海音
+ ***  Designer       : 樋口たいせい
  ***  Date           : 2021.06.17
  ***  Purpose        : ScheduleDAO.javaによりデータベースから読みだした値に基づくインスタンス生成のための変数を定義する。
  ***                   
