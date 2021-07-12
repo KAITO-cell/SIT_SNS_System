@@ -1,8 +1,8 @@
   
   /**************************************************************************************************
- ***  File Name      : ScheduleModel.java
+ ***  File Name      : StudentModel.java
  ***  Version        : V1.0
- ***  Designer       : 永井海音
+ ***  Designer       : 寺岡
  ***  Date           : 2021.06.17
  ***  Purpose        : ScheduleDAO.javaによりデータベースから読みだした値に基づくインスタンス生成のための変数を定義する。
  ***                   
