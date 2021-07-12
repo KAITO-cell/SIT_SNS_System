@@ -16,11 +16,19 @@
 <title>ホーム</title>
 </head>
 <body>
+<<<<<<< HEAD
 <h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
 <script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/departSubject.js"></script>
 	<ul class="menu">
     <li class="menu__multi">
         <a href="#" class="init-bottom">教科書を探す</a>
+=======
+<h2>S.I.T_System</h2>
+<script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/departSubject.js"></script>
+	<ul class="menu">
+    <li class="menu__multi">
+        <a href="#" class="init-bottom">学科選択</a>
+>>>>>>> main
         <ul class="menu__second-level">
             <li>
                 <a href="#" class="init-right">工学部</a>

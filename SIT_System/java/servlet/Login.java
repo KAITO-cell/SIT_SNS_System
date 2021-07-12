@@ -32,7 +32,6 @@ public class Login extends HttpServlet {
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass");
 
-
 		//学生情報の生成
 		StudentModel student = new StudentModel(id,pass);
 
@@ -54,6 +53,7 @@ public class Login extends HttpServlet {
 			//ログイン結果画面にフォワード
 			RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/login/login_result.jsp");
 			dispatcher.forward(req,  res);
+			
 		}
 	}
 }

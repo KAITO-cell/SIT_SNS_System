@@ -11,7 +11,11 @@
 <title>教科書登録結果</title>
 </head>
 <body bgcolor="#DCDCDC" text="black">
+<<<<<<< HEAD
 <h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
+=======
+<h2>S.I.T_System</h2>
+>>>>>>> main
 <div class="form-wrapper">
 <h1>教科書登録</h1>
 <br>

@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class RegisterListDAO {
     Connection con = null;
 	ResultSet rs = null;
 	PreparedStatement ps =null;
-    String url = "jdbc:mysql://160.16.141.77:51601/TEXT";
+    String url = "jdbc:mysql://localhost:51601/TEXT";
     String usr = "master";
     String pass = "Pracb2021*";
 
@@ -101,13 +102,13 @@ public class RegisterListDAO {
         } catch(ClassNotFoundException |SQLException e){
            e.printStackTrace();
         } finally {
-          try{
-            con.close();
-            rs.close();
-            ps.close();
-          }catch(SQLException e){
-             e.printStackTrace();
-          }
+        	try{
+        		con.close();
+        		rs.close();
+        		ps.close();
+        	}catch(SQLException e){
+        		e.printStackTrace();
+        	}
           }
 
 		return tempList;
@@ -120,8 +121,6 @@ public class RegisterListDAO {
 
 		try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
-
-				String url = "jdbc:mysql://160.16.141.77:51601/TEXT";
 				con = DriverManager.getConnection(url,usr,pass);
 
 				String sql = "DELETE FROM REGISTER_LIST WHERE TEXTID=?";
@@ -141,11 +140,15 @@ public class RegisterListDAO {
 	          }
 	    }
     }
-    public boolean execute(RegisterListModel textbook) {
+
+    //自分の教科書を登録する
+    public boolean registerMyTextList(RegisterListModel textbook) {
 
 		//登録処理
 		//登録する内容をデータベースに登録
-		int count;
+		int max = 0 ;
+		int num = 0 ;
+
 		try {
 			// ドライバクラスをロード
 		    Class.forName("com.mysql.cj.jdbc.Driver");
@@ -158,16 +161,17 @@ public class RegisterListDAO {
 		    PreparedStatement ps = con.prepareStatement(sql);
 		    ResultSet rs = ps.executeQuery();
 
-		    count = 0;
 		    while(rs.next()) {
-		    	count++;
+		    	num = Integer.parseInt(rs.getString("TEXTID")) ;
+		    	if(max < num)
+		    		max = num ;
 		    }
 
 		    // プリファードステートメントオブジェクトの生成
 		    String sql2 = "INSERT INTO REGISTER_LIST VALUES (?,?,?,?,?,?,?,?,?)";
 		    PreparedStatement prestmt = con.prepareStatement(sql2);
 		    // プリファードステートメントオブジェクトの設定
-		    prestmt.setInt(1, count+1);
+		    prestmt.setInt(1, max+1);
 		    prestmt.setString(2, textbook.getStudentID());
 		    prestmt.setString(3, textbook.getStudentName());
 		    prestmt.setString(4, textbook.getDepartMent());
@@ -179,9 +183,11 @@ public class RegisterListDAO {
 
 		    // データベースの更新
 		    prestmt.executeUpdate();
-		    // プリファードステートメントオブジェクトのクローズ
 		    prestmt.close();
 		    con.close();
+
+		    // プリファードステートメントオブジェクトのクローズ
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -189,7 +195,8 @@ public class RegisterListDAO {
 		return true;
 	}
 
-public List<RegisterListModel> getMyTextList(String studentID) {
+    //自分が登録した教科書を教科書リストに出力する
+    public List<RegisterListModel> getMyTextList(String studentID) {
 
 		RegisterListModel tempList = null ;
     	//確認処理
@@ -203,11 +210,10 @@ public List<RegisterListModel> getMyTextList(String studentID) {
 
     		// データベースへ接続
     		Connection con =
-    		          DriverManager.getConnection("jdbc:mysql://160.16.141.77:51601/TEXT","master","Pracb2021*");
+    		          DriverManager.getConnection(url,usr,pass);
 
 
     		// 検索の実施と重複の確認
-    		System.out.println("DAO,"+studentID) ;
     		String sql= "SELECT * FROM REGISTER_LIST WHERE STUDENTID = ?;";
     		PreparedStatement prestmt = con.prepareStatement(sql);
     		prestmt.setString(1,studentID);
@@ -224,9 +230,6 @@ public List<RegisterListModel> getMyTextList(String studentID) {
                                                                    rs.getString("PUBLISHER"),
                                                                    rs.getString("CAMPUS")
                                                                     );
-                System.out.println(tempList) ;
-                String a = rs.getString("STUDENTID") ;
-                System.out.println(a) ;
                 registerList.add(tempList);
             }
 
@@ -238,5 +241,27 @@ public List<RegisterListModel> getMyTextList(String studentID) {
     	}
     return registerList ;
    }
+
+	public List<String> selectText() {
+		List<String> list = new ArrayList<String>();
+		try {
+			// ドライバクラスをロード
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			// データベースへ接続
+			Connection con = DriverManager.getConnection(url,usr,pass);
+			Statement stmt = con.createStatement();
+			String sql = "SELECT TEXTNAME FROM TEXTLIST;";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+		        String tName = rs.getString("TEXTNAME");
+		       	list.add(tName);
+		    }
+		    stmt.close();
+		    con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 }

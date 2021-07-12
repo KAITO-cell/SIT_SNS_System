@@ -8,7 +8,13 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Loginchat.css">
+<<<<<<< HEAD
 <h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
+=======
+  <h2>
+  	S.I.T_System
+  </h2>
+>>>>>>> main
   <br>
 <div class="choose">
 	チャット相手を選択

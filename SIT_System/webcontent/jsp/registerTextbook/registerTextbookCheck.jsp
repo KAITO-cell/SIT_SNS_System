@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="beans.RegisterListModel" %>
 <% RegisterListModel registerTextbook = (RegisterListModel) session.getAttribute("registerTextbook"); %>
+<<<<<<< HEAD
 <%
 	String stdid = (String) session.getAttribute("loginStudent");
 %>
+=======
+>>>>>>> main
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +15,11 @@
 <title>教科書登録確認</title>
 </head>
 <body bgcolor="#DCDCDC" text="black">
+<<<<<<< HEAD
 <h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
+=======
+<h2>S.I.T_Sytem</h2>
+>>>>>>> main
 <div class="form-wrapper">
 <h1>教科書登録</h1>
 <br>

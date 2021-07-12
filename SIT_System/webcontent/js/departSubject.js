@@ -24,9 +24,11 @@ function changeDepartment() {
 	} else if (changedDepartment == "デザイン工学部"){
 		// 学部にデザイン工学部が選択された場合
 		setDesign();
-	} else {
+	} else if (changedDepartment == "建築学部"){
 		// 学部に建築学部が選択された時
 		setArchi();
+	} else {
+		setNothing();
 	}
 }
 
@@ -38,16 +40,17 @@ function setEngi() {
 
 	// 工学部の選択肢
 	var engiSub = [
-		{cd:"0", label:"機械工学科"},
-		{cd:"1", label:"機械機能工学科"},
-		{cd:"2", label:"材料工学科"},
-		{cd:"3", label:"応用化学科"},
-		{cd:"4", label:"電気工学科"},
-		{cd:"5", label:"電子工学科"},
-		{cd:"6", label:"情報通信工学科"},
-		{cd:"7", label:"情報工学科"},
-		{cd:"8", label:"土木工学科"},
-		{cd:"9", label:"先進国際課程"}
+		{cd:"0", label:"選択してください"},
+		{cd:"1", label:"機械工学科"},
+		{cd:"2", label:"機械機能工学科"},
+		{cd:"3", label:"材料工学科"},
+		{cd:"4", label:"応用化学科"},
+		{cd:"5", label:"電気工学科"},
+		{cd:"6", label:"電子工学科"},
+		{cd:"7", label:"情報通信工学科"},
+		{cd:"8", label:"情報工学科"},
+		{cd:"9", label:"土木工学科"},
+		{cd:"10", label:"先進国際課程"}
 	]
 
   	engiSub.forEach(function(value) {
@@ -66,13 +69,14 @@ function setSystem() {
 
 	// システム理工学部の選択肢
 	var systemSub = [
-		{cd:"10", label:"国際プログラム"},
-		{cd:"11", label:"電子情報システム学科"},
-		{cd:"12", label:"機械制御システム学科"},
-		{cd:"13", label:"環境システム学科"},
-		{cd:"14", label:"生命科学科-生命科学コース"},
-		{cd:"15", label:"生命科学科-生命医工学コース"},
-		{cd:"16", label:"数理科学科"}
+		{cd:"11", label:"選択してください"},
+		{cd:"12", label:"国際プログラム"},
+		{cd:"13", label:"電子情報システム学科"},
+		{cd:"14", label:"機械制御システム学科"},
+		{cd:"15", label:"環境システム学科"},
+		{cd:"16", label:"生命科学科-生命科学コース"},
+		{cd:"17", label:"生命科学科-生命医工学コース"},
+		{cd:"18", label:"数理科学科"}
 	];
 
   	systemSub.forEach(function(value) {
@@ -91,8 +95,9 @@ function setDesign() {
 
 	// デザイン工学部の選択肢
 	var designSub = [
-		{cd:"17", label:"生産・プロダクトデザイン系"},
-		{cd:"18", label:"ロボティクス・情報デザイン系"}
+		{cd:"19", label:"選択してください"},
+		{cd:"20", label:"生産・プロダクトデザイン系"},
+		{cd:"21", label:"ロボティクス・情報デザイン系"}
 	];
 
 	designSub.forEach(function(value) {
@@ -109,12 +114,29 @@ function setArchi() {
 	subject.textContent = null;
 	
 	var archiSub = [
-		{cd:"20", label:"AP:先進的プロジェクトデザインコース"},
-		{cd:"21", label:"SA:空間・建築デザインコース"},
-		{cd:"22", label:"UA:都市・建築デザインコース"}
+		{cd:"22", label:"選択してください"},
+		{cd:"23", label:"AP:先進的プロジェクトデザインコース"},
+		{cd:"24", label:"SA:空間・建築デザインコース"},
+		{cd:"25", label:"UA:都市・建築デザインコース"}
 	];
 	
 	archiSub.forEach(function(value) {
+		var op = document.createElement("option");
+		op.value = value.label;
+		op.text = value.label;
+		subject.appendChild(op);
+	});
+}
+
+function setNothing() {
+	
+	subject.textContent = null;
+	
+	var noSub = [
+		
+	];
+	
+	noSub.forEach(function(value) {
 		var op = document.createElement("option");
 		op.value = value.label;
 		op.text = value.label;

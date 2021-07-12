@@ -1,5 +1,10 @@
 package servlet;
 
+
+
+
+
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -24,32 +29,22 @@ import dao.ScheduleDAO;
 
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	//private ScheduleDAO student = new ScheduleDAO();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-//		// 学籍番号を取得して時間割表示
-//		ScheduleLogic scheduleLogic = new ScheduleLogic();
-//		try {
-//
-//			List<ScheduleModel> scheduleList = scheduleLogic.makeSchedule();
-//		    HttpSession session = request.getSession();
-//			session.setAttribute("scheduleList", scheduleList);
-//
-//		} catch (SQLException e) {
-//			// TODO 自動生成された catch ブロック
-//			e.printStackTrace();
-//		}
-//
+		request.setCharacterEncoding("UTF-8");
 		String act = request.getParameter("act");
+
 		if(act.equals("chat")) {
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/LoginChatRoom.jsp");
 			dis.forward(request, response);
-		}
 
+		}else if(act.equals("back")){
+			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
+			dis.forward(request, response);
+		}
 
 	}
 
@@ -57,12 +52,10 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//doGet(request, response);
 
 		String act = request.getParameter("act");
 		HttpSession session = request.getSession();
 		String stdid = (String)session.getAttribute("loginStudent");
-		System.out.println("stdid="+stdid);
 		ScheduleDAO initDao =new ScheduleDAO();
 
 		// リクエストパラメータの取得
@@ -71,13 +64,15 @@ public class Home extends HttpServlet {
 		String pass_check = request.getParameter("pass_check");
 		String name = request.getParameter("name");
 
-		if(act==null) {
+		if(act == null) {
 
 			if(!initDao.exsistTimeTable(stdid)) {
 				//時間割初期化
 				initDao.initTimeTable(stdid);
 			}
-				ScheduleLogic scheduleLogic = new ScheduleLogic();
+
+			ScheduleLogic scheduleLogic = new ScheduleLogic();
+
 			try {
 				List<ScheduleModel> scheduleList = scheduleLogic.makeSchedule(stdid);
 				session.setAttribute("scheduleList", scheduleList);
@@ -96,7 +91,6 @@ public class Home extends HttpServlet {
 		    session.removeAttribute("loginStudent");
 		    session.removeAttribute("scheduleList");
 		    session.removeAttribute("subject");
-		    System.out.println("1") ;
 
 			// フォワード先を設定
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/login/UICertify.jsp");
@@ -190,92 +184,87 @@ public class Home extends HttpServlet {
 
 		// 時間割変更処理
 		}else if(act.equals("home")) {
-			System.out.println("fir"+request.getParameter("fir"));
-			System.out.println("sec"+request.getParameter("sec"));
-			System.out.println("thi"+request.getParameter("thr"));
-			System.out.println("for"+request.getParameter("fou"));
-			System.out.println("fif"+request.getParameter("fif"));
-			System.out.println("six"+request.getParameter("six"));
-
+			request.setCharacterEncoding("UTF-8");
 
 			String tableName="";
 			String week="";
-			String fir;
-			String sec;
-			String thr;
-			String fou;
-			String fif;
-			String six;
-			String sev;
+			String fir = request.getParameter("fir");
+			String sec = request.getParameter("sec");
+			String thr = request.getParameter("thr");
+			String fou = request.getParameter("fou");
+			String fif = request.getParameter("fif");
+			String six = request.getParameter("six");
+			String sev = request.getParameter("sev");
 
 			//データベースに登録してその内容表示
 			String sta = request.getParameter("state");
 
-			if(request.getParameter("fir")==null) {
-				fir="0";
-				System.out.println(fir);
-			}else {
-				fir = request.getParameter("fir");
-			}
-			if(request.getParameter("sec")==null) {
-				sec="0";
-				System.out.println(sec);
-			}else {
-				sec = request.getParameter("sec");
-			}
-			if(request.getParameter("thr")==null) {
-				thr="0";
-				System.out.println(thr);
-			}else {
-				thr = request.getParameter("thr");
-			}
-			if(request.getParameter("fou")==null) {
-				fou="0";
-				System.out.println("for"+fou);
-			}else {
-				fou = request.getParameter("fou");
-			}
-			if(request.getParameter("fif")==null) {
-				fif="0";
-				System.out.println(fif);
-			}else {
-				fif = request.getParameter("fif");
-			}
-			if(request.getParameter("six")==null) {
-				six="0";
-				System.out.println("six "+six);
-			}else {
-				six = request.getParameter("six");
-			}
-			if(request.getParameter("sev").equals(null)) {
-				sev="0";
-				System.out.println("sev"+sev);
-			}else {
-				sev = request.getParameter("sev");
-			}
 			switch(sta) {
-				case "mon": tableName="MONDAY";week="MON";break;
-				case "tue": tableName="TUESDAY";week="TUE";break;
-				case "wed": tableName="WEDNESDAY";week="WED";break;
-				case "thu": tableName="THURSDAY";week="THU";break;
-				case "fri": tableName="FRIDAY";week="FRI";break;
-				case "sat": tableName="SATURDAY";week="SAT";break;
-				default: tableName = "MONDAY";
+				case "mon":
+					tableName = "MONDAY";
+					week = "MON";
+					break;
+
+				case "tue":
+					tableName = "TUESDAY";
+					week = "TUE";
+					break;
+
+				case "wed":
+					tableName = "WEDNESDAY";
+					week = "WED";
+					break;
+
+				case "thu":
+					tableName = "THURSDAY";
+					week = "THU";
+					break;
+
+				case "fri":
+					tableName = "FRIDAY";
+					week = "FRI";
+					break;
+
+				case "sat":
+					tableName = "SATURDAY";
+					week = "SAT";
+					break;
+
+				default:
+					tableName = "MONDAY";
 			}
 
+			if( fir == null) {
+				fir = "0";
+			}
 
-			ScheduleModel table = new ScheduleModel(fir,sec,thr,fou,fif,six,sev);
+			if( sec == null) {
+				sec = "0";
+			}
+
+			if( thr == null) {
+				thr = "0";
+			}
+
+			if( fou == null) {
+				fou = "0";
+			}
+
+			if( fif == null) {
+				fif = "0";
+			}
+
+			if( six == null) {
+				six = "0";
+			}
+
+			if( sev == null) {
+				sev = "0";
+			}
+
+			ScheduleModel table = new ScheduleModel(fir, sec, thr, fou, fif, six, sev);
 			ScheduleDAO dao = new ScheduleDAO();
-
-
-			dao.insertTimeTable(table, tableName,week,stdid);
-
-
-
-			System.out.println("TAG:Home2 stdid="+stdid);
-
-
-			System.out.println(sta+" "+fir+" "+sec+" "+thr+" "+fou+" "+fif+" "+six+" "+sev);
+			dao.insertTimeTable(table, tableName, week, stdid);
 
 			ScheduleLogic scheduleLogic = new ScheduleLogic();
 
@@ -286,13 +275,10 @@ public class Home extends HttpServlet {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
+
 			RequestDispatcher dis = request.getRequestDispatcher("jsp/home/Home.jsp");
 			dis.forward(request, response);
 
 		}
-
-
-
 	}
-
 }

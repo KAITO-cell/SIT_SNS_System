@@ -17,7 +17,11 @@
 <meta charset="UTF-8">
 <title>教科書登録</title>
 </head>
+<<<<<<< HEAD
 <h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
+=======
+<h2>S.I.T_System</h2>
+>>>>>>> main
 <body bgcolor="#DCDCDC" text="black">
 <script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/departSubject.js"></script>
     <div class="form-wrapper">

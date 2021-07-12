@@ -5,9 +5,12 @@
 <%
 List<ChatModel> chatlist = (ArrayList<ChatModel>)session.getAttribute("chatlist");
 String friendID=(String)session.getAttribute("friendID");
+<<<<<<< HEAD
 %>
 <%
 	String stdid = (String) session.getAttribute("loginStudent");
+=======
+>>>>>>> main
 %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +20,11 @@ String friendID=(String)session.getAttribute("friendID");
 <title>チャット画面</title>
 </head>
 <body>
+<<<<<<< HEAD
 <h2>S.I.T_System&nbsp;<span><%= stdid%></span>さん</h2>
+=======
+<h2>S.I.T_System</h2>
+>>>>>>> main
 <h1><p style="text-align:center">チャット</p></h1>
 <br>
 
