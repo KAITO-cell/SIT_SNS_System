@@ -1,3 +1,16 @@
+<!----------------------------------------------------------------------------------------------------
+---File Name	: Home.jsp
+---Version		: V1.2
+---Designer		: 樋口大成
+---Purpose		: ホーム画面
+---
+------------------------------------------------------------------------------------------------------>
+<!--
+---Revision :
+---V1.0 : 樋口大成	2021.06.29
+---V1.1 : 樋口大成	2021.07.00
+---V1.2 : 樋口大成	2021.07.03
+-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!--  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">-->
