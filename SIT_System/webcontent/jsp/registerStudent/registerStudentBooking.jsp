@@ -1,6 +1,6 @@
 <!----------------------------------------------------------------------------------------------------
 ---File Name	: registerStudentBooking.jsp
----Version		: V1.1
+---Version		: V1.2
 ---Designer		: 寺岡 克起
 ---Purpose		: 新規アカウント登録エラー画面1
 ---
@@ -9,6 +9,7 @@
 ---Revision :
 ---V1.0 : 寺岡 克起	2021.06.29
 ---V1.1 : 寺岡 克起	2021.07.01
+---V1.2 : 寺岡 克起	2021.07.13
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
