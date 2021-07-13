@@ -40,7 +40,7 @@ function setEngi() {
 
 	// 工学部の選択肢
 	var engiSub = [
-		{cd:"0", label:"選択してください"},
+		{cd:"0", label:"学科を選択してください"},
 		{cd:"1", label:"機械工学科"},
 		{cd:"2", label:"機械機能工学科"},
 		{cd:"3", label:"材料工学科"},
@@ -69,7 +69,7 @@ function setSystem() {
 
 	// システム理工学部の選択肢
 	var systemSub = [
-		{cd:"11", label:"選択してください"},
+		{cd:"11", label:"学科を選択してください"},
 		{cd:"12", label:"国際プログラム"},
 		{cd:"13", label:"電子情報システム学科"},
 		{cd:"14", label:"機械制御システム学科"},
@@ -95,7 +95,7 @@ function setDesign() {
 
 	// デザイン工学部の選択肢
 	var designSub = [
-		{cd:"19", label:"選択してください"},
+		{cd:"19", label:"学科を選択してください"},
 		{cd:"20", label:"生産・プロダクトデザイン系"},
 		{cd:"21", label:"ロボティクス・情報デザイン系"}
 	];
@@ -114,7 +114,7 @@ function setArchi() {
 	subject.textContent = null;
 	
 	var archiSub = [
-		{cd:"22", label:"選択してください"},
+		{cd:"22", label:"学科を選択してください"},
 		{cd:"23", label:"AP:先進的プロジェクトデザインコース"},
 		{cd:"24", label:"SA:空間・建築デザインコース"},
 		{cd:"25", label:"UA:都市・建築デザインコース"}
