@@ -21,6 +21,11 @@ h2{
   background:#3cb371;
   border: 1px solid;
  }
+span{
+	float  : right;
+	display: block;
+	color : black;
+}
 .logout{
   text-align : right;
 }

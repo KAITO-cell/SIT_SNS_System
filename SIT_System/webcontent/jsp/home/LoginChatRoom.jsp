@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!--  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">-->
+<%
+	String stdid = (String) session.getAttribute("loginStudent");
+%>
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Loginchat.css">
-  <h2>
-  	S.I.T_System
-  </h2>
+<h2>S.I.T_System&nbsp;<span><%= stdid%>さん</span></h2>
   <br>
 <div class="choose">
 	チャット相手を選択

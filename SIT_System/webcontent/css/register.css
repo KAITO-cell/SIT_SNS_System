@@ -19,7 +19,7 @@ body {
 .form-wrapper {
   background: #fafafa;
   margin: 3em auto;
-  padding: 0 3em;
+  padding: 0 1em;
   max-width: 370px;
   text-align : center;
 }
@@ -31,14 +31,9 @@ h1 {
 h2{
   text-align:left;
   padding: 1rem 2rem;
-  background:#3cb371;
+  background:red;
   border: 1px solid;
  }
-span{
-	float  : right;
-	display: block;
-	color : black;
-}
 .title{
 	text-align : left;
 	font-size:30px;
@@ -133,8 +128,7 @@ span{
 	font-size: 15px;
 	border-radius: 0;
 	border: none;
-	border-bottom: 2px solid #e9e9e9;
-	color : #808080;
+	border-bottom: 1px solid #1b2538;
 }
 .cp_sl06:focus {
 	outline: none;
@@ -206,15 +200,6 @@ span{
 	pointer-events: none;
 	opacity: 0.5;
 }
-
-
-
-
-
-
-
-
-
 form {
   padding: 0 0.15em;
 }
