@@ -1,19 +1,20 @@
 
 /**************************************************************************************************
  ***  File Name      : RegisterTextbook.java
- ***  Version        : V1.4
- ***  Designer       : 福田
+ ***  Version        : V1.5
+ ***  Designer       : 福田怜哉
  ***  Date           : 2021.07.09
  ***  Purpose        : ログインした学籍番号に基づく時間割を表示させる。
  ***                   設定画面、教科書リスト画面、チャット画面へ遷移させる。
  **************************************************************************************************/
 /*
  *** Revision :
- *** V1.0 : 永井海音,2021.06.17
- *** V1.1 : 永井海音,2021.06.20
- *** V1.2 : 永井海音,2021.06.25
- *** V1.3 : 永井海音,2021.07.02
- *** V1.4 : 永井海音,2021.07.09
+ *** V1.0 : 福田怜哉,2021.06.17
+ *** V1.1 : 福田怜哉,2021.06.20
+ *** V1.2 : 福田怜哉,2021.06.25
+ *** V1.3 : 福田怜哉,2021.07.02
+ *** V1.4 : 福田怜哉,2021.07.09
+ *** V1.5 : 福田怜哉,2021.07.13
  */
 package servlet;
 
@@ -111,7 +112,7 @@ public class RegisterTextbook extends HttpServlet {
 	 	RegisterListModel registertextbook = new RegisterListModel(studentId,studentName,department,subject,textName,author,publisher,campus);
 
 	 	//レコードに空欄があるか確認
-	    if(studentName.length() == 0 || department.length() == 0 || subject.length() == 0 ||
+	    if(studentName.length() == 0 || department.equals("学部を選択してください") || subject.equals("学科を選択してください") ||
 	    		textName.length() == 0 ||author.length() == 0 ||publisher.length() == 0 || campus.length() == 0 ) {
 	    	forwardPath = "/jsp/registerTextbook/registerTextbookOrNull.jsp";
 	    } else {
