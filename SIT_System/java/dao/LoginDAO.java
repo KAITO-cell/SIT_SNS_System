@@ -24,6 +24,7 @@ import beans.StudentModel;
 
 public class LoginDAO {
 
+	//ログイン認証
 	public boolean execute(StudentModel student) {
 
 		//DBの変数
