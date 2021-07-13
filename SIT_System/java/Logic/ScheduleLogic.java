@@ -1,7 +1,7 @@
 /**************************************************************************************************
  ***  File Name      : ScheduleLodic.java
  ***  Version        : V1.0
- ***  Designer       : 永井海音
+ ***  Designer       : 寺岡克己
  ***  Date           : 2021.06.17
  ***  Purpose        : ScheduleDAOによりデータベースから読みだした値に基づく、ScheduleModelインスタンスのListを生成する
  ***                   
