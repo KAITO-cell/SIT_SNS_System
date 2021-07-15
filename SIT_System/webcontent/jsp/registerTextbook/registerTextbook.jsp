@@ -1,5 +1,5 @@
 <!----------------------------------------------------------------------------------------------------
----File Name	: registerTextbook.jsp
+---File Name	        : registerTextbook.jsp
 ---Version		: V1.2
 ---Designer		: 福田 怜哉
 ---Date                 : 2021.07.02
