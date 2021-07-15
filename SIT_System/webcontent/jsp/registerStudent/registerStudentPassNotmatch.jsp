@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">
 
 	<!-- ログイン中の生徒の情報 -->
-	<h2>S.I.T_System&nbsp;<span><%= stdid%>さん</span></h2>
+	<h2>S.I.T SNS System&nbsp;<span><%= stdid%>さん</span></h2>
 
 	<!-- エラー内容を表示 -->
 	<div class="form-wrapper">
