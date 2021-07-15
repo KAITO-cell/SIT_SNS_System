@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ex.css">
-	<h2>S.I.T_System&nbsp;<span><%= stdid%>さん</span></h2>
+	<h2>S.I.T SNS System&nbsp;<span><%= stdid%>さん</span></h2>
 	<div class="form-wrapper">
   		<h1>新規登録</h1>
   		<form action="/SIT_System/RegisterStudent" method ="post">
