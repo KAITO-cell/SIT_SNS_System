@@ -30,7 +30,7 @@
 <body>
 
 	<!--見出し-->
-	<h2>S.I.T_System</h2>
+	<h2>S.I.T SNS System</h2>
 	<h1><p style="text-align:center">チャット</p></h1>
 	<br>
 	<br>
