@@ -56,7 +56,7 @@
 
 <body>
 	<!-- 見出し -->
-	<h2>S.I.T_System&nbsp;<span><%= stdid%>さん</span></h2>
+	<h2>S.I.T SNS System&nbsp;<span><%= stdid%>さん</span></h2>
 	<br>
 
 	<!-- 学科名を表示 -->
