@@ -1,5 +1,5 @@
 <!----------------------------------------------------------------------------------------------------
----File Name	: SettingPassResult.jsp
+---File Name	        : SettingPassResult.jsp
 ---Version		: V1.0
 ---Designer		: 寺岡 克起
 ---Date                 : 2021.06.29
@@ -27,7 +27,7 @@
 <body>
 
 	<!-- タイトル -->
-	<h2>S.I.T_System&nbsp;<span><%= stdid%>さん</span></h2>
+	<h2>S.I.T SNS System&nbsp;<span><%= stdid%>さん</span></h2>
 
 
 	<form action="/SIT_System/Home" method="post">
