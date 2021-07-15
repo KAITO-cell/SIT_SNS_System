@@ -23,7 +23,7 @@
 <html>
 
 <!--見出し-->
-<h2>S.I.T_System</h2>
+<h2>S.I.T　SNS System</h2>
 
 <!--  -->
 <div class="form-wrapper">
