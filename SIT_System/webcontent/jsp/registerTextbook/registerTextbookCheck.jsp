@@ -1,5 +1,5 @@
 <!----------------------------------------------------------------------------------------------------
----File Name	: registerTextbookCheck.jsp
+---File Name	        : registerTextbookCheck.jsp
 ---Version		: V1.1
 ---Designer		: 福田 怜哉
 ---Date                 : 2021.07.01
@@ -35,7 +35,7 @@
 <body bgcolor="#DCDCDC" text="black">
 
 	<!-- 見出し -->
-	<h2>S.I.T_System&nbsp;<span><%= stdid%>さん</span></h2>
+	<h2>S.I.T SNS System&nbsp;<span><%= stdid%>さん</span></h2>
 	<div class="form-wrapper">
 		<h1>教科書登録</h1>
 		<br>
