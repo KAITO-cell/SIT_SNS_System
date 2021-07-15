@@ -39,7 +39,7 @@
 </head>
 
 <!-- 見出し -->
-<h2>S.I.T_System&nbsp;<span><%= stdid%>さん</span></h2>
+<h2>S.I.T SNS System&nbsp;<span><%= stdid%>さん</span></h2>
 
 <body bgcolor="#DCDCDC" text="black">
 	<script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/departSubject.js"></script>
