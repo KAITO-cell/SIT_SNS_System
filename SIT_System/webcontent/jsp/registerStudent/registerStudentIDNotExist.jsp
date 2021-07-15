@@ -1,5 +1,5 @@
 <!----------------------------------------------------------------------------------------------------
----File Name	: registerStudentIDNotExit.jsp
+---File Name	        : registerStudentIDNotExit.jsp
 ---Version		: V1.1
 ---Designer		: 寺岡 克起
 ---Date                 : 2021.07.13
