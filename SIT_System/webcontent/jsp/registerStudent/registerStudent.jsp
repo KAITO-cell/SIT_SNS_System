@@ -1,5 +1,5 @@
 <!----------------------------------------------------------------------------------------------------
----File Name	: registerStudent.jsp
+---File Name		: registerStudent.jsp
 ---Version		: V1.2
 ---Designer		: 寺岡 克起
 ---Date                 : 2021.07.13
