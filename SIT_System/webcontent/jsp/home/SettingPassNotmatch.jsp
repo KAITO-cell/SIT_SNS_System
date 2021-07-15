@@ -1,5 +1,5 @@
 <!----------------------------------------------------------------------------------------------------
----File Name	: SettingPassNotmatch.jsp
+---File Name	        : SettingPassNotmatch.jsp
 ---Version		: V1.0
 ---Designer		: 寺岡 克起
 ---Date                 : 2021.06.29
@@ -29,7 +29,7 @@
 <body>
 
 	<!-- 見出し -->
-	<h2>S.I.T_System&nbsp;<span><%= stdid%>さん</span></h2>
+	<h2>S.I.T SNS System&nbsp;<span><%= stdid%>さん</span></h2>
 	<br>
 
 	<form action="/SIT_System/Home" method="post">
