@@ -1,5 +1,5 @@
 <!----------------------------------------------------------------------------------------------------
----File Name	: SettingPass.jsp
+---File Name	        : SettingPass.jsp
 ---Version		: V1.1
 ---Designer		: 寺岡 克起
 ---Date                 : 2021.07.01
@@ -28,7 +28,7 @@
 <body>
 
 	<!-- 見出し -->
-	<h2>S.I.T_System&nbsp;<span><%= stdid%>さん</span></h2>
+	<h2>S.I.T SNS System&nbsp;<span><%= stdid%>さん</span></h2>
 	<br>
 
 	<div class="title">パスワードを変更</div>
