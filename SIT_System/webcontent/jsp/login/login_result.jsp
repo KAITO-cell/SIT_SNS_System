@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html>
 	<!-- 見出し -->
-	<h2>S.I.T_System</h2>
+	<h2>S.I.T SNS System</h2>
 
 	<!-- エラーメッセージ表示 -->
 	<div class="form-wrapper">
