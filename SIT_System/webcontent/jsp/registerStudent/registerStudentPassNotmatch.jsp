@@ -1,5 +1,5 @@
 <!----------------------------------------------------------------------------------------------------
----File Name	: registerStudentPassNotmatch.jsp
+---File Name	        : registerStudentPassNotmatch.jsp
 ---Version		: V1.1
 ---Designer		: 寺岡 克起
 ---Date                 : 2021.07.13
