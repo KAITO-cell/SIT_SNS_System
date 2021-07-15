@@ -1,5 +1,5 @@
 <!----------------------------------------------------------------------------------------------------
----File Name	: registerStudentBooking.jsp
+---File Name		: registerStudentBooking.jsp
 ---Version		: V1.2
 ---Designer		: 寺岡 克起
 ---Date                 : 2021.07.13
